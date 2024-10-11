@@ -6,27 +6,29 @@ import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import SearchModal from "../components/SearchModal";
 import dynamic from "next/dynamic";
+import { ReactElement, ReactNode } from "react";
+import { NextPage } from "next";
+import MainLayout from "@/components/layouts/MainLayout";
 
 const GlobalInit = dynamic(() => import("../components/GlobalInit"), {
   ssr: false,
 });
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout =
+    Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>);
+
+  return getLayout(
     <>
-      <div className="flex grow flex-col [[data-sticky-header=on]_&]:pt-[--tw-header-height]">
-        <Header />
-        <Navbar />
-        <div className="container-fixed w-full flex px-0">
-          <main className="flex flex-col grow" id="content" role="content">
-            <div className="container-fixed">
-              <Component {...pageProps} />
-            </div>
-          </main>
-        </div>
-        <Footer />
-      </div>
-      <SearchModal />
+      <Component {...pageProps} />
       <GlobalInit />
     </>
   );

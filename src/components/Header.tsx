@@ -22,15 +22,15 @@ function Header() {
             <a href="/metronic/tailwind/demo9/">
               <img
                 className="dark:hidden min-h-[34px]"
-                src="/static/metronic/tailwind/dist/assets/media/app/mini-logo-circle.svg"
+                src="/logo.png"
               />
               <img
                 className="hidden dark:inline-block min-h-[34px]"
-                src="/static/metronic/tailwind/dist/assets/media/app/mini-logo-circle-dark.svg"
+                src="/logo.png"
               />
             </a>
             <h3 className="text-gray-900 text-lg font-medium hidden md:block">
-              Metronic
+              Readora
             </h3>
           </div>
           {/* Navs */}
@@ -304,7 +304,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-4.png"
+                              src="/media/avatars/300-4.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -366,7 +366,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-5.png"
+                              src="/media/avatars/300-5.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -417,7 +417,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-27.png"
+                              src="/media/avatars/300-27.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -469,7 +469,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-1.png"
+                              src="/media/avatars/300-1.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -495,7 +495,7 @@ function Header() {
                             <div className="card shadow-none flex items-center flex-row gap-1.5 p-2.5 rounded-lg bg-light-active">
                               <img
                                 className="h-5"
-                                src="/static/metronic/tailwind/dist/assets/media/file-types/pdf.svg"
+                                src="/media/file-types/pdf.svg"
                               />
                               <a
                                 className="hover:text-primary-active font-medium text-gray-700 text-xs me-1"
@@ -515,7 +515,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-11.png"
+                              src="/media/avatars/300-11.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -550,7 +550,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-14.png"
+                              src="/media/avatars/300-14.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -577,7 +577,7 @@ function Header() {
                               <div className="flex items-center justify-center w-[26px] h-[30px] shrink-0 bg-light rounded border border-gray-200">
                                 <img
                                   className="h-5"
-                                  src="/static/metronic/tailwind/dist/assets/media/file-types/figma.svg"
+                                  src="/media/file-types/figma.svg"
                                 />
                               </div>
                               <a
@@ -627,7 +627,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-25.png"
+                              src="/media/avatars/300-25.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -714,7 +714,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-34.png"
+                              src="/media/avatars/300-34.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -741,7 +741,7 @@ function Header() {
                               <div className="flex items-center gap-1.5">
                                 <img
                                   className="h-6"
-                                  src="/static/metronic/tailwind/dist/assets/media/file-types/xls.svg"
+                                  src="/media/file-types/xls.svg"
                                 />
                                 <div className="flex flex-col gap-0.5">
                                   <a
@@ -792,7 +792,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-29.png"
+                              src="/media/avatars/300-29.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -836,13 +836,13 @@ function Header() {
                                   <div className="flex">
                                     <img
                                       className="hover:z-5 relative shrink-0 rounded-full ring-1 ring-light-light size-6"
-                                      src="/static/metronic/tailwind/dist/assets/media/avatars/300-3.png"
+                                      src="/media/avatars/300-3.png"
                                     />
                                   </div>
                                   <div className="flex">
                                     <img
                                       className="hover:z-5 relative shrink-0 rounded-full ring-1 ring-light-light size-6"
-                                      src="/static/metronic/tailwind/dist/assets/media/avatars/300-2.png"
+                                      src="/media/avatars/300-2.png"
                                     />
                                   </div>
                                 </div>
@@ -867,7 +867,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-30.png"
+                              src="/media/avatars/300-30.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -917,7 +917,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-24.png"
+                              src="/media/avatars/300-24.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -979,7 +979,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-15.png"
+                              src="/media/avatars/300-15.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1036,19 +1036,19 @@ function Header() {
                                   <div className="flex">
                                     <img
                                       className="hover:z-5 relative shrink-0 rounded-full ring-1 ring-light-light size-6"
-                                      src="/static/metronic/tailwind/dist/assets/media/avatars/300-4.png"
+                                      src="/media/avatars/300-4.png"
                                     />
                                   </div>
                                   <div className="flex">
                                     <img
                                       className="hover:z-5 relative shrink-0 rounded-full ring-1 ring-light-light size-6"
-                                      src="/static/metronic/tailwind/dist/assets/media/avatars/300-1.png"
+                                      src="/media/avatars/300-1.png"
                                     />
                                   </div>
                                   <div className="flex">
                                     <img
                                       className="hover:z-5 relative shrink-0 rounded-full ring-1 ring-light-light size-6"
-                                      src="/static/metronic/tailwind/dist/assets/media/avatars/300-2.png"
+                                      src="/media/avatars/300-2.png"
                                     />
                                   </div>
                                   <div className="flex">
@@ -1081,7 +1081,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-6.png"
+                              src="/media/avatars/300-6.png"
                             />
                             <span className="size-1.5 badge badge-circle absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1117,7 +1117,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-12.png"
+                              src="/media/avatars/300-12.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1144,7 +1144,7 @@ function Header() {
                               <div className="flex items-center gap-1.5">
                                 <img
                                   className="h-6"
-                                  src="/static/metronic/tailwind/dist/assets/media/file-types/word.svg"
+                                  src="/media/file-types/word.svg"
                                 />
                                 <div className="flex flex-col gap-0.5">
                                   <a
@@ -1191,7 +1191,7 @@ function Header() {
                               <div className="flex items-center gap-1.5">
                                 <img
                                   className="h-6"
-                                  src="/static/metronic/tailwind/dist/assets/media/file-types/svg.svg"
+                                  src="/media/file-types/svg.svg"
                                 />
                                 <div className="flex flex-col gap-0.5">
                                   <a
@@ -1242,7 +1242,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-21.png"
+                              src="/media/avatars/300-21.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1307,7 +1307,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-13.png"
+                              src="/media/avatars/300-13.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1385,7 +1385,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-1.png"
+                              src="/media/avatars/300-1.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1420,7 +1420,7 @@ function Header() {
                                   className="bg-cover bg-no-repeat card-rounded-t shrink-0 h-24"
                                   style={{
                                     backgroundImage:
-                                      'url("/static/metronic/tailwind/dist/assets/media/images/600x600/6.jpg")',
+                                      'url("/media/images/600x600/6.jpg")',
                                   }}
                                 ></div>
                                 <div className="px-2.5 pb-2">
@@ -1443,7 +1443,7 @@ function Header() {
                                   className="bg-cover bg-no-repeat card-rounded-t shrink-0 h-24"
                                   style={{
                                     backgroundImage:
-                                      'url("/static/metronic/tailwind/dist/assets/media/images/600x600/1.jpg")',
+                                      'url("/media/images/600x600/1.jpg")',
                                   }}
                                 ></div>
                                 <div className="px-2.5 pb-2">
@@ -1473,7 +1473,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-19.png"
+                              src="/media/avatars/300-19.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1503,7 +1503,7 @@ function Header() {
                               <div className="flex items-center justify-center w-[26px] h-[30px] shrink-0 bg-white rounded border border-gray-200">
                                 <img
                                   className="h-5"
-                                  src="/static/metronic/tailwind/dist/assets/media/brand-logos/jira.svg"
+                                  src="/media/brand-logos/jira.svg"
                                 />
                               </div>
                               <a
@@ -1538,7 +1538,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-17.png"
+                              src="/media/avatars/300-17.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1575,7 +1575,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-34.png"
+                              src="/media/avatars/300-34.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1610,7 +1610,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-9.png"
+                              src="/media/avatars/300-9.png"
                             />
                             <span className="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1653,7 +1653,7 @@ function Header() {
                             <img
                               alt=""
                               className="rounded-full size-8"
-                              src="/static/metronic/tailwind/dist/assets/media/avatars/300-13.png"
+                              src="/media/avatars/300-13.png"
                             />
                             <span className="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2"></span>
                           </div>
@@ -1734,7 +1734,7 @@ function Header() {
                       <img
                         alt=""
                         className="size-9 rounded-full border-2 border-success"
-                        src="/static/metronic/tailwind/dist/assets/media/avatars/300-2.png"
+                        src="/media/avatars/300-2.png"
                       />
                       <div className="flex flex-col gap-1.5">
                         <span className="text-sm text-gray-800 font-semibold leading-none">
@@ -1921,7 +1921,7 @@ function Header() {
                           <img
                             alt=""
                             className="inline-block size-3.5 rounded-full"
-                            src="/static/metronic/tailwind/dist/assets/media/flags/united-states.svg"
+                            src="/media/flags/united-states.svg"
                           />
                         </div>
                       </div>
@@ -1932,7 +1932,7 @@ function Header() {
                               <img
                                 alt=""
                                 className="inline-block size-4 rounded-full"
-                                src="/static/metronic/tailwind/dist/assets/media/flags/united-states.svg"
+                                src="/media/flags/united-states.svg"
                               />
                             </span>
                             <span className="menu-title">English</span>
@@ -1947,7 +1947,7 @@ function Header() {
                               <img
                                 alt=""
                                 className="inline-block size-4 rounded-full"
-                                src="/static/metronic/tailwind/dist/assets/media/flags/spain.svg"
+                                src="/media/flags/spain.svg"
                               />
                             </span>
                             <span className="menu-title">Spanish</span>
@@ -1959,7 +1959,7 @@ function Header() {
                               <img
                                 alt=""
                                 className="inline-block size-4 rounded-full"
-                                src="/static/metronic/tailwind/dist/assets/media/flags/germany.svg"
+                                src="/media/flags/germany.svg"
                               />
                             </span>
                             <span className="menu-title">German</span>
@@ -1971,7 +1971,7 @@ function Header() {
                               <img
                                 alt=""
                                 className="inline-block size-4 rounded-full"
-                                src="/static/metronic/tailwind/dist/assets/media/flags/japan.svg"
+                                src="/media/flags/japan.svg"
                               />
                             </span>
                             <span className="menu-title">Japanese</span>
@@ -1983,7 +1983,7 @@ function Header() {
                               <img
                                 alt=""
                                 className="inline-block size-4 rounded-full"
-                                src="/static/metronic/tailwind/dist/assets/media/flags/france.svg"
+                                src="/media/flags/france.svg"
                               />
                             </span>
                             <span className="menu-title">French</span>
