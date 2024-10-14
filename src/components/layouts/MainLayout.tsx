@@ -9,7 +9,7 @@ const MainLayout = ({ children }) => {
       <Navbar />
       <div className="container-fixed w-full flex px-0">
         <main className="flex flex-col grow" id="content" role="content">
-          <div className="container-fixed">{children}</div>
+          {children}
         </main>
       </div>
       <Footer />

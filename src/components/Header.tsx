@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 function Header() {
   return (
     <header
@@ -19,16 +22,23 @@ function Header() {
             <i className="ki-filled ki-menu"></i>
           </button>
           <div className="flex items-center gap-2">
-            <a href="/metronic/tailwind/demo9/">
-              <img
-                className="dark:hidden min-h-[34px]"
+            <Link href="/">
+              <Image
+                alt=""
+                width={30}
+                height={30}
+                className="dark:hidden min-h-[30px]"
                 src="/logo.png"
               />
-              <img
-                className="hidden dark:inline-block min-h-[34px]"
+
+              <Image
+                alt=""
+                width={30}
+                height={30}
+                className="hidden dark:inline-block min-h-[30px]"
                 src="/logo.png"
               />
-            </a>
+            </Link>
             <h3 className="text-gray-900 text-lg font-medium hidden md:block">
               Readora
             </h3>
@@ -74,45 +84,6 @@ function Header() {
                         <i className="ki-filled ki-setting-2"></i>
                       </span>
                       <span className="menu-title">KeenTeam</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* End of Nav */}
-            <div className="border-e border-gray-200 h-5 mx-4"></div>
-            {/* Nav */}
-            <div className="menu menu-default w-[120px]" data-menu="true">
-              <div
-                className="menu-item menu-item-dropdown"
-                data-menu-item-offset="0, 0"
-                data-menu-item-placement="bottom-start"
-                data-menu-item-toggle="dropdown"
-                data-menu-item-trigger="hover"
-              >
-                <button className="menu-toggle btn btn-light btn-sm flex-nowrap">
-                  <span className="flex items-center me-1">
-                    <i className="ki-filled ki-shop !text-md"></i>
-                  </span>
-                  <span className="hidden md:inline text-nowrap">RafaShop</span>
-                  <span className="flex items-center">
-                    <i className="ki-filled ki-down !text-xs"></i>
-                  </span>
-                </button>
-                <div className="menu-dropdown w-48 py-2 scrollable-y max-h-[250px]">
-                  <div className="menu-item">
-                    <a className="menu-link" href="#">
-                      <span className="menu-title">UrbanNest</span>
-                    </a>
-                  </div>
-                  <div className="menu-item">
-                    <a className="menu-link" href="#">
-                      <span className="menu-title">Celestial Finds</span>
-                    </a>
-                  </div>
-                  <div className="menu-item">
-                    <a className="menu-link" href="#">
-                      <span className="menu-title">BohoChic Bazaar</span>
                     </a>
                   </div>
                 </div>
@@ -1738,7 +1709,7 @@ function Header() {
                       />
                       <div className="flex flex-col gap-1.5">
                         <span className="text-sm text-gray-800 font-semibold leading-none">
-                          Cody Fisher
+                          Quân Bú Cặc
                         </span>
                         <a
                           className="text-xs text-gray-600 hover:text-primary font-medium leading-none"
@@ -1904,93 +1875,6 @@ function Header() {
                         <span className="menu-title">Dev Forum</span>
                       </a>
                     </div>
-                    <div
-                      className="menu-item menu-item-dropdown"
-                      data-menu-item-offset="-10px, 0"
-                      data-menu-item-placement="left-start"
-                      data-menu-item-toggle="dropdown"
-                      data-menu-item-trigger="click|lg:hover"
-                    >
-                      <div className="menu-link">
-                        <span className="menu-icon">
-                          <i className="ki-filled ki-icon"></i>
-                        </span>
-                        <span className="menu-title">Language</span>
-                        <div className="flex items-center gap-1.5 rounded-md border border-gray-300 text-gray-600 p-1.5 text-2xs font-medium shrink-0">
-                          English
-                          <img
-                            alt=""
-                            className="inline-block size-3.5 rounded-full"
-                            src="/media/flags/united-states.svg"
-                          />
-                        </div>
-                      </div>
-                      <div className="menu-dropdown menu-default light:border-gray-300 w-full max-w-[170px]">
-                        <div className="menu-item active">
-                          <a className="menu-link h-10" href="#">
-                            <span className="menu-icon">
-                              <img
-                                alt=""
-                                className="inline-block size-4 rounded-full"
-                                src="/media/flags/united-states.svg"
-                              />
-                            </span>
-                            <span className="menu-title">English</span>
-                            <span className="menu-badge">
-                              <i className="ki-solid ki-check-circle text-success text-base"></i>
-                            </span>
-                          </a>
-                        </div>
-                        <div className="menu-item">
-                          <a className="menu-link h-10" href="#">
-                            <span className="menu-icon">
-                              <img
-                                alt=""
-                                className="inline-block size-4 rounded-full"
-                                src="/media/flags/spain.svg"
-                              />
-                            </span>
-                            <span className="menu-title">Spanish</span>
-                          </a>
-                        </div>
-                        <div className="menu-item">
-                          <a className="menu-link h-10" href="#">
-                            <span className="menu-icon">
-                              <img
-                                alt=""
-                                className="inline-block size-4 rounded-full"
-                                src="/media/flags/germany.svg"
-                              />
-                            </span>
-                            <span className="menu-title">German</span>
-                          </a>
-                        </div>
-                        <div className="menu-item">
-                          <a className="menu-link h-10" href="#">
-                            <span className="menu-icon">
-                              <img
-                                alt=""
-                                className="inline-block size-4 rounded-full"
-                                src="/media/flags/japan.svg"
-                              />
-                            </span>
-                            <span className="menu-title">Japanese</span>
-                          </a>
-                        </div>
-                        <div className="menu-item">
-                          <a className="menu-link h-10" href="#">
-                            <span className="menu-icon">
-                              <img
-                                alt=""
-                                className="inline-block size-4 rounded-full"
-                                src="/media/flags/france.svg"
-                              />
-                            </span>
-                            <span className="menu-title">French</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div className="menu-separator"></div>
                   <div className="flex flex-col">
@@ -2014,7 +1898,7 @@ function Header() {
                     <div className="menu-item px-4 py-1.5">
                       <a
                         className="btn btn-sm btn-light justify-center"
-                        href="/metronic/tailwind/demo9/authentication/classic/sign-in"
+                        href="/auth/sign-in"
                       >
                         Log out
                       </a>
