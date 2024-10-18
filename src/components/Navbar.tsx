@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function Navbar() {
   return (
     <div
@@ -16,14 +18,14 @@ function Navbar() {
           id="mega_menu"
         >
           <div className="menu-item active">
-            <a
+            <Link
               className="menu-link lg:py-3.5 border-b border-b-transparent menu-item-active:border-b-gray-800 text-gray-800 menu-item-hover:text-gray-900 menu-item-active:text-gray-900 menu-item-here:border-b-gray-800 menu-item-here:text-gray-900"
-              href="/metronic/tailwind/demo9/"
+              href="/book/2211"
             >
               <span className="menu-title font-medium text-gray-800 text-sm">
                 Boards
               </span>
-            </a>
+            </Link>
           </div>
           <div
             className="menu-item menu-item-dropdown"

@@ -4,14 +4,12 @@ type InputFieldProps = {
   label: string;
   placeholder?: string;
   name: string;
-  type?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-const InputField = ({
+const PasswordField = ({
   label,
   placeholder,
   name,
-  type = "text",
   ...props
 }: InputFieldProps) => {
   const [field, meta] = useField(name);
@@ -20,21 +18,29 @@ const InputField = ({
     <>
       <div className="flex flex-col gap-1">
         <label className="form-label text-gray-900">{label}</label>
-        <input
-          className="input"
-          name={name}
-          placeholder={placeholder}
-          type={type}
-          {...field}
-          {...props}
-        />
+        <div className="input" data-toggle-password="true">
+          <input
+            name={name}
+            placeholder={placeholder}
+            type="password"
+            {...field}
+            {...props}
+          />
+          <button
+            className="btn btn-icon"
+            data-toggle-password-trigger="true"
+            type="button"
+          >
+            <i className="ki-filled ki-eye text-gray-500 toggle-password-active:hidden"></i>
+            <i className="ki-filled ki-eye-slash text-gray-500 hidden toggle-password-active:block"></i>
+          </button>
+        </div>
+        {meta.touched && meta.error ? (
+          <small className="text-danger mt-[-6px]">{meta.error}</small>
+        ) : null}
       </div>
-
-      {/* {meta.touched && meta.error ? (
-        <small className="text-danger">{meta.error}</small>
-      ) : null} */}
     </>
   );
 };
 
-export default InputField;
+export default PasswordField;

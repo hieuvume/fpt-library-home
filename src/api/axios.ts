@@ -1,5 +1,6 @@
 import { getAccessToken } from '@/utils/auth'
-import Axios from 'axios'
+import Axios, { AxiosError, AxiosResponse } from 'axios'
+import { Report } from 'notiflix'
 
 export function setupAxios(axios) {
   axios.defaults.headers.Accept = 'application/json'
@@ -15,14 +16,22 @@ export function setupAxios(axios) {
     (err) => Promise.reject(err)
   )
   axios.interceptors.response.use(
-    function (response) {
+    function (response: AxiosResponse) {
       if (response && response.data) {
-        return response.data
+        return Promise.resolve(response.data)
       }
-      return response
+      return Promise.resolve(response)
     },
-    function (error) {
+    function (error: AxiosError<any>) {
       if (error.response && error.response.data) {
+        if (error.response.data.message) {
+          if (typeof error.response.data.message === 'string') {
+            Report.failure('Error', error.response.data.message, 'OK')
+          }
+          if (Array.isArray(error.response.data.message)) {
+            Report.failure('Error', error.response.data.message[0], 'OK')
+          }
+        }
         if (error.response.data.errors && error.response.data.errors.length > 0) {
           return Promise.reject({
             message: error.response.data.errors[0].msg,
@@ -40,7 +49,6 @@ const api = Axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     'Content-Type': 'application/json',
-    
   },
 });
 
