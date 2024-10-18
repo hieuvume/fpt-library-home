@@ -1,15 +1,19 @@
+import Link from "next/link";
+
 const { useField } = require("formik");
 
 type InputFieldProps = {
   label: string;
   placeholder?: string;
   name: string;
+  forgotLink?: boolean
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const PasswordField = ({
   label,
   placeholder,
   name,
+  forgotLink = false,
   ...props
 }: InputFieldProps) => {
   const [field, meta] = useField(name);
@@ -17,8 +21,23 @@ const PasswordField = ({
   return (
     <>
       <div className="flex flex-col gap-1">
-        <label className="form-label text-gray-900">{label}</label>
-        <div className="input" data-toggle-password="true">
+        {forgotLink ? (
+          <div className="flex items-center justify-between gap-1">
+            <label className="form-label text-gray-900">
+              {label}
+            </label>
+            <Link
+              className="text-2sm link shrink-0"
+              href="/password/request"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+        ) : (
+          <label className="form-label text-gray-900">{label}</label>
+        )}
+        <div className={`input ${meta.touched && meta.error ? "border-danger" : ""
+          }`} data-toggle-password="true">
           <input
             name={name}
             placeholder={placeholder}

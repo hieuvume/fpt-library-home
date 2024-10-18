@@ -1,8 +1,14 @@
-import { signUp } from "@/api/auth";
+import authApi from "@/api/auth";
 import InputField from "@/components/forms/InputField";
 import PasswordField from "@/components/forms/PasswordField";
 import AuthLayout from "@/components/layouts/AuthLayout";
+import useAuth from "@/hooks/useAuth";
+import { handleErrorResponse } from "@/utils";
+import { saveAccessToken } from "@/utils/auth";
 import { Form, Formik } from "formik";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { Report } from "notiflix";
 import * as Yup from "yup";
 
@@ -14,14 +20,17 @@ const validationSchema = Yup.object().shape({
       message: "Phone number is not valid",
     })
     .required("Phone number is required"),
-  password: Yup.string().min(6).max(50).required("Password is required"),
+  password: Yup.string().min(1).max(50).required("Password is required"),
   confirm_password: Yup.string()
-    .min(6)
+    .min(1)
     .max(50)
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
 export default function SignUpPage() {
+  const { mutateAuth } = useAuth();
+  const router = useRouter();
+
   return (
     <div className="flex items-center justify-center grow bg-center bg-no-repeat page-bg">
       <div className="card max-w-[370px] w-full">
@@ -33,14 +42,25 @@ export default function SignUpPage() {
             password: "",
           }}
           validationSchema={validationSchema}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values, { setSubmitting, setFieldError }) => {
             setSubmitting(true);
-            signUp(values)
+            authApi.signUp(values)
               .then((data) => {
-                console.log(data);
-                Report.success("Success", "Sign up successfully!", "OK");
+                Report.success("Success", "Sign up successfully!", "OK", () => {
+                  const { access_token } = data;
+                  saveAccessToken(access_token);
+                  authApi
+                    .me()
+                    .then((data) => {
+                      mutateAuth(data, false);
+                      router.push("/");
+                    })
+                    .finally(() => setSubmitting(false));
+                });
+              }).catch((error) => {
+                handleErrorResponse(error, setFieldError)
+                setSubmitting(false)
               })
-              .finally(() => setSubmitting(false));
           }}
         >
           {({ isSubmitting }) => (
@@ -53,15 +73,17 @@ export default function SignUpPage() {
                   <span className="text-2sm text-gray-700 me-1.5">
                     Already have an Account ?
                   </span>
-                  <a className="text-2sm link" href="/auth/sign-in/">
+                  <Link className="text-2sm link" href="/auth/sign-in/">
                     Sign In
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-2.5">
                 <a className="btn btn-light btn-sm justify-center" href="#">
-                  <img
-                    alt=""
+                  <Image
+                    width={20}
+                    height={20}
+                    alt="Google"
                     className="size-3.5 shrink-0"
                     src="/media/brand-logos/google.svg"
                   />

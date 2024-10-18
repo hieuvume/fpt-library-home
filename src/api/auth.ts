@@ -1,14 +1,19 @@
-import { SignInResponse } from "@/models/auth";
-import { Setting } from "@/models/setting";
-import axios from "axios";
+import { SignInResponse, User } from "@/models/auth";
+import api from "./axios";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const AUTH_URL = `${API_URL}/auth`;
+const authApi = {
+  signIn: (data): Promise<SignInResponse> => {
+    return api.post('/auth/sign-in', data)
+  },
+  signUp: (data): Promise<SignInResponse> => {
+    return api.post('/auth/sign-up', data)
+  },
+  logout: () => {
+    return api.post('/auth/logout')
+  },
+  me: (): Promise<User> => {
+    return api.get('/auth/me')
+  },
+}
 
-export const signIn = (data: any): Promise<SignInResponse> => {
-  return axios.post(`${AUTH_URL}/sign-in`, data);
-};
-
-export const signUp = (data: any): Promise<SignInResponse> => {
-  return axios.post(`${AUTH_URL}/sign-up`, data);
-};
+export default authApi
