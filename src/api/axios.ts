@@ -25,6 +25,12 @@ export function setupAxios(axios) {
     function (error: AxiosError<any>) {
       if (error.response && error.response.data) {
         if (error.response.data.message) {
+          if (error.response.status === 403) {
+            Report.failure('Error', error.response.data.message, 'Ok', () => {
+              window.location.href = '/'
+            })
+            return Promise.reject(error.response.data)
+          }
           if (typeof error.response.data.message === 'string' && error.response.status !== 401) {
             Notify.failure(error.response.data.message)
           }

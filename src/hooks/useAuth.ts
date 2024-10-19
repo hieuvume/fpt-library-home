@@ -7,7 +7,7 @@ import useSWR from "swr";
 const useAuth = () => {
     const { data, error, mutate } = useSWR<User>('/auth/me', () => authApi.me(), {
         onError: (err) => {
-            if (err.response?.status === 401) {
+            if (err.statusCode == 401) {
                 logout()
             }
         },

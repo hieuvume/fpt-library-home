@@ -1151,7 +1151,7 @@ const Topbar = () => {
                                                         </a>
                                                         <span className="text-gray-700 font-medium">
                                                             This design is simply stunning! From layout to
-                                                            color, it's a work of art!
+                                                            color, its a work of art!
                                                         </span>
                                                     </div>
                                                     <label className="input input-sm">

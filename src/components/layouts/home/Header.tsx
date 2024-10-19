@@ -1,7 +1,7 @@
 import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
-import Topbar from "../../topbar/Topbar";
+import Topbar from "./topbar/Topbar";
 
 function Header() {
 

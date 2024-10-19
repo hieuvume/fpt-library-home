@@ -12,5 +12,5 @@ export default function BookDetailPage() {
         return <div>Loading...</div>
     }
 
-    return <div>Book Detail Page: {data.max_borrow_duration}</div>
+    return <div>Book Detail Page: {data?.max_borrow_duration}</div>
 }
