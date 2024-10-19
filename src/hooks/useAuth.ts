@@ -1,4 +1,5 @@
 import authApi from "@/api/auth";
+import { config } from "@/config";
 import { User } from "@/models/auth";
 import { removeAccessToken } from "@/utils/auth";
 import useSWR from "swr";
@@ -21,8 +22,12 @@ const useAuth = () => {
 
     const logout = () => {
         removeAccessToken()
-        authApi.logout()
+        // authApi.logout()
         mutate(null, false)
+    }
+
+    const loginWithGoogle = () => {
+        window.location.href = config.GOOGLE_LOGIN_URL
     }
 
     return {
@@ -32,7 +37,8 @@ const useAuth = () => {
         isError: !!error,
         mutateAuth: mutate,
         login,
-        logout
+        logout,
+        loginWithGoogle
     };
 }
 

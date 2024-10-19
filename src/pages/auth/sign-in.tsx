@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function SignInPage() {
-  const { mutateAuth } = useAuth();
+  const { mutateAuth, loginWithGoogle } = useAuth();
   const router = useRouter();
 
   return (
@@ -67,7 +67,7 @@ export default function SignInPage() {
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-2.5">
-                <a className="btn btn-light btn-sm justify-center" href="#">
+                <span className="btn btn-light btn-sm justify-center" onClick={loginWithGoogle}>
                   <Image
                     width={20}
                     height={20}
@@ -76,7 +76,7 @@ export default function SignInPage() {
                     src="/media/brand-logos/google.svg"
                   />
                   Sign-in with Google
-                </a>
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="border-t border-gray-200 w-full"></span>
