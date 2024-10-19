@@ -1,8 +1,8 @@
 import Footer from "../Footer";
-import Header from "../Header";
-import Navbar from "../Navbar";
+import Header from "./home/Header";
+import Navbar from "./home/Navbar";
 
-const MainLayout = ({ children }) => {
+const HomeLayout = ({ children }) => {
   return (
     <div className="flex grow flex-col [[data-sticky-header=on]_&]:pt-[--tw-header-height]">
       <Header />
@@ -17,4 +17,4 @@ const MainLayout = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default HomeLayout;

@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import MainLayout from "@/components/layouts/MainLayout";
+import HomeLayout from "@/components/layouts/HomeLayout";
 import Head from "next/head";
 import { setupAxios } from "@/api/axios";
 import axios from "axios";
@@ -26,7 +26,7 @@ type AppPropsWithLayout = AppProps & {
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout =
-    Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>);
+    Component.getLayout ?? ((page) => <HomeLayout>{page}</HomeLayout>);
 
   return getLayout(
     <>
