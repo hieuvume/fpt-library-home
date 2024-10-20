@@ -2,6 +2,8 @@ import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
 import Topbar from "./topbar/Topbar";
+import { isWindows } from "react-device-detect";
+import HeaderSearch from "./HeaderSearch";
 
 function Header() {
 
@@ -41,7 +43,7 @@ function Header() {
                 width={30}
                 height={30}
                 className="hidden dark:inline-block min-h-[30px]"
-                src="/logo.png"
+                src="/logo-white.png"
               />
             </Link>
             <h3 className="text-gray-900 text-lg font-medium hidden md:block">
@@ -61,7 +63,7 @@ function Header() {
                 data-menu-item-trigger="hover"
               >
                 <button className="menu-toggle text-gray-900 text-sm font-medium">
-                  TeamRafa
+                  Readora
                   <span className="menu-arrow">
                     <i className="ki-filled ki-down"></i>
                   </span>
@@ -99,18 +101,7 @@ function Header() {
           {/* End of Navs */}
         </div>
         {/* End of Logo */}
-        <div className="input input-sm w-[36px] lg:w-60">
-          <i className="ki-filled ki-magnifier"></i>
-          <input
-            className="min-w-0"
-            placeholder="Search"
-            type="text"
-            defaultValue=""
-          />
-          <span className="text-2sm text-gray-700 text-nowrap hidden lg:inline">
-            cmd + /
-          </span>
-        </div>
+        <HeaderSearch/>
         {/* Topbar */}
         {isAuthenticated ? <Topbar /> : (
           <div className="flex items-center gap-2 lg:gap-3.5 lg:w-[400px] justify-end">

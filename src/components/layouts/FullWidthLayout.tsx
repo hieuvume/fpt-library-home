@@ -1,14 +1,13 @@
 import Footer from "../Footer";
-import FullWidthLayout from "./FullWidthLayout";
 import Header from "./home/Header";
 import Navbar from "./home/Navbar";
 
-const HomeLayout = ({ children }) => {
+const FullWidthLayout = ({ children }) => {
   return (
     <div className="flex grow flex-col [[data-sticky-header=on]_&]:pt-[--tw-header-height]">
       <Header />
       <Navbar />
-      <div className="container-fixed w-full flex px-0">
+      <div className="w-full flex px-0">
         <main className="flex flex-col grow" id="content" role="content">
           {children}
         </main>
@@ -18,4 +17,4 @@ const HomeLayout = ({ children }) => {
   );
 };
 
-export default HomeLayout;
+export default FullWidthLayout;
