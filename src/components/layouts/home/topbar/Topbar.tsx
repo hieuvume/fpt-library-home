@@ -1637,15 +1637,15 @@ const Topbar = () => {
                                     </a>
                                 </div>
                                 <div className="menu-item">
-                                    <a
+                                    <Link
                                         className="menu-link"
-                                        href="/metronic/tailwind/demo9/account/home/user-profile"
+                                       href="/user/profile"
                                     >
                                         <span className="menu-icon">
                                             <i className="ki-filled ki-profile-circle"></i>
                                         </span>
                                         <span className="menu-title">My Profile</span>
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div
                                     className="menu-item menu-item-dropdown"

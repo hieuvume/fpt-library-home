@@ -21,7 +21,7 @@ export async function middleware(req: NextRequest) {
     }
 
     if (privateRoutes.includes(pathname)) {
-        if (!token) {
+        if (!isSingedIn) {
             return NextResponse.redirect(new URL('/auth/sign-in', req.url));
         }
         return NextResponse.next();

@@ -11,3 +11,37 @@ export type SignInResponse = {
   access_token: string;
   user: User;
 }
+export type UserProfile = {
+  _id: string;
+  email: string;
+  password: string;
+  full_name: string;
+  phone_number: string;
+  borrowed_books: string[]; // Array of book IDs (ObjectId as string)
+  role: {
+    _id: string;
+    role_name: string;
+    v: number;
+  };
+  current_membership_id: {
+    _id: string;
+    user_id: string;
+    membership_id: {
+      _id: string;
+      name: string;
+      price_monthly: number;
+      price_yearly: number;
+      color: string;
+    };
+    card_number: string;
+    start_date: Date;
+    end_date: Date;
+    price: number;
+    status: string;
+    created_at: Date;
+  };
+  address: string;
+  __v: number;
+};
+
+

@@ -7,7 +7,7 @@ export default function BookDetailPage() {
     const router = useRouter()
 
     const { data, isLoading } = useSWR(`setting`, () => getSetting())
-
+    
     if (isLoading) {
         return <div>Loading...</div>
     }
