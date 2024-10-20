@@ -1,5 +1,5 @@
 function Sidebar() {
-    return <div
+  return <div
     className="sidebar dark:bg-coal-600 bg-light border-r border-r-gray-200 dark:border-r-coal-100 fixed top-0 bottom-0 z-20 hidden lg:flex flex-col items-stretch shrink-0"
     data-drawer="true"
     data-drawer-class="drawer drawer-start top-0 bottom-0"
@@ -455,6 +455,20 @@ function Sidebar() {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="menu-item">
+              <a
+                className="menu-link gap-[5px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
+                href="/dashboard/book-list"
+                tabIndex={0}
+              >
+                <span className="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
+                  <i className="ki-filled ki-book text-lg"></i>
+                </span>
+                <span className="menu-title text-2sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
+                  Book List
+                </span>
+              </a>
             </div>
           </div>
           <div
@@ -1688,6 +1702,6 @@ function Sidebar() {
       </div>
     </div>
   </div>
-  }
-  
-  export default Sidebar
+}
+
+export default Sidebar
