@@ -1625,7 +1625,7 @@ const Topbar = () => {
                             </div>
                             <div className="menu-separator"></div>
                             <div className="flex flex-col">
-                                <div className="menu-item">
+                                {/* <div className="menu-item">
                                     <a
                                         className="menu-link"
                                         href="/metronic/tailwind/demo9/public-profile/profiles/default"
@@ -1635,7 +1635,7 @@ const Topbar = () => {
                                         </span>
                                         <span className="menu-title">Public Profile</span>
                                     </a>
-                                </div>
+                                </div> */}
                                 <div className="menu-item">
                                     <Link
                                         className="menu-link"

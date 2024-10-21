@@ -17,13 +17,19 @@ export type UserProfile = {
   password: string;
   full_name: string;
   phone_number: string;
-  borrowed_books: string[]; // Array of book IDs (ObjectId as string)
+  address: string;
+  id_card: {
+    id_number: string;
+    date: Date;
+    place: string;
+  };
+  borrowed_books: string[];
   role: {
     _id: string;
     role_name: string;
     v: number;
   };
-  current_membership_id: {
+  current_membership_id?: {
     _id: string;
     user_id: string;
     membership_id: {
@@ -40,7 +46,9 @@ export type UserProfile = {
     status: string;
     created_at: Date;
   };
-  address: string;
+  avatar_url: string;
+  created_at: Date;
+  updated_at: Date;
   __v: number;
 };
 
