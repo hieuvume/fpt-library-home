@@ -1605,7 +1605,7 @@ const Topbar = () => {
                                     <img
                                         alt=""
                                         className="size-9 rounded-full border-2 border-success"
-                                        src="/media/avatars/300-2.png"
+                                        src={user?.avatar_url || '/media/avatars/300-2.png'}
                                     />
                                     <div className="flex flex-col gap-1.5">
                                         <span className="text-sm text-gray-800 font-semibold leading-none">
