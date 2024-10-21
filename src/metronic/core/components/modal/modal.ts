@@ -44,7 +44,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
 
   protected _handlers() {
     this._element.addEventListener('click', (event: Event) => {
-      if (this._element !== event.target ) return;
+      if (this._element !== event.target) return;
 
       if (this._getOption('backdropStatic') === false) {
         this._hide();
@@ -84,7 +84,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
     this._dispatchEvent('show', payload);
     if (payload.cancel === true) {
       return;
-    }    
+    }
 
     KTModal.hide();
 
@@ -95,7 +95,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
     this._element.setAttribute('tabindex', '-1');
 
     this._setZindex();
-    if (this._getOption('backdrop') === true) this._createBackdrop();    
+    if (this._getOption('backdrop') === true) this._createBackdrop();
 
     if (this._getOption('disableScroll')) {
       document.body.style.overflow = 'hidden';
@@ -106,7 +106,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
     this._element.classList.add('open');
     this._element.classList.remove(this._getOption('hiddenClass') as string);
 
-    
+
     KTDom.transitionEnd(this._element, () => {
       this._isTransitioning = false;
       this._isOpen = true;
@@ -117,7 +117,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
 
       this._fireEvent('shown');
       this._dispatchEvent('shown');
-    });  
+    });
   }
 
   protected _hide(): void {
@@ -163,13 +163,13 @@ export class KTModal extends KTComponent implements KTModalInterface {
 
   protected _setZindex(): void {
     let zindex: number = parseInt(this._getOption('zindex') as string);
-    
+
     if (parseInt(KTDom.getCssProp(this._element, 'z-index')) > zindex) {
       zindex = parseInt(KTDom.getCssProp(this._element, 'z-index'));
     }
-    
+
     if (KTDom.getHighestZindex(this._element) > zindex) {
-      zindex =KTDom.getHighestZindex(this._element) + 1;
+      zindex = KTDom.getHighestZindex(this._element) + 1;
     }
 
     this._element.style.zIndex = String(zindex);
@@ -189,7 +189,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
     this._backdropElement.classList.add('modal-backdrop');
     document.body.append(this._backdropElement);
     KTDom.reflow(this._backdropElement);
-    KTDom.addClass(this._backdropElement, this._getOption('backdropClass') as string);    
+    KTDom.addClass(this._backdropElement, this._getOption('backdropClass') as string);
   }
 
   protected _deleteBackdrop(): void {
@@ -225,18 +225,18 @@ export class KTModal extends KTComponent implements KTModalInterface {
   }
 
   public static getInstance(element: HTMLElement): KTModal {
-		if (!element) return null;
+    if (!element) return null;
 
-		if (KTData.has(element, 'modal')) {
-			return KTData.get(element, 'modal') as KTModal;
-		}
+    if (KTData.has(element, 'modal')) {
+      return KTData.get(element, 'modal') as KTModal;
+    }
 
-		if (element.getAttribute('data-modal') === "true") {
-			return new KTModal(element);
-		}
+    if (element.getAttribute('data-modal') === "true") {
+      return new KTModal(element);
+    }
 
-		return null;
-	}
+    return null;
+  }
 
   public static getOrCreateInstance(element: HTMLElement, config?: KTModalConfigInterface): KTModal {
     return this.getInstance(element) || new KTModal(element, config);
@@ -279,7 +279,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
         if (modal) {
           modal.hide();
         }
-      }      
+      }
     });
   }
 
@@ -317,7 +317,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
       }
 
       if (event.code === 'Tab' && !event.metaKey) {
-       return;
+        return;
       }
     });
   }
@@ -330,6 +330,15 @@ export class KTModal extends KTComponent implements KTModalInterface {
     });
   }
 
+  public static openModal(id: string): void {
+    const modalElement = document.querySelector(`#${id}`);
+    console.log(modalElement);
+    const modal = KTModal.getInstance(modalElement as HTMLElement);
+    if (modal) {
+      modal.show();
+    }
+  }
+
   public static init(): void {
     KTModal.createInstances();
 
@@ -337,7 +346,7 @@ export class KTModal extends KTComponent implements KTModalInterface {
       KTModal.handleToggle();
       KTModal.handleDismiss();
       KTModal.handleClickAway();
-      KTModal.handleKeyword();      
+      KTModal.handleKeyword();
       window.KT_MODAL_INITIALIZED = true;
     }
   }
