@@ -1,4 +1,3 @@
-import { useModal } from "@/provider/ModalProvider"
 
 type Props = {
     modalKey: string
@@ -8,22 +7,18 @@ type Props = {
 }
 
 const BaseModal: React.FC<Props> = ({ modalKey, title, description, children }) => {
-    const { isModalOpen, disableModal, modal } = useModal()
-
-    const isOpened = isModalOpen(modalKey);
-
     return (
         <>
             <div className="container-fixed">
                 <div
-                    className={`modal modal-open:!flex ${isOpened ? "open" : "hidden"}`}
+                    className={`modal modal-open:!flex hidden`}
                     data-modal="true"
                     data-modal-disable-scroll="false"
                     id={modalKey}
                     role="dialog"
                     aria-modal="true"
                     tabIndex={-1}
-                    style={{ zIndex: 90, display: isOpened && "block" }}
+                    style={{ zIndex: 90 }}
                 >
                     <div
                         className="modal-content pt-7.5 my-[3%] w-full container-fixed px-5 overflow-hidden"
@@ -46,7 +41,6 @@ const BaseModal: React.FC<Props> = ({ modalKey, title, description, children }) 
                                             <button
                                                 className="btn btn-sm btn-light"
                                                 data-modal-dismiss="true"
-                                                onClick={disableModal}
                                             >
                                                 Close
                                             </button>
@@ -54,7 +48,6 @@ const BaseModal: React.FC<Props> = ({ modalKey, title, description, children }) 
                                     </div>
                                 </div>
                             </div>
-                            {/* End of Container */}
                         </div>
                         <div
                             className="modal-body scrollable-y py-0 mb-5 pl-6 pr-3 mr-3"
@@ -65,7 +58,6 @@ const BaseModal: React.FC<Props> = ({ modalKey, title, description, children }) 
                     </div>
                 </div>
             </div>
-            {isModalOpen(modalKey) && (<div className="modal-backdrop transition-all duration-300" style={{ zIndex: '89' }} onClick={disableModal}></div>)}
         </>
     )
 }

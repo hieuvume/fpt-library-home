@@ -2,10 +2,9 @@ import BestOfTheMonth from "@/components/home/BestOfTheMonth";
 import FullWidthLayout from "@/components/layouts/FullWidthLayout";
 import SearchBar from "@/components/layouts/home/SearchBar";
 import { BaseModal } from "@/components/modal/BaseModal";
-import { useModal } from "@/provider/ModalProvider";
+import { KTModal } from "@/metronic/core";
 
 export default function Home() {
-  const { setModal } = useModal()
 
   return <>
     <div className="mb-5">
@@ -14,13 +13,10 @@ export default function Home() {
     <BestOfTheMonth />
 
     <div className="container-fixed">
-      <button onClick={() => {
-        setModal('auth')
-
-      }} className="btn btn-dark">Open Modal</button>
-
+    <button className="btn btn-dark me-2" data-modal-toggle="#auth-modal">Open Modal</button>
     </div>
-    <BaseModal modalKey={"auth"} title="Settings - Modal">
+
+    <BaseModal modalKey={"auth-modal"} title="Settings - Modal">
 
       <div className="flex grow gap-5 lg:gap-7.5">
         <div className="hidden lg:block w-[230px] shrink-0">
@@ -212,14 +208,14 @@ export default function Home() {
                       className="image-input-placeholder rounded-full border-2 border-success image-input-empty:border-gray-300"
                       style={{
                         backgroundImage:
-                          "url(/static/metronic/tailwind/dist/assets/media/avatars/blank.png)"
+                          "url(/media/avatars/blank.png)"
                       }}
                     >
                       <div
                         className="image-input-preview rounded-full"
                         style={{
                           backgroundImage:
-                            "url(/static/metronic/tailwind/dist/assets/media/avatars/300-2.png)"
+                            "url(/media/avatars/300-2.png)"
                         }}
                       ></div>
                       <div className="flex items-center justify-center cursor-pointer h-5 left-0 right-0 bottom-0 bg-dark-clarity absolute">
@@ -365,7 +361,7 @@ export default function Home() {
                     <img
                       alt=""
                       className="size-6 shrink-0"
-                      src="/static/metronic/tailwind/dist/assets/media/brand-logos/google.svg"
+                      src="/media/brand-logos/google.svg"
                     />
                     <div className="flex flex-col gap-0.5">
                       <a
@@ -400,7 +396,7 @@ export default function Home() {
                     <img
                       alt=""
                       className="size-6 shrink-0"
-                      src="/static/metronic/tailwind/dist/assets/media/brand-logos/linkedin.svg"
+                      src="/media/brand-logos/linkedin.svg"
                     />
                     <div className="flex flex-col gap-0.5">
                       <a
@@ -441,12 +437,12 @@ export default function Home() {
                   <img
                     alt=""
                     className="dark:hidden size-5"
-                    src="/static/metronic/tailwind/dist/assets/media/brand-logos/apple-black.svg"
+                    src="/media/brand-logos/apple-black.svg"
                   />
                   <img
                     alt=""
                     className="light:hidden size-5"
-                    src="/static/metronic/tailwind/dist/assets/media/brand-logos/apple-white.svg"
+                    src="/media/brand-logos/apple-white.svg"
                   />
                   Sign in with Apple
                 </a>
@@ -454,7 +450,7 @@ export default function Home() {
                   <img
                     alt=""
                     className="size-5"
-                    src="/static/metronic/tailwind/dist/assets/media/brand-logos/microsoft-5.svg"
+                    src="/media/brand-logos/microsoft-5.svg"
                   />
                   Sign in with Microsoft
                 </a>
@@ -462,7 +458,7 @@ export default function Home() {
                   <img
                     alt=""
                     className="size-5"
-                    src="/static/metronic/tailwind/dist/assets/media/brand-logos/facebook.svg"
+                    src="/media/brand-logos/facebook.svg"
                   />
                   Sign in with Facebook
                 </a>
@@ -666,7 +662,7 @@ export default function Home() {
           <style
             dangerouslySetInnerHTML={{
               __html:
-                "\n            .singl-sign-on-bg {\n\t\tbackground-image: url('/static/metronic/tailwind/dist/assets/media/images/2600x1600/bg-2.png');\n\t}\n\t.dark .singl-sign-on-bg {\n\t\tbackground-image: url('/static/metronic/tailwind/dist/assets/media/images/2600x1600/bg-2-dark.png');\n\t}\n           "
+                "\n            .singl-sign-on-bg {\n\t\tbackground-image: url('/media/images/2600x1600/bg-2.png');\n\t}\n\t.dark .singl-sign-on-bg {\n\t\tbackground-image: url('/media/images/2600x1600/bg-2-dark.png');\n\t}\n           "
             }}
           />
           <div className="card">
@@ -685,7 +681,7 @@ export default function Home() {
                         <img
                           alt=""
                           className="w-5"
-                          src="/static/metronic/tailwind/dist/assets/media/brand-logos/azure.svg"
+                          src="/media/brand-logos/azure.svg"
                         />
                       </div>
                       <span className="text-md font-medium text-gray-900">
@@ -705,7 +701,7 @@ export default function Home() {
                         <img
                           alt=""
                           className="w-8"
-                          src="/static/metronic/tailwind/dist/assets/media/brand-logos/google.svg"
+                          src="/media/brand-logos/google.svg"
                         />
                       </div>
                       <span className="text-md font-medium text-gray-900">
@@ -726,7 +722,7 @@ export default function Home() {
                         <img
                           alt=""
                           className="w-24"
-                          src="/static/metronic/tailwind/dist/assets/media/brand-logos/openid.svg"
+                          src="/media/brand-logos/openid.svg"
                         />
                       </div>
                       <span className="text-md font-medium text-gray-900">
@@ -744,7 +740,7 @@ export default function Home() {
                 <style
                   dangerouslySetInnerHTML={{
                     __html:
-                      "\n               .sso-active:has(:checked) {\n\t\t\t\t\tbackground-image: url('/static/metronic/tailwind/dist/assets/media/images/2600x1600/bg-1.png');\n\t\t\t\t}\n\t\t\t\t.dark .sso-active:has(:checked) {\n\t\t\t\t\tbackground-image: url('/static/metronic/tailwind/dist/assets/media/images/2600x1600/bg-1-dark.png');\n\t\t\t\t}\n              "
+                      "\n               .sso-active:has(:checked) {\n\t\t\t\t\tbackground-image: url('/media/images/2600x1600/bg-1.png');\n\t\t\t\t}\n\t\t\t\t.dark .sso-active:has(:checked) {\n\t\t\t\t\tbackground-image: url('/media/images/2600x1600/bg-1-dark.png');\n\t\t\t\t}\n              "
                   }}
                 />
               </div>
@@ -983,7 +979,7 @@ export default function Home() {
                     className="flex items-end border bg-no-repeat bg-cover border-gray-300 rounded-xl has-[:checked]:border-success has-[:checked]:border-3 [&_.checked]:has-[:checked]:flex h-[170px] mb-0.5"
                     style={{
                       backgroundImage:
-                        'url("/static/metronic/tailwind/dist/assets/media/images/600x400/28.jpg")'
+                        'url("/media/images/600x400/28.jpg")'
                     }}
                   >
                     <input
@@ -1004,7 +1000,7 @@ export default function Home() {
                     className="flex items-end border bg-no-repeat bg-cover border-gray-300 rounded-xl has-[:checked]:border-success has-[:checked]:border-3 [&_.checked]:has-[:checked]:flex h-[170px] mb-0.5"
                     style={{
                       backgroundImage:
-                        'url("/static/metronic/tailwind/dist/assets/media/images/600x400/32.jpg")'
+                        'url("/media/images/600x400/32.jpg")'
                     }}
                   >
                     <input
@@ -1024,7 +1020,7 @@ export default function Home() {
                     className="flex items-end border bg-no-repeat bg-cover border-gray-300 rounded-xl has-[:checked]:border-success has-[:checked]:border-3 [&_.checked]:has-[:checked]:flex h-[170px] mb-0.5"
                     style={{
                       backgroundImage:
-                        'url("/static/metronic/tailwind/dist/assets/media/images/600x400/30.jpg")'
+                        'url("/media/images/600x400/30.jpg")'
                     }}
                   >
                     <input
@@ -1150,7 +1146,7 @@ export default function Home() {
                         <img
                           alt=""
                           className="h-5"
-                          src="/static/metronic/tailwind/dist/assets/media/brand-logos/slack.svg"
+                          src="/media/brand-logos/slack.svg"
                         />
                       </div>
                     </div>
@@ -1335,7 +1331,7 @@ export default function Home() {
           <style
             dangerouslySetInnerHTML={{
               __html:
-                "\n            .user-access-bg {\n\t\tbackground-image: url('/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-5.png');\n\t}\n\t.dark .user-access-bg {\n\t\tbackground-image: url('/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-5-dark.png');\n\t}\n           "
+                "\n            .user-access-bg {\n\t\tbackground-image: url('/media/images/2600x1200/bg-5.png');\n\t}\n\t.dark .user-access-bg {\n\t\tbackground-image: url('/media/images/2600x1200/bg-5-dark.png');\n\t}\n           "
             }}
           />
           <div className="card">
@@ -1438,7 +1434,7 @@ export default function Home() {
                     <img
                       alt=""
                       className="size-8 shrink-0"
-                      src="/static/metronic/tailwind/dist/assets/media/brand-logos/google-webdev.svg"
+                      src="/media/brand-logos/google-webdev.svg"
                     />
                     <div className="flex flex-col">
                       <div className="flex items-center gap-1.5">
@@ -1479,7 +1475,7 @@ export default function Home() {
                     <img
                       alt=""
                       className="size-8 shrink-0"
-                      src="/static/metronic/tailwind/dist/assets/media/brand-logos/equacoin.svg"
+                      src="/media/brand-logos/equacoin.svg"
                     />
                     <div className="flex flex-col">
                       <div className="flex items-center gap-1.5">
@@ -1516,7 +1512,7 @@ export default function Home() {
                     <img
                       alt=""
                       className="size-8 shrink-0"
-                      src="/static/metronic/tailwind/dist/assets/media/brand-logos/evernote.svg"
+                      src="/media/brand-logos/evernote.svg"
                     />
                     <div className="flex flex-col">
                       <div className="flex items-center gap-1.5">
@@ -1557,7 +1553,7 @@ export default function Home() {
                     <img
                       alt=""
                       className="size-8 shrink-0"
-                      src="/static/metronic/tailwind/dist/assets/media/brand-logos/inferno.svg"
+                      src="/media/brand-logos/inferno.svg"
                     />
                     <div className="flex flex-col">
                       <div className="flex items-center gap-1.5">
@@ -1597,7 +1593,7 @@ export default function Home() {
                     <img
                       alt=""
                       className="size-8 shrink-0"
-                      src="/static/metronic/tailwind/dist/assets/media/brand-logos/jira.svg"
+                      src="/media/brand-logos/jira.svg"
                     />
                     <div className="flex flex-col">
                       <div className="flex items-center gap-1.5">

@@ -1,11 +1,9 @@
-import { ModalProvider } from "@/provider/ModalProvider";
 import Footer from "../Footer";
 import Header from "./home/Header";
 import Navbar from "./home/Navbar";
 
 const FullWidthLayout = ({ children }) => {
   return (
-    <ModalProvider>
       <div className="flex grow flex-col [[data-sticky-header=on]_&]:pt-[--tw-header-height]">
         <Header />
         <Navbar />
@@ -16,7 +14,6 @@ const FullWidthLayout = ({ children }) => {
         </div>
         <Footer />
       </div>
-    </ModalProvider>
   );
 };
 
