@@ -1,11 +1,11 @@
-import bookApi from '@/api/book';
+import { bookDashboardApi } from '@/api/book';
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 const BookList: React.FC = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const { data, isLoading } = useSWR(`dashboard/books/${page}/${pageSize}`, () => bookApi.getBooks(page, pageSize));
+  const { data, isLoading } = useSWR(`dashboard/books/${page}/${pageSize}`, () => bookDashboardApi.getBooks(page, pageSize));
   const { books, totalBook } = data || {};
 
   const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

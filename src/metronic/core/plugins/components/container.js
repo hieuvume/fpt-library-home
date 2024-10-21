@@ -8,7 +8,7 @@ export default plugin(({addComponents, theme}) => {
 			'flex-grow': '1',
 			'width': '100%',
 			'padding-left': theme('custom.components.container.fixed.px.DEFAULT'),
-      'padding-right': theme('custom.components.container.fixed.px.DEFAULT')
+      		'padding-right': theme('custom.components.container.fixed.px.DEFAULT')
     },
 		[`@media (min-width: ${theme('screens.xl')})`]: {
 			'.container-fixed': {

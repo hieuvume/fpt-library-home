@@ -1,21 +1,36 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-
-const books = [
-    { title: "Book 1", image: "/path-to-image1.jpg" },
-    { title: "Book 2", image: "/path-to-image2.jpg" },
-    { title: "Book 3", image: "/path-to-image3.jpg" },
-    { title: "Book 4", image: "/path-to-image4.jpg" },
-    { title: "Book 5", image: "/path-to-image5.jpg" },
-  ];
+import "swiper/css/free-mode";
+import useSWR from "swr";
+import { bookTitleApi } from "@/api/book-title";
+import { FreeMode, Pagination } from "swiper/modules";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import dayjs from "dayjs";
 
 const BestOfTheMonth = () => {
+    const [currentMonth, setCurrentMonth] = useState(dayjs().format("MMMM, YYYY"));
+    const [monthsList, setMonthsList] = useState([]);
+    const [subMonth, setSubMonth] = useState(0);
+
+    useEffect(() => {
+        const generateMonthsList = () => {
+            const months = [];
+            for (let i = 0; i < 6; i++) {
+                const month = dayjs().subtract(i, "month").format("MMMM, YYYY");
+                months.push(month);
+            }
+            setMonthsList(months);
+        };
+        generateMonthsList();
+    }, []);
+
+    const { data, isLoading, error } = useSWR(`book-titles/best-of-the-month/${subMonth}`, () => bookTitleApi.getBestOfTheMonth(subMonth))
+
     return (
         <>
-            <div className="mb-5 lg:mb-7.5">
+            <div className="">
                 <div className="container-fixed flex items-center justify-between flex-wrap gap-5">
                     <div className="flex flex-col justify-center items-start flex-wrap gap-1 lg:gap-2">
                         <h1 className="font-medium text-xl text-gray-900">Best of the month</h1>
@@ -33,78 +48,27 @@ const BestOfTheMonth = () => {
                                     <span className="flex items-center me-1">
                                         <i className="ki-filled ki-calendar !text-md"></i>
                                     </span>
-                                    <span className="hidden md:inline text-nowrap">
-                                        September, 2024
-                                    </span>
-                                    <span className="inline md:hidden text-nowrap">Sep, 2024</span>
+                                    <span className="hidden md:inline text-nowrap">{currentMonth}</span>
+                                    <span className="inline md:hidden text-nowrap">{dayjs().format("MMM, YYYY")}</span>
                                     <span className="flex items-center lg:ms-4">
                                         <i className="ki-filled ki-down !text-xs"></i>
                                     </span>
                                 </button>
-                                <div
-                                    className="menu-dropdown w-48 py-2 scrollable-y max-h-[250px]"
-                                    style={{}}
-                                >
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">January, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">February, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item active">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">March, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">April, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">May, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">June, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">July, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">August, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">September, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">October, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">November, 2024</span>
-                                        </a>
-                                    </div>
-                                    <div className="menu-item">
-                                        <a className="menu-link" href="#">
-                                            <span className="menu-title">December, 2024</span>
-                                        </a>
-                                    </div>
+                                <div className="menu-dropdown w-48 py-2 scrollable-y max-h-[250px]">
+                                    {monthsList.map((month, index) => (
+                                        <div className="menu-item" key={index}>
+                                            <a
+                                                className={`menu-link ${month === currentMonth ? "active" : ""}`}
+                                                href="#"
+                                                onClick={() => {
+                                                    setCurrentMonth(month)
+                                                    setSubMonth(index)
+                                                }}
+                                            >
+                                                <span className="menu-title">{month}</span>
+                                            </a>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -112,41 +76,74 @@ const BestOfTheMonth = () => {
                 </div>
             </div>
 
-            <Swiper
-                spaceBetween={10}
-                slidesPerView={3}
-                navigation
-                pagination={{ clickable: true }}
-                breakpoints={{
-                    640: {
-                        slidesPerView: 2,
-                        spaceBetween: 20,
-                    },
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 30,
-                    },
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 40,
-                    },
-                }}
-            >
-                {books.map((book, index) => (
-                    <SwiperSlide key={index}>
-                        <div className="book-card">
-                            <img
-                                src={book.image}
-                                alt={book.title}
-                                className="w-full h-48 object-cover"
-                            />
-                            <h3 className="text-center mt-2 font-medium">{book.title}</h3>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+            <div className="container-fixed">
+                <div className="flex items-center justify-center flex-col ">
+                    <Swiper
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 2,
+                                spaceBetween: 5,
+                            },
+                            640: {
+                                slidesPerView: 2,
+                                spaceBetween: 10,
+                            },
+                            768: {
+                                slidesPerView: 4,
+                                spaceBetween: 10,
+                            },
+                            1024: {
+                                slidesPerView: 6,
+                                spaceBetween: 10,
+                            },
+                        }}
+                        freeMode={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        autoplay
+                        modules={[FreeMode, Pagination,]}
+                        className="w-full"
+                    >
+                        {(isLoading || error) && Array.from({ length: 6 }, (_, index) => <SwiperSlide key={index}><SkeletonLoader /></SwiperSlide>)}
+
+                        {(!isLoading && !error) && data?.map((book, index) => (
+                            <SwiperSlide key={index} className="mb-10 h-full flex flex-col items-stretch">
+                                <div className="flex flex-col items-center bg-white p-2 pb-5 rounded-lg flex-grow h-full hover:shadow-md cursor-pointer">
+                                    <Image
+                                        width={200}
+                                        height={300}
+                                        src={book.cover_image}
+                                        alt={book.book_title_name}
+                                        className="w-full h-52 object-cover mb-4 rounded-lg"
+                                    />
+
+                                    <div className="flex flex-col flex-grow justify-between h-full w-full">
+                                        <span className="text-sm font-semibold text-gray-900 text-center min-h-[40px] line-clamp-2">
+                                            {book.book_title_name}
+                                        </span>
+                                        <p className="text-sm text-gray-500 mt-2 text-center min-h-[20px] truncate">
+                                            By {book.author[0]}
+                                        </p>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+            </div>
 
         </>
+    )
+}
+
+const SkeletonLoader = () => {
+    return (
+        <div className="flex flex-col items-center bg-white p-2 pb-5 rounded-lg flex-grow h-full">
+            <div className="animate-pulse w-full h-52 bg-gray-200 rounded-lg mb-4"></div>
+            <div className="animate-pulse bg-gray-200 h-5 w-3/4 mx-auto rounded mb-2"></div>
+            <div className="animate-pulse bg-gray-200 h-4 w-1/2 mx-auto rounded"></div>
+        </div>
     )
 }
 
