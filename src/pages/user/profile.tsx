@@ -1,18 +1,13 @@
 import userApi from "@/api/user";
 import ProfileTopBar from "@/components/layouts/home/profiletopbar";
 import useSWR from "swr";
-import {formatDate} from "@/utils/index";
+import { formatDate } from "@/utils/index";
 import { useState } from "react";
 import ProfileModal from "@/components/layouts/home/model";
 export default function ProfilePage() {
     const { data, isLoading } = useSWR(`userProfile`, () => userApi.profile())
-    const [showModal, setShowModal] = useState(false);
-    const handleShowModal = () => {
-        setShowModal(true);
-      };
-      const handleCloseModal = () => {
-        setShowModal(false);
-      };
+ 
+    
     if (isLoading) {
         return <div>Loading...</div>
     }
@@ -25,10 +20,8 @@ export default function ProfilePage() {
                 }}
             />
             <div className="bg-center bg-cover bg-no-repeat hero-bg">
-            {showModal &&<ProfileModal/>}
-                {/* Container */}
                 <div className="container-fixed">
-                   
+
                     <div className="flex flex-col items-center gap-2 lg:gap-3.5 py-4 lg:pt-5 lg:pb-10">
                         <img
                             className="rounded-full border-3 border-success size-[100px] shrink-0"
@@ -36,7 +29,7 @@ export default function ProfilePage() {
                         />
                         <div className="flex items-center gap-1.5">
                             <div className="text-lg leading-5 font-semibold text-gray-900">
-                               {data?.full_name}
+                                {data?.full_name}
                             </div>
                             <svg
                                 className="text-primary"
@@ -67,7 +60,7 @@ export default function ProfilePage() {
                                     className="text-gray-600 font-medium hover:text-primary"
                                     href="mailto: jenny@kteam.com"
                                 >
-                                   {data?.email}
+                                    {data?.email}
                                 </a>
                             </div>
                         </div>
@@ -76,7 +69,7 @@ export default function ProfilePage() {
                 {/* End of Container */}
             </div>
             {/* Container */}
-         <ProfileTopBar/>
+            <ProfileTopBar />
             {/* End of Container */}
             {/* Container */}
             <div className="container-fixed">
@@ -111,11 +104,11 @@ export default function ProfilePage() {
                                 </div>
                                 <div className="card-body">
                                     <p className="text-sm text-gray-800 leading-5.5 mb-4">
-                                    Members of the book borrowing system, with priority access to borrowing services and special offers for loyal readers.
+                                        Members of the book borrowing system, with priority access to borrowing services and special offers for loyal readers.
                                     </p>
                                     <div className="grid gap-y-3.5">
                                         <div className="flex items-center gap-2.5">
-                                        <i className="ki-filled ki-simcard-2"></i>
+                                            <i className="ki-filled ki-simcard-2"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
@@ -138,34 +131,34 @@ export default function ProfilePage() {
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                               {data?.current_membership_id?.membership_id.name}
+                                                {data?.current_membership_id?.membership_id.name}
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
-                                        <i className="ki-filled ki-price-tag"></i>
+                                            <i className="ki-filled ki-price-tag"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                               {data?.current_membership_id?.price} VND
+                                                {data?.current_membership_id?.price} VND
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
-                                        <i className="ki-filled ki-time"></i>
+                                            <i className="ki-filled ki-time"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                                 {formatDate(data?.current_membership_id?.start_date)}
+                                                {formatDate(data?.current_membership_id?.start_date)}
                                             </a>
-                                        </div>  
+                                        </div>
                                         <div className="flex items-center gap-2.5">
-                                        <i className="ki-filled ki-timer"></i>
+                                            <i className="ki-filled ki-timer"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                               {formatDate(data?.current_membership_id?.end_date)}
+                                                {formatDate(data?.current_membership_id?.end_date)}
                                             </a>
                                         </div>
                                         {/* <div className="flex items-center gap-2.5">
@@ -178,20 +171,24 @@ export default function ProfilePage() {
                                             </a>
                                         </div> */}
                                     </div>
+
+                                    <ProfileModal />
                                 </div>
                             </div>
                             <div className="card">
                                 <div className="card-header">
                                     <h3 className="card-title">Profile</h3>
-                                    <button className="btn btn-sm btn-icon btn-icon-primary" onClick={handleShowModal}>Edit</button>
+                                    <button className="btn btn-sm btn-icon btn-icon-primary" data-modal-toggle="#auth-modal">Edit</button>
                                 </div>
-                            
+                                <div>
+                                    <ProfileModal />
+                                </div>
                                 <div className="card-body">
                                     <div className="grid gap-y-3.5">
                                         <div className="flex items-center gap-2.5">
-                                        <i className="ki-filled ki-simcard-2"></i>
-                                        <label className="text-sm leading-none text-gray-900 hover:text-primary-active">
-                                            Email:</label>
+                                            <i className="ki-filled ki-simcard-2"></i>
+                                            <label className="text-sm leading-none text-gray-900 hover:text-primary-active">
+                                                Email:</label>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
@@ -202,7 +199,7 @@ export default function ProfilePage() {
                                         <div className="flex items-center gap-2.5">
                                             <i className="ki-filled ki-crown-2 text-base text-gray-500"></i>
                                             <label className="text-sm leading-none text-gray-900 hover:text-primary-active">
-                                            Phone:</label>
+                                                Phone:</label>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
@@ -213,45 +210,45 @@ export default function ProfilePage() {
                                         <div className="flex items-center gap-2.5">
                                             <i className="ki-filled ki-briefcase text-base text-gray-500"></i>
                                             <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
-                                            Address:</label>
+                                                Address:</label>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                               {data?.address}
+                                                {data?.address}
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
-                                        <i className="ki-filled ki-price-tag"></i>
-                                        <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
-                                        Date of issue:</label>
+                                            <i className="ki-filled ki-price-tag"></i>
+                                            <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
+                                                Date of issue:</label>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                               {formatDate(data?.id_card?.date)} 
+                                                {formatDate(data?.id_card?.date)}
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
-                                        <i className="ki-filled ki-time"></i>
-                                        <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
-                                        Place of issue:</label>
+                                            <i className="ki-filled ki-time"></i>
+                                            <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
+                                                Place of issue:</label>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                                 {data?.id_card?.place}
+                                                {data?.id_card?.place}
                                             </a>
-                                        </div>  
+                                        </div>
                                         <div className="flex items-center gap-2.5">
-                                        <i className="ki-filled ki-timer"></i>
-                                        <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
-                                        ID Number:</label>
+                                            <i className="ki-filled ki-timer"></i>
+                                            <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
+                                                ID Number:</label>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                               {data?.id_card?.id_number}
+                                                {data?.id_card?.id_number}
                                             </a>
                                         </div>
                                         {/* <div className="flex items-center gap-2.5">
@@ -265,7 +262,7 @@ export default function ProfilePage() {
                                         </div> */}
                                     </div>
                                 </div>
-                            
+
                             </div>
                             <div className="card">
                                 <div className="card-header">
@@ -325,79 +322,69 @@ export default function ProfilePage() {
                                     </a>
                                 </div>
                                 <div className="card-body pb-7">
-                                    <div className="flex flex-col gap-5">
-                                        <div className="border-l-2 border-brand">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">10 Jan, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">24</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                Experienced UI/UX designer seeking new opportunities.
-                                            </p>
-                                        </div>
-                                        <div className="border-l-2 border-primary">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">23 Jan, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">3</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                Include the name of the author of the blog post. This helps
-                                                to build trust and credibility with readers.
-                                            </p>
-                                        </div>
-                                        <div className="border-l-2 border-warning">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">4 Feb, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">89</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                Avoid using all caps or excessive punctuation.
-                                            </p>
-                                        </div>
-                                        <div className="border-l-2 border-success">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">17 Mar, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">32</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                You can use this example as a starting point to design your
-                                                own blog post cards. Be sure to experiment with different
-                                                layouts, fonts, and colors both visually appealing and
-                                                informative.
-                                            </p>
-                                        </div>
-                                        <div className="border-l-2 border-danger">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">9 Apr, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">57</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                Use high-quality images and graphics to capture the visual
-                                                appeal of your cards.
-                                            </p>
-                                        </div>
+                                    <div className="overflow-x-auto">
+                                        <table className="min-w-full border-collapse">
+                                            <thead>
+                                                <tr>
+                                                    <th className="px-4 py-2 text-left text-gray-600 text-xs uppercase border-b">Borrow Date</th>
+                                                    <th className="px-4 py-2 text-left text-gray-600 text-xs uppercase border-b">Due Date</th>
+                                                    <th className="px-4 py-2 text-left text-gray-600 text-xs uppercase border-b">Return Date</th>
+                                                    <th className="px-4 py-2 text-left text-gray-600 text-xs uppercase border-b">Book Title</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr className="border-l-2 border-brand">
+                                                    <td className="px-4 py-2 text-2xs text-gray-600">10 Jan, 24</td>
+                                                    <td className="px-4 py-2 flex gap-1 items-center">
+                                                        <i className="ki-filled ki-heart text-base text-gray-500"></i>
+                                                        <span className="text-2sm text-gray-600">24</span>
+                                                    </td>
+                                                    <td className="px-4 py-2 text-sm text-gray-800">Experienced UI/UX designer seeking new opportunities.</td>
+                                                </tr>
+                                                <tr className="border-l-2 border-primary">
+                                                    <td className="px-4 py-2 text-2xs text-gray-600">23 Jan, 24</td>
+                                                    <td className="px-4 py-2 flex gap-1 items-center">
+                                                        <i className="ki-filled ki-heart text-base text-gray-500"></i>
+                                                        <span className="text-2sm text-gray-600">3</span>
+                                                    </td>
+                                                    <td className="px-4 py-2 text-sm text-gray-800">
+                                                        Include the name of the author of the blog post. This helps to build trust and credibility with readers.
+                                                    </td>
+                                                </tr>
+                                                <tr className="border-l-2 border-warning">
+                                                    <td className="px-4 py-2 text-2xs text-gray-600">4 Feb, 24</td>
+                                                    <td className="px-4 py-2 flex gap-1 items-center">
+                                                        <i className="ki-filled ki-heart text-base text-gray-500"></i>
+                                                        <span className="text-2sm text-gray-600">89</span>
+                                                    </td>
+                                                    <td className="px-4 py-2 text-sm text-gray-800">Avoid using all caps or excessive punctuation.</td>
+                                                </tr>
+                                                <tr className="border-l-2 border-success">
+                                                    <td className="px-4 py-2 text-2xs text-gray-600">17 Mar, 24</td>
+                                                    <td className="px-4 py-2 flex gap-1 items-center">
+                                                        <i className="ki-filled ki-heart text-base text-gray-500"></i>
+                                                        <span className="text-2sm text-gray-600">32</span>
+                                                    </td>
+                                                    <td className="px-4 py-2 text-sm text-gray-800">
+                                                        You can use this example as a starting point to design your own blog post cards. Be sure to experiment with
+                                                        different layouts, fonts, and colors both visually appealing and informative.
+                                                    </td>
+                                                </tr>
+                                                <tr className="border-l-2 border-danger">
+                                                    <td className="px-4 py-2 text-2xs text-gray-600">9 Apr, 24</td>
+                                                    <td className="px-4 py-2 flex gap-1 items-center">
+                                                        <i className="ki-filled ki-heart text-base text-gray-500"></i>
+                                                        <span className="text-2sm text-gray-600">57</span>
+                                                    </td>
+                                                    <td className="px-4 py-2 text-sm text-gray-800">
+                                                        Use high-quality images and graphics to capture the visual appeal of your cards.
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
+
                             </div>
                             <div className="card">
                                 <div className="card-header">

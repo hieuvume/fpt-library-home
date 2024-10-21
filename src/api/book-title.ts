@@ -1,5 +1,5 @@
 import { BestBookTitleOfTheMonth } from '@/models/book-title';
-import axios from './axios'; // Ensure this points to your axios instance
+import axios from './axios'; 
 
 
 const bookTitleApi = {
