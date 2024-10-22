@@ -2,7 +2,7 @@ import userApi from "@/api/user";
 import ProfileTopBar from "@/components/layouts/home/profiletopbar";
 import useSWR from "swr";
 import { formatDate } from "@/utils/index";
-import { useState } from "react";
+import { Children, useState } from "react";
 import ProfileModal from "@/components/layouts/home/model";
 export default function ProfilePage() {
     const { data, isLoading } = useSWR(`userProfile`, () => userApi.profile())
@@ -172,7 +172,7 @@ export default function ProfilePage() {
                                         </div> */}
                                     </div>
 
-                                    <ProfileModal />
+                              
                                 </div>
                             </div>
                             <div className="card">
@@ -181,7 +181,7 @@ export default function ProfilePage() {
                                     <button className="btn btn-sm btn-icon btn-icon-primary" data-modal-toggle="#auth-modal">Edit</button>
                                 </div>
                                 <div>
-                                    <ProfileModal />
+                                    <ProfileModal children={data} />
                                 </div>
                                 <div className="card-body">
                                     <div className="grid gap-y-3.5">

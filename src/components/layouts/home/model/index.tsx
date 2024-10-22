@@ -1,6 +1,7 @@
 import { BaseModal } from "@/components/modal/BaseModal";
+import { UserProfile } from "@/models/auth";
 
-export default function ProfileModal() {
+export default function ProfileModal({ children }: { children: UserProfile }) {
   return <>
     <BaseModal modalKey={"auth-modal"} title="Settings - Modal">
 
@@ -201,7 +202,7 @@ export default function ProfileModal() {
                         className="image-input-preview rounded-full"
                         style={{
                           backgroundImage:
-                            "url(/media/avatars/300-2.png)"
+                              ` url(${children.avatar_url})`
                         }}
                       ></div>
                       <div className="flex items-center justify-center cursor-pointer h-5 left-0 right-0 bottom-0 bg-dark-clarity absolute">
