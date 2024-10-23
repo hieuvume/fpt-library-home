@@ -4,15 +4,15 @@ import BookTitleItem from "@/components/search/BookTitleItem";
 // import { useQuery } from "@/hooks/useQuery";
 import { BookTitle } from "@/models/book-title";
 import {
-  PaginationProvider,
-  usePagination,
-} from "@/provider/PaginationRequestProvider";
+  TableQueryProvider,
+  useTableQuery,
+} from "@/provider/TableQueryProvider";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const Search = () => {
   const router = useRouter();
-  const { data, setFilters } = usePagination<BookTitle>();
+  const { data, setFilters } = useTableQuery<BookTitle>();
   const { keyword } = router.query;
 
   useEffect(() => {
@@ -149,13 +149,13 @@ const SearchPage = () => {
   // );
 
   return (
-    <PaginationProvider
+    <TableQueryProvider
       fetcher={bookTitleApi.search}
       requestKey="search"
       limit={10}
     >
       <Search />
-    </PaginationProvider>
+    </TableQueryProvider>
   );
 };
 
