@@ -1,4 +1,4 @@
-import userApi from "@/api/user";
+import { userApi } from "@/api/user";
 import ProfileTopBar from "@/components/layouts/home/profiletopbar";
 import useSWR from "swr";
 import { formatDate } from "@/utils/index";

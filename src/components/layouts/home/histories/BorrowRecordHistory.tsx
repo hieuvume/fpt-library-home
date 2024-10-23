@@ -1,4 +1,4 @@
-import userApi from "@/api/user";
+import { userApi } from "@/api/user";
 import DateCell from "@/components/table/cell/DateCell";
 import Table from "@/components/table/Table";
 import TableHeader from "@/components/table/TableHeader";
@@ -66,7 +66,9 @@ const columns: ReadonlyArray<Column<BorrowRecord>> = [
       };
 
       return (
-        <span className={`badge badge-xs badge-outline ${getBadgeClass(value)}`}>
+        <span
+          className={`badge badge-xs badge-outline ${getBadgeClass(value)}`}
+        >
           {value}
         </span>
       );

@@ -5,6 +5,7 @@ import {
   UserProfile,
 } from "@/models/auth";
 import api from "./axios";
+import { Users } from "@/models/user";
 
 const userApi = {
   profile: (): Promise<UserProfile> => {
@@ -18,4 +19,10 @@ const userApi = {
   },
 };
 
-export default userApi;
+const dashboardUserApi = {
+  getUsers: (): Promise<Users[]> => {
+    return api.get(`/dashboard/users`);
+  },
+};
+
+export { dashboardUserApi, userApi };
