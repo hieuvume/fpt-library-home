@@ -11,12 +11,6 @@ export default function Home() {
       <SearchBar />
     </div>
     <BestOfTheMonth />
-
-
-
-   
-
-
   </>;
 }
 

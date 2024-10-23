@@ -1,9 +1,12 @@
-import { BookListResponse } from '@/models/book';
+import { BookCreateRequest, BookListResponse } from '@/models/book';
 import axios from './axios'; // Ensure this points to your axios instance
-import { BestBookTitleOfTheMonth } from '@/models/book-title';
+
 
 
 const bookApi = {
+  getBookById: (id: string): Promise<BookCreateRequest> => {
+    return axios.get(`books/${id}`)
+  }
 }
 
 const bookDashboardApi = {
