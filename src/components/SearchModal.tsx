@@ -68,9 +68,9 @@ export default function SearchModal() {
                             >
                                 <div className="menu-item">
                                     <a className="menu-link" href="#">
-                  <span className="menu-icon">
-                    <i className="ki-filled ki-document"></i>
-                  </span>
+                                        <span className="menu-icon">
+                                            <i className="ki-filled ki-document"></i>
+                                        </span>
                                         <span className="menu-title">View</span>
                                     </a>
                                 </div>
@@ -82,13 +82,13 @@ export default function SearchModal() {
                                     data-menu-item-trigger="click|lg:hover"
                                 >
                                     <div className="menu-link">
-                  <span className="menu-icon">
-                    <i className="ki-filled ki-notification-status"></i>
-                  </span>
+                                        <span className="menu-icon">
+                                            <i className="ki-filled ki-notification-status"></i>
+                                        </span>
                                         <span className="menu-title">Export</span>
                                         <span className="menu-arrow">
-                    <i className="ki-filled ki-right text-3xs"></i>
-                  </span>
+                                            <i className="ki-filled ki-right text-3xs"></i>
+                                        </span>
                                     </div>
                                     <div className="menu-dropdown menu-default w-full max-w-[175px]">
                                         <div className="menu-item">
@@ -96,9 +96,9 @@ export default function SearchModal() {
                                                 className="menu-link"
                                                 href="html/demo1/account/home/settings-sidebar.html"
                                             >
-                      <span className="menu-icon">
-                        <i className="ki-filled ki-sms"></i>
-                      </span>
+                                                <span className="menu-icon">
+                                                    <i className="ki-filled ki-sms"></i>
+                                                </span>
                                                 <span className="menu-title">Email</span>
                                             </a>
                                         </div>
@@ -107,9 +107,9 @@ export default function SearchModal() {
                                                 className="menu-link"
                                                 href="html/demo1/account/home/settings-sidebar.html"
                                             >
-                      <span className="menu-icon">
-                        <i className="ki-filled ki-message-notify"></i>
-                      </span>
+                                                <span className="menu-icon">
+                                                    <i className="ki-filled ki-message-notify"></i>
+                                                </span>
                                                 <span className="menu-title">SMS</span>
                                             </a>
                                         </div>
@@ -118,9 +118,9 @@ export default function SearchModal() {
                                                 className="menu-link"
                                                 href="html/demo1/account/home/settings-sidebar.html"
                                             >
-                      <span className="menu-icon">
-                        <i className="ki-filled ki-notification-status"></i>
-                      </span>
+                                                <span className="menu-icon">
+                                                    <i className="ki-filled ki-notification-status"></i>
+                                                </span>
                                                 <span className="menu-title">Push</span>
                                             </a>
                                         </div>
@@ -128,17 +128,17 @@ export default function SearchModal() {
                                 </div>
                                 <div className="menu-item">
                                     <a className="menu-link" href="#">
-                  <span className="menu-icon">
-                    <i className="ki-filled ki-pencil"></i>
-                  </span>
+                                        <span className="menu-icon">
+                                            <i className="ki-filled ki-pencil"></i>
+                                        </span>
                                         <span className="menu-title">Edit</span>
                                     </a>
                                 </div>
                                 <div className="menu-item">
                                     <a className="menu-link" href="#">
-                  <span className="menu-icon">
-                    <i className="ki-filled ki-trash"></i>
-                  </span>
+                                        <span className="menu-icon">
+                                            <i className="ki-filled ki-trash"></i>
+                                        </span>
                                         <span className="menu-title">Delete</span>
                                     </a>
                                 </div>
@@ -161,25 +161,25 @@ export default function SearchModal() {
                                 <div className="menu menu-default p-0 flex-col">
                                     <div className="menu-item">
                                         <a className="menu-link" href="#">
-                    <span className="menu-icon">
-                      <i className="ki-filled ki-badge"></i>
-                    </span>
+                                            <span className="menu-icon">
+                                                <i className="ki-filled ki-badge"></i>
+                                            </span>
                                             <span className="menu-title">Public Profile</span>
                                         </a>
                                     </div>
                                     <div className="menu-item">
                                         <a className="menu-link" href="#">
-                    <span className="menu-icon">
-                      <i className="ki-filled ki-setting-2"></i>
-                    </span>
+                                            <span className="menu-icon">
+                                                <i className="ki-filled ki-setting-2"></i>
+                                            </span>
                                             <span className="menu-title">My Account</span>
                                         </a>
                                     </div>
                                     <div className="menu-item">
                                         <a className="menu-link" href="#">
-                    <span className="menu-icon">
-                      <i className="ki-filled ki-message-programming"></i>
-                    </span>
+                                            <span className="menu-icon">
+                                                <i className="ki-filled ki-message-programming"></i>
+                                            </span>
                                             <span className="menu-title">Devs Forum</span>
                                         </a>
                                     </div>
@@ -210,8 +210,8 @@ export default function SearchModal() {
                                                         Jira
                                                     </a>
                                                     <span className="text-2xs font-medium text-gray-600">
-                          Project management
-                        </span>
+                                                        Project management
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div className="flex justify-end shrink-0">
@@ -238,10 +238,10 @@ export default function SearchModal() {
                                                         />
                                                     </div>
                                                     <div className="flex">
-                          <span
-                              className="hover:z-5 relative inline-flex items-center justify-center shrink-0 rounded-full ring-1 font-semibold leading-none text-3xs size-6 text-success-inverse size-6 ring-success-light bg-success">
-                            +3
-                          </span>
+                                                        <span
+                                                            className="hover:z-5 relative inline-flex items-center justify-center shrink-0 rounded-full ring-1 font-semibold leading-none text-3xs size-6 text-success-inverse size-6 ring-success-light bg-success">
+                                                            +3
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -266,8 +266,8 @@ export default function SearchModal() {
                                                         Inferno
                                                     </a>
                                                     <span className="text-2xs font-medium text-gray-600">
-                          Real-time photo sharing app
-                        </span>
+                                                        Real-time photo sharing app
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div className="flex justify-end shrink-0">
@@ -322,8 +322,8 @@ export default function SearchModal() {
                                                             Tyler Hero
                                                         </a>
                                                         <span className="text-2sm font-normal text-gray-500">
-                            tyler.hero@gmail.com connections
-                          </span>
+                                                            tyler.hero@gmail.com connections
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-2.5">
@@ -354,8 +354,8 @@ export default function SearchModal() {
                                                             Esther Howard
                                                         </a>
                                                         <span className="text-2sm font-normal text-gray-500">
-                            esther.howard@gmail.com connections
-                          </span>
+                                                            esther.howard@gmail.com connections
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-2.5">
@@ -382,41 +382,41 @@ export default function SearchModal() {
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-home-2"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-home-2"></i>
+                                    </span>
                                     <span className="menu-title">Go to Dashboard</span>
                                 </a>
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-badge"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-badge"></i>
+                                    </span>
                                     <span className="menu-title">Public Profile</span>
                                 </a>
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-profile-circle"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-profile-circle"></i>
+                                    </span>
                                     <span className="menu-title">My Profile</span>
                                 </a>
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-setting-2"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-setting-2"></i>
+                                    </span>
                                     <span className="menu-title">My Account</span>
                                 </a>
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-message-programming"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-message-programming"></i>
+                                    </span>
                                     <span className="menu-title">Devs Forum</span>
                                 </a>
                             </div>
@@ -425,33 +425,33 @@ export default function SearchModal() {
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-user"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-user"></i>
+                                    </span>
                                     <span className="menu-title">Create User</span>
                                 </a>
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-user-edit"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-user-edit"></i>
+                                    </span>
                                     <span className="menu-title">Create Team</span>
                                 </a>
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-subtitle"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-subtitle"></i>
+                                    </span>
                                     <span className="menu-title">Change Plan</span>
                                 </a>
                             </div>
                             <div className="menu-item">
                                 <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-setting"></i>
-                </span>
+                                    <span className="menu-icon">
+                                        <i className="ki-filled ki-setting"></i>
+                                    </span>
                                     <span className="menu-title">Setup Branding</span>
                                 </a>
                             </div>
@@ -478,8 +478,8 @@ export default function SearchModal() {
                                                 Jira
                                             </a>
                                             <span className="text-2xs font-medium text-gray-600">
-                      Project management
-                    </span>
+                                                Project management
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="flex justify-end shrink-0">
@@ -506,10 +506,10 @@ export default function SearchModal() {
                                                 />
                                             </div>
                                             <div className="flex">
-                      <span
-                          className="hover:z-5 relative inline-flex items-center justify-center shrink-0 rounded-full ring-1 font-semibold leading-none text-3xs size-6 text-success-inverse size-6 ring-success-light bg-success">
-                        +3
-                      </span>
+                                                <span
+                                                    className="hover:z-5 relative inline-flex items-center justify-center shrink-0 rounded-full ring-1 font-semibold leading-none text-3xs size-6 text-success-inverse size-6 ring-success-light bg-success">
+                                                    +3
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -534,8 +534,8 @@ export default function SearchModal() {
                                                 Inferno
                                             </a>
                                             <span className="text-2xs font-medium text-gray-600">
-                      Real-time photo sharing app
-                    </span>
+                                                Real-time photo sharing app
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="flex justify-end shrink-0">
@@ -584,8 +584,8 @@ export default function SearchModal() {
                                                 Evernote
                                             </a>
                                             <span className="text-2xs font-medium text-gray-600">
-                      Notes management app
-                    </span>
+                                                Notes management app
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="flex justify-end shrink-0">
@@ -641,8 +641,8 @@ export default function SearchModal() {
                                                 Gitlab
                                             </a>
                                             <span className="text-2xs font-medium text-gray-600">
-                      Notes management app
-                    </span>
+                                                Notes management app
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="flex justify-end shrink-0">
@@ -684,8 +684,8 @@ export default function SearchModal() {
                                                 Google webdev
                                             </a>
                                             <span className="text-2xs font-medium text-gray-600">
-                      Building web expierences
-                    </span>
+                                                Building web expierences
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="flex justify-end shrink-0">
@@ -741,8 +741,8 @@ export default function SearchModal() {
                                                     Tyler Hero
                                                 </a>
                                                 <span className="text-2sm font-normal text-gray-500">
-                        tyler.hero@gmail.com connections
-                      </span>
+                                                    tyler.hero@gmail.com connections
+                                                </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-2.5">
@@ -772,8 +772,8 @@ export default function SearchModal() {
                                                     Esther Howard
                                                 </a>
                                                 <span className="text-2sm font-normal text-gray-500">
-                        esther.howard@gmail.com connections
-                      </span>
+                                                    esther.howard@gmail.com connections
+                                                </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-2.5">
@@ -803,8 +803,8 @@ export default function SearchModal() {
                                                     Jacob Jones
                                                 </a>
                                                 <span className="text-2sm font-normal text-gray-500">
-                        jacob.jones@gmail.com connections
-                      </span>
+                                                    jacob.jones@gmail.com connections
+                                                </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-2.5">
@@ -834,8 +834,8 @@ export default function SearchModal() {
                                                     TLeslie Alexander
                                                 </a>
                                                 <span className="text-2sm font-normal text-gray-500">
-                        leslie.alexander@gmail.com connections
-                      </span>
+                                                    leslie.alexander@gmail.com connections
+                                                </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-2.5">
@@ -865,8 +865,8 @@ export default function SearchModal() {
                                                     Cody Fisher
                                                 </a>
                                                 <span className="text-2sm font-normal text-gray-500">
-                        cody.fisher@gmail.com connections
-                      </span>
+                                                    cody.fisher@gmail.com connections
+                                                </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-2.5">
@@ -894,14 +894,14 @@ export default function SearchModal() {
                                 <div className="menu-item">
                                     <div className="menu-link flex items-center">
                                         <div className="flex items-center grow gap-2.5">
-                                            <img alt="" src="/media/file-types/pdf.svg"/>
+                                            <img alt="" src="/media/file-types/pdf.svg" />
                                             <div className="flex flex-col">
-                      <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
-                        Project-pitch.pdf
-                      </span>
+                                                <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
+                                                    Project-pitch.pdf
+                                                </span>
                                                 <span className="text-xs font-medium text-gray-500">
-                        4.7 MB 26 Sep 2024 3:20 PM
-                      </span>
+                                                    4.7 MB 26 Sep 2024 3:20 PM
+                                                </span>
                                             </div>
                                         </div>
                                         <button className="btn btn-icon btn-light btn-clear btn-sm">
@@ -912,14 +912,14 @@ export default function SearchModal() {
                                 <div className="menu-item">
                                     <div className="menu-link flex items-center">
                                         <div className="flex items-center grow gap-2.5">
-                                            <img alt="" src="/media/file-types/doc.svg"/>
+                                            <img alt="" src="/media/file-types/doc.svg" />
                                             <div className="flex flex-col">
-                      <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
-                        Report-v1.docx
-                      </span>
+                                                <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
+                                                    Report-v1.docx
+                                                </span>
                                                 <span className="text-xs font-medium text-gray-500">
-                        2.3 MB 1 Oct 2024 12:00 PM
-                      </span>
+                                                    2.3 MB 1 Oct 2024 12:00 PM
+                                                </span>
                                             </div>
                                         </div>
                                         <button className="btn btn-icon btn-light btn-clear btn-sm">
@@ -930,14 +930,14 @@ export default function SearchModal() {
                                 <div className="menu-item">
                                     <div className="menu-link flex items-center">
                                         <div className="flex items-center grow gap-2.5">
-                                            <img alt="" src="/media/file-types/javascript.svg"/>
+                                            <img alt="" src="/media/file-types/javascript.svg" />
                                             <div className="flex flex-col">
-                      <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
-                        Framework-App.js
-                      </span>
+                                                <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
+                                                    Framework-App.js
+                                                </span>
                                                 <span className="text-xs font-medium text-gray-500">
-                        0.8 MB 17 Oct 2024 6:46 PM
-                      </span>
+                                                    0.8 MB 17 Oct 2024 6:46 PM
+                                                </span>
                                             </div>
                                         </div>
                                         <button className="btn btn-icon btn-light btn-clear btn-sm">
@@ -948,14 +948,14 @@ export default function SearchModal() {
                                 <div className="menu-item">
                                     <div className="menu-link flex items-center">
                                         <div className="flex items-center grow gap-2.5">
-                                            <img alt="" src="/media/file-types/ai.svg"/>
+                                            <img alt="" src="/media/file-types/ai.svg" />
                                             <div className="flex flex-col">
-                      <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
-                        Framework-App.js
-                      </span>
+                                                <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
+                                                    Framework-App.js
+                                                </span>
                                                 <span className="text-xs font-medium text-gray-500">
-                        0.8 MB 17 Oct 2024 6:46 PM
-                      </span>
+                                                    0.8 MB 17 Oct 2024 6:46 PM
+                                                </span>
                                             </div>
                                         </div>
                                         <button className="btn btn-icon btn-light btn-clear btn-sm">
@@ -966,14 +966,14 @@ export default function SearchModal() {
                                 <div className="menu-item">
                                     <div className="menu-link flex items-center">
                                         <div className="flex items-center grow gap-2.5">
-                                            <img alt="" src="/media/file-types/php.svg"/>
+                                            <img alt="" src="/media/file-types/php.svg" />
                                             <div className="flex flex-col">
-                      <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
-                        appController.js
-                      </span>
+                                                <span className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-primary mb-px">
+                                                    appController.js
+                                                </span>
                                                 <span className="text-xs font-medium text-gray-500">
-                        0.1 MB 21 Nov 2024 3:20 PM
-                      </span>
+                                                    0.1 MB 21 Nov 2024 3:20 PM
+                                                </span>
                                             </div>
                                         </div>
                                         <button className="btn btn-icon btn-light btn-clear btn-sm">
@@ -1008,10 +1008,10 @@ export default function SearchModal() {
                                     Looking for something..
                                 </h3>
                                 <span className="text-2sm font-medium text-center text-gray-600">
-                Initiate your digital experience with
-                <br/>
-                our intuitive dashboard
-              </span>
+                                    Initiate your digital experience with
+                                    <br />
+                                    our intuitive dashboard
+                                </span>
                             </div>
                             <div className="flex justify-center">
                                 <a className="btn btn-sm btn-light flex justify-center" href="#">
@@ -1039,8 +1039,8 @@ export default function SearchModal() {
                                     No Results Found
                                 </h3>
                                 <span className="text-2sm font-medium text-center text-gray-600">
-                Refine your query to discover relevant items
-              </span>
+                                    Refine your query to discover relevant items
+                                </span>
                             </div>
                             <div className="flex justify-center">
                                 <a className="btn btn-sm btn-light flex justify-center" href="#">

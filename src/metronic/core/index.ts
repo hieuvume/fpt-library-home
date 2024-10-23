@@ -103,33 +103,37 @@ declare global {
 	}
 }
 
-window.KTUtils = KTUtils;
-window.KTDom = KTDom;
-window.KTEventHandler = KTEventHandler;
-window.KTMenu = KTMenu;
-window.KTDropdown = KTDropdown;
-window.KTModal = KTModal;
-window.KTDrawer = KTDrawer;
-window.KTCollapse = KTCollapse;
-window.KTDismiss = KTDismiss;
-window.KTTabs = KTTabs;
-window.KTAccordion = KTAccordion;
-window.KTScrollspy = KTScrollspy;
-window.KTScrollable = KTScrollable;
-window.KTScrollto = KTScrollto;
-window.KTSticky = KTSticky;
-window.KTReparent = KTReparent;
-window.KTToggle = KTToggle;
-window.KTTooltip = KTTooltip;
-window.KTStepper = KTStepper;
-window.KTTheme = KTTheme;
-window.KTImageInput = KTImageInput;
-window.KTTogglePassword = KTTogglePassword;
-window.KTDataTable = KTDataTable;
-window.KTComponents = KTComponents;
+if (typeof window !== 'undefined') {
+	window.KTUtils = KTUtils;
+	window.KTDom = KTDom;
+	window.KTEventHandler = KTEventHandler;
+	window.KTMenu = KTMenu;
+	window.KTDropdown = KTDropdown;
+	window.KTModal = KTModal;
+	window.KTDrawer = KTDrawer;
+	window.KTCollapse = KTCollapse;
+	window.KTDismiss = KTDismiss;
+	window.KTTabs = KTTabs;
+	window.KTAccordion = KTAccordion;
+	window.KTScrollspy = KTScrollspy;
+	window.KTScrollable = KTScrollable;
+	window.KTScrollto = KTScrollto;
+	window.KTSticky = KTSticky;
+	window.KTReparent = KTReparent;
+	window.KTToggle = KTToggle;
+	window.KTTooltip = KTTooltip;
+	window.KTStepper = KTStepper;
+	window.KTTheme = KTTheme;
+	window.KTImageInput = KTImageInput;
+	window.KTTogglePassword = KTTogglePassword;
+	window.KTDataTable = KTDataTable;
+	window.KTComponents = KTComponents;
+}
 
 export default KTComponents;
 
-KTDom.ready(() => {
-	KTComponents.init();
-});
+if (typeof window !== 'undefined') {
+	KTDom.ready(() => {
+		KTComponents.init();
+	});
+}

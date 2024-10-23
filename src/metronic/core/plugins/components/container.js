@@ -8,14 +8,14 @@ export default plugin(({addComponents, theme}) => {
 			'flex-grow': '1',
 			'width': '100%',
 			'padding-left': theme('custom.components.container.fixed.px.DEFAULT'),
-      'padding-right': theme('custom.components.container.fixed.px.DEFAULT')
+      		'padding-right': theme('custom.components.container.fixed.px.DEFAULT')
     },
 		[`@media (min-width: ${theme('screens.xl')})`]: {
 			'.container-fixed': {
 				'margin-left': 'auto',
 				'margin-right': 'auto',
-				'padding-left': theme('custom.components.container.fixed.px.xl'),
-				'padding-right': theme('custom.components.container.fixed.px.xl'),
+				'padding-left': '1.875rem',
+				'padding-right': '1.875rem',
 				'max-width': theme('custom.components.container.fixed')['max-width']
 			}
 		}

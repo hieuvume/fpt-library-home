@@ -6,7 +6,7 @@ export const formatCurrency = (value) => {
       value = value.toString();
     }
     return value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  } catch (error) {}
+  } catch (error) { }
   return 0;
 };
 
@@ -73,4 +73,16 @@ export function toSlug(str) {
 
   // return
   return str;
+}
+
+export const handleErrorResponse = (error: any, setFieldError: (field: string, message: string | undefined) => void) => {
+  if (error.message) {
+    if (Array.isArray(error.message)) {
+      error.message.forEach((message: { property: string, message: string }) => {
+        if (message) {
+          setFieldError(message.property, message.message);
+        }
+      });
+    }
+  }
 }
