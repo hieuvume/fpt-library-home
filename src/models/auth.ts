@@ -53,25 +53,32 @@ export type UserProfile = {
   __v: number;
 };
 
-export type Brrowrd_record= {
-  borrowDate: Date;
-  dueDate: Date;
-  returnDate: Date | null;
-  isReturned: boolean;
+export type Brrowrd_record = {
+  borrowDate: string;  
+  dueDate: string; 
+  returnDate: string | null;
+  isReturned: boolean; 
   penalty: number;
   book: {
     title: string;
-    author: string[];
-    depscription:string;
-    categories: string[];
+    author: string[]; 
+    description: string; 
+    categories: string[]; 
     memberships: {
       name: string;
       priceMonthly: number;
       priceYearly: number;
-    }[];
+    }[]; 
+    librarian: {
+      name: string; 
+      email: string; 
+      phone: string; 
+      avatar: string; 
+    };
     section: string;
     shelf: string;
-    floor: number;
+    floor: number; 
     position: number;
-  }
-}
+  };
+};
+
