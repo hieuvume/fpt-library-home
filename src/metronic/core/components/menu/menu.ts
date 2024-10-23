@@ -248,10 +248,10 @@ export class KTMenu extends KTComponent implements KTMenuInterface {
 		const subElement = this._getItemSubElement(itemElement);
 
 		if (subElement !== null) {
-			if (this._getItemToggleMode(itemElement) === 'dropdown') {
+			if (this?._getItemToggleMode(itemElement) === 'dropdown') {
 				if (
-					subElement.classList.contains('show') === true &&
-					subElement.hasAttribute('data-popper-placement') === true
+					subElement?.classList.contains('show') === true &&
+					subElement?.hasAttribute('data-popper-placement') === true
 				) {
 					return true;
 				} else {

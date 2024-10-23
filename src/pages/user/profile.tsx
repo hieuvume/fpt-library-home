@@ -1,5 +1,17 @@
+import userApi from "@/api/user";
+import ProfileTopBar from "@/components/layouts/home/profiletopbar";
+import useSWR from "swr";
+import { formatDate } from "@/utils/index";
+import { Children, useState } from "react";
+import ProfileModal from "@/components/layouts/home/model";
+import History from "@/components/layouts/home/histories";
 export default function ProfilePage() {
-
+    const { data, isLoading } = useSWR(`userProfile`, () => userApi.profile())
+ 
+    
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
     return (
         <>
             <style
@@ -9,16 +21,16 @@ export default function ProfilePage() {
                 }}
             />
             <div className="bg-center bg-cover bg-no-repeat hero-bg">
-                {/* Container */}
                 <div className="container-fixed">
+
                     <div className="flex flex-col items-center gap-2 lg:gap-3.5 py-4 lg:pt-5 lg:pb-10">
                         <img
                             className="rounded-full border-3 border-success size-[100px] shrink-0"
-                            src="/static/metronic/tailwind/dist/assets/media/avatars/300-1.png"
+                            src={data?.avatar_url}
                         />
                         <div className="flex items-center gap-1.5">
                             <div className="text-lg leading-5 font-semibold text-gray-900">
-                                Jenny Klabber
+                                {data?.full_name}
                             </div>
                             <svg
                                 className="text-primary"
@@ -36,12 +48,12 @@ export default function ProfilePage() {
                         </div>
                         <div className="flex flex-wrap justify-center gap-1 lg:gap-4.5 text-sm">
                             <div className="flex gap-1.25 items-center">
-                                <i className="ki-filled ki-dribbble text-gray-500 text-sm"></i>
-                                <span className="text-gray-600 font-medium">KeenThemes</span>
+                                <i className="ki-filled ki-phone text-gray-500 text-sm"></i>
+                                <span className="text-gray-600 font-medium">{data?.phone_number}</span>
                             </div>
                             <div className="flex gap-1.25 items-center">
                                 <i className="ki-filled ki-geolocation text-gray-500 text-sm"></i>
-                                <span className="text-gray-600 font-medium">SF, Bay Area</span>
+                                <span className="text-gray-600 font-medium">{data?.address}</span>
                             </div>
                             <div className="flex gap-1.25 items-center">
                                 <i className="ki-filled ki-sms text-gray-500 text-sm"></i>
@@ -49,7 +61,7 @@ export default function ProfilePage() {
                                     className="text-gray-600 font-medium hover:text-primary"
                                     href="mailto: jenny@kteam.com"
                                 >
-                                    jenny@kteam.com
+                                    {data?.email}
                                 </a>
                             </div>
                         </div>
@@ -58,335 +70,7 @@ export default function ProfilePage() {
                 {/* End of Container */}
             </div>
             {/* Container */}
-            <div className="container-fixed">
-                <div className="flex items-center flex-wrap md:flex-nowrap lg:items-end justify-between border-b border-b-gray-200 dark:border-b-coal-100 gap-3 lg:gap-6 mb-5 lg:mb-10">
-                    <div className="grid">
-                        <div className="scrollable-x-auto">
-                            <div className="menu gap-3" data-menu="true">
-                                <div
-                                    className="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary here menu-item-dropdown"
-                                    data-menu-item-placement="bottom-start"
-                                    data-menu-item-toggle="dropdown"
-                                    data-menu-item-trigger="click|lg:hover"
-                                >
-                                    <div className="menu-link gap-1.5 pb-2 lg:pb-4 px-2" tabIndex={0}>
-                                        <span className="menu-title text-nowrap text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-medium menu-item-here:text-primary menu-item-here:font-medium menu-item-show:text-primary menu-link-hover:text-primary">
-                                            Profiles
-                                        </span>
-                                        <span className="menu-arrow">
-                                            <i className="ki-filled ki-down text-2xs text-gray-500 menu-item-active:text-primary menu-item-here:text-primary menu-item-show:text-primary menu-link-hover:text-primary"></i>
-                                        </span>
-                                    </div>
-                                    <div className="menu-dropdown menu-default py-2 min-w-[200px]">
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/profiles/default"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">Default</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/profiles/creator"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">Creator</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/profiles/company"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">Company</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/profiles/nft"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">NFT</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item active">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/profiles/blogger"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">Blogger</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/profiles/crm"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">CRM</span>
-                                            </a>
-                                        </div>
-                                        <div
-                                            className="menu-item menu-item-dropdown"
-                                            data-menu-item-offset="-10px, 0"
-                                            data-menu-item-overflow="true"
-                                            data-menu-item-placement="right-start"
-                                            data-menu-item-toggle="dropdown"
-                                            data-menu-item-trigger="click|lg:hover"
-                                        >
-                                            <div className="menu-link" tabIndex={0}>
-                                                <span className="menu-title">More</span>
-                                                <span className="menu-arrow">
-                                                    <i className="ki-filled ki-down text-2xs [.menu-dropdown_&]:-rotate-90"></i>
-                                                </span>
-                                            </div>
-                                            <div className="menu-dropdown menu-default py min-w-[200px]">
-                                                <div className="menu-item">
-                                                    <a
-                                                        className="menu-link"
-                                                        href="/metronic/tailwind/demo9/public-profile/profiles/gamer"
-                                                        tabIndex={0}
-                                                    >
-                                                        <span className="menu-title">Gamer</span>
-                                                    </a>
-                                                </div>
-                                                <div className="menu-item">
-                                                    <a
-                                                        className="menu-link"
-                                                        href="/metronic/tailwind/demo9/public-profile/profiles/feeds"
-                                                        tabIndex={0}
-                                                    >
-                                                        <span className="menu-title">Feeds</span>
-                                                    </a>
-                                                </div>
-                                                <div className="menu-item">
-                                                    <a
-                                                        className="menu-link"
-                                                        href="/metronic/tailwind/demo9/public-profile/profiles/plain"
-                                                        tabIndex={0}
-                                                    >
-                                                        <span className="menu-title">Plain</span>
-                                                    </a>
-                                                </div>
-                                                <div className="menu-item">
-                                                    <a
-                                                        className="menu-link"
-                                                        href="/metronic/tailwind/demo9/public-profile/profiles/modal"
-                                                        tabIndex={0}
-                                                    >
-                                                        <span className="menu-title">Modal</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    className="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary menu-item-dropdown"
-                                    data-menu-item-placement="bottom-start"
-                                    data-menu-item-toggle="dropdown"
-                                    data-menu-item-trigger="click|lg:hover"
-                                >
-                                    <div className="menu-link gap-1.5 pb-2 lg:pb-4 px-2" tabIndex={0}>
-                                        <span className="menu-title text-nowrap text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-medium menu-item-here:text-primary menu-item-here:font-medium menu-item-show:text-primary menu-link-hover:text-primary">
-                                            Projects
-                                        </span>
-                                        <span className="menu-arrow">
-                                            <i className="ki-filled ki-down text-2xs text-gray-500 menu-item-active:text-primary menu-item-here:text-primary menu-item-show:text-primary menu-link-hover:text-primary"></i>
-                                        </span>
-                                    </div>
-                                    <div
-                                        className="menu-dropdown menu-default py-2 min-w-[200px]"
-                                        style={{}}
-                                    >
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/projects/3-columns"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">3 Columns</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/projects/2-columns"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">2 Columns</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary">
-                                    <a
-                                        className="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
-                                        href="/metronic/tailwind/demo9/public-profile/works"
-                                        tabIndex={0}
-                                    >
-                                        <span className="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                            Works
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary">
-                                    <a
-                                        className="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
-                                        href="/metronic/tailwind/demo9/public-profile/teams"
-                                        tabIndex={0}
-                                    >
-                                        <span className="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                            Teams
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary">
-                                    <a
-                                        className="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
-                                        href="/metronic/tailwind/demo9/public-profile/network"
-                                        tabIndex={0}
-                                    >
-                                        <span className="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                            Network
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary">
-                                    <a
-                                        className="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
-                                        href="/metronic/tailwind/demo9/public-profile/activity"
-                                        tabIndex={0}
-                                    >
-                                        <span className="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                            Activity
-                                        </span>
-                                    </a>
-                                </div>
-                                <div
-                                    className="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary menu-item-dropdown"
-                                    data-menu-item-placement="bottom-start"
-                                    data-menu-item-toggle="dropdown"
-                                    data-menu-item-trigger="click|lg:hover"
-                                >
-                                    <div className="menu-link gap-1.5 pb-2 lg:pb-4 px-2" tabIndex={0}>
-                                        <span className="menu-title text-nowrap text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-medium menu-item-here:text-primary menu-item-here:font-medium menu-item-show:text-primary menu-link-hover:text-primary">
-                                            More
-                                        </span>
-                                        <span className="menu-arrow">
-                                            <i className="ki-filled ki-down text-2xs text-gray-500 menu-item-active:text-primary menu-item-here:text-primary menu-item-show:text-primary menu-link-hover:text-primary"></i>
-                                        </span>
-                                    </div>
-                                    <div
-                                        className="menu-dropdown menu-default py-2 min-w-[200px]"
-                                        style={{}}
-                                    >
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/campaigns/card"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">Campaigns - Card</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/campaigns/list"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">Campaigns - List</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/public-profile/empty"
-                                                tabIndex={0}
-                                            >
-                                                <span className="menu-title">Empty</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex items-center justify-end grow lg:grow-0 lg:pb-4 gap-2.5 mb-3 lg:mb-0">
-                        <button className="dropdown-toggle btn btn-sm btn-primary">
-                            <i className="ki-filled ki-users"></i>
-                            Connect
-                        </button>
-                        <button className="btn btn-sm btn-icon btn-light">
-                            <i className="ki-filled ki-messages"></i>
-                        </button>
-                        <div
-                            className="dropdown"
-                            data-dropdown="true"
-                            data-dropdown-placement="bottom-end"
-                            data-dropdown-trigger="click"
-                        >
-                            <button className="dropdown-toggle btn btn-sm btn-icon btn-light">
-                                <i className="ki-filled ki-dots-vertical"></i>
-                            </button>
-                            <div className="dropdown-content menu-default w-full max-w-[220px]">
-                                <div className="menu-item" data-dropdown-dismiss="true">
-                                    <button
-                                        className="menu-link"
-                                        data-modal-toggle="#share_profile_modal"
-                                    >
-                                        <span className="menu-icon">
-                                            <i className="ki-filled ki-coffee"></i>
-                                        </span>
-                                        <span className="menu-title">Share Profile</span>
-                                    </button>
-                                </div>
-                                <div className="menu-item" data-dropdown-dismiss="true">
-                                    <a
-                                        className="menu-link"
-                                        data-modal-toggle="#give_award_modal"
-                                        href="#"
-                                    >
-                                        <span className="menu-icon">
-                                            <i className="ki-filled ki-award"></i>
-                                        </span>
-                                        <span className="menu-title">Give Award</span>
-                                    </a>
-                                </div>
-                                <div className="menu-item" data-dropdown-dismiss="true">
-                                    <button className="menu-link">
-                                        <span className="menu-icon">
-                                            <i className="ki-filled ki-chart-line"></i>
-                                        </span>
-                                        <span className="menu-title">Stay Updated</span>
-                                        <label className="switch switch-sm">
-                                            <input name="check" type="checkbox" defaultValue={1} />
-                                        </label>
-                                    </button>
-                                </div>
-                                <div className="menu-item" data-dropdown-dismiss="true">
-                                    <button
-                                        className="menu-link"
-                                        data-modal-toggle="#report_user_modal"
-                                    >
-                                        <span className="menu-icon">
-                                            <i className="ki-filled ki-information-2"></i>
-                                        </span>
-                                        <span className="menu-title">Report User</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ProfileTopBar />
             {/* End of Container */}
             {/* Container */}
             <div className="container-fixed">
@@ -394,7 +78,7 @@ export default function ProfilePage() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-7.5">
                     <div className="col-span-1">
                         <div className="grid gap-5 lg:gap-7.5">
-                            <div className="card">
+                            {/* <div className="card">
                                 <div className="card-body">
                                     <div className="flex flex-wrap justify-center gap-2 py-1">
                                         <div className="flex flex-col items-center gap-1.5">
@@ -414,24 +98,23 @@ export default function ProfilePage() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="card">
                                 <div className="card-header">
-                                    <h3 className="card-title">Profile</h3>
+                                    <h3 className="card-title">Membership Card</h3>
                                 </div>
                                 <div className="card-body">
                                     <p className="text-sm text-gray-800 leading-5.5 mb-4">
-                                        Experienced and creative professional with a passion great as
-                                        for problem-solving and a commitment to excellence.
+                                        Members of the book borrowing system, with priority access to borrowing services and special offers for loyal readers.
                                     </p>
                                     <div className="grid gap-y-3.5">
                                         <div className="flex items-center gap-2.5">
-                                            <i className="ki-filled ki-abstract-41 text-base text-gray-500"></i>
+                                            <i className="ki-filled ki-simcard-2"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                                KeenThemes
+                                                {data?.current_membership_id?.card_number}
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
@@ -440,7 +123,7 @@ export default function ProfilePage() {
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                                Author
+                                                {data?.current_membership_id?.status}
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
@@ -449,37 +132,37 @@ export default function ProfilePage() {
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                                UI/UX Desiger
+                                                {data?.current_membership_id?.membership_id.name}
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
-                                            <i className="ki-filled ki-sms text-base text-gray-500"></i>
+                                            <i className="ki-filled ki-price-tag"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                                enny@kteam.com
+                                                {data?.current_membership_id?.price} VND
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
-                                            <i className="ki-filled ki-abstract-39 text-base text-gray-500"></i>
+                                            <i className="ki-filled ki-time"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                                https://keenthemes.com
+                                                {formatDate(data?.current_membership_id?.start_date)}
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-2.5">
-                                            <i className="ki-filled ki-facebook text-base text-gray-500"></i>
+                                            <i className="ki-filled ki-timer"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
                                                 href="#"
                                             >
-                                                keenthemes
+                                                {formatDate(data?.current_membership_id?.end_date)}
                                             </a>
                                         </div>
-                                        <div className="flex items-center gap-2.5">
+                                        {/* <div className="flex items-center gap-2.5">
                                             <i className="ki-filled ki-youtube text-base text-gray-500"></i>
                                             <a
                                                 className="text-sm leading-none text-gray-900 hover:text-primary-active"
@@ -487,122 +170,100 @@ export default function ProfilePage() {
                                             >
                                                 keenthemes
                                             </a>
-                                        </div>
+                                        </div> */}
                                     </div>
+
+                              
                                 </div>
                             </div>
                             <div className="card">
                                 <div className="card-header">
-                                    <h3 className="card-title">Community Badges</h3>
+                                    <h3 className="card-title">Profile</h3>
+                                    <button className="btn btn-sm btn-icon btn-icon-primary" data-modal-toggle="#auth-modal">Edit</button>
                                 </div>
-                                <div className="card-body pb-7.5">
-                                    <div className="flex items-center flex-wrap gap-3 lg:gap-4">
-                                        <div className="relative size-[50px] shrink-0">
-                                            <svg
-                                                className="w-full h-full stroke-primary-clarity fill-primary-light"
-                                                fill="none"
-                                                height={48}
-                                                viewBox="0 0 44 48"
-                                                width={44}
-                                                xmlns="http://www.w3.org/2000/svg"
+                                <div>
+                                    <ProfileModal children={data} />
+                                </div>
+                                <div className="card-body">
+                                    <div className="grid gap-y-3.5">
+                                        <div className="flex items-center gap-2.5">
+                                            <i className="ki-filled ki-simcard-2"></i>
+                                            <label className="text-sm leading-none text-gray-900 hover:text-primary-active">
+                                                Email:</label>
+                                            <a
+                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
+                                                href="#"
                                             >
-                                                <path
-                                                    d="M16 2.4641C19.7128 0.320509 24.2872 0.320508 28 2.4641L37.6506 8.0359C41.3634 10.1795 43.6506 14.141 43.6506 
-			18.4282V29.5718C43.6506 33.859 41.3634 37.8205 37.6506 39.9641L28 45.5359C24.2872 47.6795 19.7128 47.6795 16 45.5359L6.34937 
-			39.9641C2.63655 37.8205 0.349365 33.859 0.349365 29.5718V18.4282C0.349365 14.141 2.63655 10.1795 6.34937 8.0359L16 2.4641Z"
-                                                    fill=""
-                                                ></path>
-                                                <path
-                                                    d="M16.25 2.89711C19.8081 0.842838 24.1919 0.842837 27.75 2.89711L37.4006 8.46891C40.9587 10.5232 43.1506 14.3196 43.1506 
-			18.4282V29.5718C43.1506 33.6804 40.9587 37.4768 37.4006 39.5311L27.75 45.1029C24.1919 47.1572 19.8081 47.1572 16.25 45.1029L6.59937 
-			39.5311C3.04125 37.4768 0.849365 33.6803 0.849365 29.5718V18.4282C0.849365 14.3196 3.04125 10.5232 6.59937 8.46891L16.25 2.89711Z"
-                                                    stroke=""
-                                                ></path>
-                                            </svg>
-                                            <div className="absolute leading-none left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4">
-                                                <i className="ki-filled ki-abstract-39 text-1.5xl ps-px text-primary"></i>
-                                            </div>
+                                                {data?.email}
+                                            </a>
                                         </div>
-                                        <div className="relative size-[50px] shrink-0">
-                                            <svg
-                                                className="w-full h-full stroke-brand-clarity fill-brand-light"
-                                                fill="none"
-                                                height={48}
-                                                viewBox="0 0 44 48"
-                                                width={44}
-                                                xmlns="http://www.w3.org/2000/svg"
+                                        <div className="flex items-center gap-2.5">
+                                            <i className="ki-filled ki-crown-2 text-base text-gray-500"></i>
+                                            <label className="text-sm leading-none text-gray-900 hover:text-primary-active">
+                                                Phone:</label>
+                                            <a
+                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
+                                                href="#"
                                             >
-                                                <path
-                                                    d="M16 2.4641C19.7128 0.320509 24.2872 0.320508 28 2.4641L37.6506 8.0359C41.3634 10.1795 43.6506 14.141 43.6506 
-			18.4282V29.5718C43.6506 33.859 41.3634 37.8205 37.6506 39.9641L28 45.5359C24.2872 47.6795 19.7128 47.6795 16 45.5359L6.34937 
-			39.9641C2.63655 37.8205 0.349365 33.859 0.349365 29.5718V18.4282C0.349365 14.141 2.63655 10.1795 6.34937 8.0359L16 2.4641Z"
-                                                    fill=""
-                                                ></path>
-                                                <path
-                                                    d="M16.25 2.89711C19.8081 0.842838 24.1919 0.842837 27.75 2.89711L37.4006 8.46891C40.9587 10.5232 43.1506 14.3196 43.1506 
-			18.4282V29.5718C43.1506 33.6804 40.9587 37.4768 37.4006 39.5311L27.75 45.1029C24.1919 47.1572 19.8081 47.1572 16.25 45.1029L6.59937 
-			39.5311C3.04125 37.4768 0.849365 33.6803 0.849365 29.5718V18.4282C0.849365 14.3196 3.04125 10.5232 6.59937 8.46891L16.25 2.89711Z"
-                                                    stroke=""
-                                                ></path>
-                                            </svg>
-                                            <div className="absolute leading-none left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4">
-                                                <i className="ki-filled ki-abstract-44 text-1.5xl ps-px text-brand"></i>
-                                            </div>
+                                                {data?.phone_number}
+                                            </a>
                                         </div>
-                                        <div className="relative size-[50px] shrink-0">
-                                            <svg
-                                                className="w-full h-full stroke-success-clarity fill-success-light"
-                                                fill="none"
-                                                height={48}
-                                                viewBox="0 0 44 48"
-                                                width={44}
-                                                xmlns="http://www.w3.org/2000/svg"
+                                        <div className="flex items-center gap-2.5">
+                                            <i className="ki-filled ki-briefcase text-base text-gray-500"></i>
+                                            <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
+                                                Address:</label>
+                                            <a
+                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
+                                                href="#"
                                             >
-                                                <path
-                                                    d="M16 2.4641C19.7128 0.320509 24.2872 0.320508 28 2.4641L37.6506 8.0359C41.3634 10.1795 43.6506 14.141 43.6506 
-			18.4282V29.5718C43.6506 33.859 41.3634 37.8205 37.6506 39.9641L28 45.5359C24.2872 47.6795 19.7128 47.6795 16 45.5359L6.34937 
-			39.9641C2.63655 37.8205 0.349365 33.859 0.349365 29.5718V18.4282C0.349365 14.141 2.63655 10.1795 6.34937 8.0359L16 2.4641Z"
-                                                    fill=""
-                                                ></path>
-                                                <path
-                                                    d="M16.25 2.89711C19.8081 0.842838 24.1919 0.842837 27.75 2.89711L37.4006 8.46891C40.9587 10.5232 43.1506 14.3196 43.1506 
-			18.4282V29.5718C43.1506 33.6804 40.9587 37.4768 37.4006 39.5311L27.75 45.1029C24.1919 47.1572 19.8081 47.1572 16.25 45.1029L6.59937 
-			39.5311C3.04125 37.4768 0.849365 33.6803 0.849365 29.5718V18.4282C0.849365 14.3196 3.04125 10.5232 6.59937 8.46891L16.25 2.89711Z"
-                                                    stroke=""
-                                                ></path>
-                                            </svg>
-                                            <div className="absolute leading-none left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4">
-                                                <i className="ki-filled ki-abstract-25 text-1.5xl ps-px text-success"></i>
-                                            </div>
+                                                {data?.address}
+                                            </a>
                                         </div>
-                                        <div className="relative size-[50px] shrink-0">
-                                            <svg
-                                                className="w-full h-full stroke-info-clarity fill-info-light"
-                                                fill="none"
-                                                height={48}
-                                                viewBox="0 0 44 48"
-                                                width={44}
-                                                xmlns="http://www.w3.org/2000/svg"
+                                        <div className="flex items-center gap-2.5">
+                                            <i className="ki-filled ki-price-tag"></i>
+                                            <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
+                                                Date of issue:</label>
+                                            <a
+                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
+                                                href="#"
                                             >
-                                                <path
-                                                    d="M16 2.4641C19.7128 0.320509 24.2872 0.320508 28 2.4641L37.6506 8.0359C41.3634 10.1795 43.6506 14.141 43.6506 
-			18.4282V29.5718C43.6506 33.859 41.3634 37.8205 37.6506 39.9641L28 45.5359C24.2872 47.6795 19.7128 47.6795 16 45.5359L6.34937 
-			39.9641C2.63655 37.8205 0.349365 33.859 0.349365 29.5718V18.4282C0.349365 14.141 2.63655 10.1795 6.34937 8.0359L16 2.4641Z"
-                                                    fill=""
-                                                ></path>
-                                                <path
-                                                    d="M16.25 2.89711C19.8081 0.842838 24.1919 0.842837 27.75 2.89711L37.4006 8.46891C40.9587 10.5232 43.1506 14.3196 43.1506 
-			18.4282V29.5718C43.1506 33.6804 40.9587 37.4768 37.4006 39.5311L27.75 45.1029C24.1919 47.1572 19.8081 47.1572 16.25 45.1029L6.59937 
-			39.5311C3.04125 37.4768 0.849365 33.6803 0.849365 29.5718V18.4282C0.849365 14.3196 3.04125 10.5232 6.59937 8.46891L16.25 2.89711Z"
-                                                    stroke=""
-                                                ></path>
-                                            </svg>
-                                            <div className="absolute leading-none left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4">
-                                                <i className="ki-filled ki-delivery-24 text-1.5xl ps-px text-info"></i>
-                                            </div>
+                                                {formatDate(data?.id_card?.date)}
+                                            </a>
                                         </div>
+                                        <div className="flex items-center gap-2.5">
+                                            <i className="ki-filled ki-time"></i>
+                                            <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
+                                                Place of issue:</label>
+                                            <a
+                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
+                                                href="#"
+                                            >
+                                                {data?.id_card?.place}
+                                            </a>
+                                        </div>
+                                        <div className="flex items-center gap-2.5">
+                                            <i className="ki-filled ki-timer"></i>
+                                            <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
+                                                ID Number:</label>
+                                            <a
+                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
+                                                href="#"
+                                            >
+                                                {data?.id_card?.id_number}
+                                            </a>
+                                        </div>
+                                        {/* <div className="flex items-center gap-2.5">
+                                            <i className="ki-filled ki-youtube text-base text-gray-500"></i>
+                                            <a
+                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
+                                                href="#"
+                                            >
+                                                keenthemes
+                                            </a>
+                                        </div> */}
                                     </div>
                                 </div>
+
                             </div>
                             <div className="card">
                                 <div className="card-header">
@@ -649,467 +310,7 @@ export default function ProfilePage() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-1 lg:col-span-2">
-                        <div className="flex flex-col gap-5 lg:gap-7.5">
-                            <div className="card">
-                                <div className="card-body px-10 py-7.5 lg:pr-12.5">
-                                    <div className="flex flex-wrap md:flex-nowrap items-center gap-6 md:gap-10">
-                                        <div className="flex flex-col gap-3">
-                                            <h2 className="text-1.5xl font-semibold text-gray-900">
-                                                Unlock Creative
-                                                <br />
-                                                Partnerships on Our Blog
-                                            </h2>
-                                            <p className="text-sm text-gray-700 leading-5.5">
-                                                Explore exciting collaboration opportunities with our blog.
-                                                We're open to partnerships, guest posts, and more. Join us
-                                                to share your insights and grow your audience.
-                                            </p>
-                                        </div>
-                                        <img
-                                            alt="image"
-                                            className="dark:hidden max-h-[160px]"
-                                            src="/static/metronic/tailwind/dist/assets/media/illustrations/1.svg"
-                                        />
-                                        <img
-                                            alt="image"
-                                            className="light:hidden max-h-[160px]"
-                                            src="/static/metronic/tailwind/dist/assets/media/illustrations/1-dark.svg"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="card-footer justify-center">
-                                    <a
-                                        className="btn btn-link"
-                                        href="/metronic/tailwind/demo9/network/get-started"
-                                    >
-                                        Get Started
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <div className="card-header">
-                                    <h3 className="card-title">Jenny’s Posts</h3>
-                                    <a
-                                        className="btn btn-link"
-                                        href="/metronic/tailwind/demo9/public-profile/profiles/feeds"
-                                    >
-                                        View All
-                                    </a>
-                                </div>
-                                <div className="card-body p-5 lg:p-7.5 lg:pb-7">
-                                    <div className="flex flex-no-wrap scrollable-x gap-5">
-                                        <div className="card shadow-none w-[280px] border-0 mb-4">
-                                            <div
-                                                className="rounded-t-xl w-[280px] h-[240px] bg-cover bg-center"
-                                                style={{
-                                                    backgroundImage:
-                                                        'url("/static/metronic/tailwind/dist/assets/media/images/600x400/14.jpg")'
-                                                }}
-                                            ></div>
-                                            <div className="card-border card-rounded-b grid gap-1.5 px-5 py-4">
-                                                <a
-                                                    className="font-medium text-brand text-2sm hover:text-primary"
-                                                    href="#"
-                                                >
-                                                    Software
-                                                </a>
-                                                <a
-                                                    className="font-medium text-gray-900 text-lg leading-6 mb-1.5 hover:text-primary"
-                                                    href="#"
-                                                >
-                                                    Maximizing Efficiency with Modern Software
-                                                </a>
-                                                <time className="flex items-center gap-1.5 text-2sm text-gray-700 leading-none">
-                                                    <i className="ki-filled ki-time text-lg text-gray-500"></i>
-                                                    4 hours ago
-                                                </time>
-                                            </div>
-                                        </div>
-                                        <div className="card shadow-none w-[280px] border-0 mb-4">
-                                            <div
-                                                className="rounded-t-xl w-[280px] h-[240px] bg-cover bg-center"
-                                                style={{
-                                                    backgroundImage:
-                                                        'url("/static/metronic/tailwind/dist/assets/media/images/600x400/15.jpg")'
-                                                }}
-                                            ></div>
-                                            <div className="card-border card-rounded-b grid gap-1.5 px-5 py-4">
-                                                <a
-                                                    className="font-medium text-brand text-2sm hover:text-primary"
-                                                    href="#"
-                                                >
-                                                    Work-Life
-                                                </a>
-                                                <a
-                                                    className="font-medium text-gray-900 text-lg leading-6 mb-1.5 hover:text-primary"
-                                                    href="#"
-                                                >
-                                                    Balancing Work and Life: Strategies for Success
-                                                </a>
-                                                <time className="flex items-center gap-1.5 text-2sm text-gray-700 leading-none">
-                                                    <i className="ki-filled ki-time text-lg text-gray-500"></i>
-                                                    2 days ago
-                                                </time>
-                                            </div>
-                                        </div>
-                                        <div className="card shadow-none w-[280px] border-0 mb-4">
-                                            <div
-                                                className="rounded-t-xl w-[280px] h-[240px] bg-cover bg-center"
-                                                style={{
-                                                    backgroundImage:
-                                                        'url("/static/metronic/tailwind/dist/assets/media/images/600x400/16.jpg")'
-                                                }}
-                                            ></div>
-                                            <div className="card-border card-rounded-b grid gap-1.5 px-5 py-4">
-                                                <a
-                                                    className="font-medium text-brand text-2sm hover:text-primary"
-                                                    href="#"
-                                                >
-                                                    Technology
-                                                </a>
-                                                <a
-                                                    className="font-medium text-gray-900 text-lg leading-6 mb-1.5 hover:text-primary"
-                                                    href="#"
-                                                >
-                                                    Exploring the Latest Technological
-                                                </a>
-                                                <time className="flex items-center gap-1.5 text-2sm text-gray-700 leading-none">
-                                                    <i className="ki-filled ki-time text-lg text-gray-500"></i>
-                                                    A week ago
-                                                </time>
-                                            </div>
-                                        </div>
-                                        <div className="card shadow-none w-[280px] border-0 mb-4">
-                                            <div
-                                                className="rounded-t-xl w-[280px] h-[240px] bg-cover bg-center"
-                                                style={{
-                                                    backgroundImage:
-                                                        'url("/static/metronic/tailwind/dist/assets/media/images/600x400/11.jpg")'
-                                                }}
-                                            ></div>
-                                            <div className="card-border card-rounded-b grid gap-1.5 px-5 py-4">
-                                                <a
-                                                    className="font-medium text-brand text-2sm hover:text-primary"
-                                                    href="#"
-                                                ></a>
-                                                <a
-                                                    className="font-medium text-gray-900 text-lg leading-6 mb-1.5 hover:text-primary"
-                                                    href="#"
-                                                ></a>
-                                                <time className="flex items-center gap-1.5 text-2sm text-gray-700 leading-none">
-                                                    <i className="ki-filled ki-time text-lg text-gray-500"></i>
-                                                </time>
-                                            </div>
-                                        </div>
-                                        <div className="card shadow-none w-[280px] border-0 mb-4">
-                                            <div
-                                                className="rounded-t-xl w-[280px] h-[240px] bg-cover bg-center"
-                                                style={{
-                                                    backgroundImage:
-                                                        'url("/static/metronic/tailwind/dist/assets/media/images/600x400/12.jpg")'
-                                                }}
-                                            ></div>
-                                            <div className="card-border card-rounded-b grid gap-1.5 px-5 py-4">
-                                                <a
-                                                    className="font-medium text-brand text-2sm hover:text-primary"
-                                                    href="#"
-                                                ></a>
-                                                <a
-                                                    className="font-medium text-gray-900 text-lg leading-6 mb-1.5 hover:text-primary"
-                                                    href="#"
-                                                ></a>
-                                                <time className="flex items-center gap-1.5 text-2sm text-gray-700 leading-none">
-                                                    <i className="ki-filled ki-time text-lg text-gray-500"></i>
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <div className="card-header">
-                                    <h3 className="card-title">Jenny’s Replies</h3>
-                                    <a
-                                        className="btn btn-link"
-                                        href="/metronic/tailwind/demo9/public-profile/profiles/feeds"
-                                    >
-                                        View All
-                                    </a>
-                                </div>
-                                <div className="card-body pb-7">
-                                    <div className="flex flex-col gap-5">
-                                        <div className="border-l-2 border-brand">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">10 Jan, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">24</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                Experienced UI/UX designer seeking new opportunities.
-                                            </p>
-                                        </div>
-                                        <div className="border-l-2 border-primary">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">23 Jan, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">3</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                Include the name of the author of the blog post. This helps
-                                                to build trust and credibility with readers.
-                                            </p>
-                                        </div>
-                                        <div className="border-l-2 border-warning">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">4 Feb, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">89</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                Avoid using all caps or excessive punctuation.
-                                            </p>
-                                        </div>
-                                        <div className="border-l-2 border-success">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">17 Mar, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">32</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                You can use this example as a starting point to design your
-                                                own blog post cards. Be sure to experiment with different
-                                                layouts, fonts, and colors both visually appealing and
-                                                informative.
-                                            </p>
-                                        </div>
-                                        <div className="border-l-2 border-danger">
-                                            <div className="flex gap-3 items-center ps-3 mb-0.5">
-                                                <span className="text-2xs text-gray-600">9 Apr, 24</span>
-                                                <div className="rounded-full w-1.5 h-1.5 bg-gray-300 gap-1.5"></div>
-                                                <div className="flex gap-1 items-center">
-                                                    <i className="ki-filled ki-heart text-base text-gray-500"></i>
-                                                    <span className="text-2sm text-gray-600">57</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-800 leading-5.5 ps-3">
-                                                Use high-quality images and graphics to capture the visual
-                                                appeal of your cards.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <div className="card-header">
-                                    <h3 className="card-title">Activity</h3>
-                                    <div className="flex items-center gap-2">
-                                        <label className="switch">
-                                            <span className="switch-label">
-                                                Auto refresh:
-                                                <span className="switch-on:hidden">Off</span>
-                                                <span className="hidden switch-on:inline">On</span>
-                                            </span>
-                                            <input
-                                                defaultChecked
-                                                name="check"
-                                                type="checkbox"
-                                                defaultValue={1}
-                                            />
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="card-body">
-                                    <div className="flex flex-col">
-                                        <div className="flex items-start relative">
-                                            <div className="w-9 left-0 top-9 absolute bottom-0 translate-x-1/2 border-l border-l-gray-300"></div>
-                                            <div className="flex items-center justify-center shrink-0 rounded-full bg-gray-100 border border-gray-300 size-9 text-gray-600">
-                                                <i className="ki-filled ki-people text-base"></i>
-                                            </div>
-                                            <div className="pl-2.5 mb-7 text-md grow">
-                                                <div className="flex flex-col">
-                                                    <div className="text-sm text-gray-800">
-                                                        Posted a new article
-                                                        <a
-                                                            className="text-sm font-medium link"
-                                                            href="/metronic/tailwind/demo9/public-profile/profiles/blogger"
-                                                        >
-                                                            Top 10 Tech Trends
-                                                        </a>
-                                                    </div>
-                                                    <span className="text-xs text-gray-600">
-                                                        Today, 9:00 AM
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start relative">
-                                            <div className="w-9 left-0 top-9 absolute bottom-0 translate-x-1/2 border-l border-l-gray-300"></div>
-                                            <div className="flex items-center justify-center shrink-0 rounded-full bg-gray-100 border border-gray-300 size-9 text-gray-600">
-                                                <i className="ki-filled ki-entrance-left text-base"></i>
-                                            </div>
-                                            <div className="pl-2.5 mb-7 text-md grow">
-                                                <div className="flex flex-col">
-                                                    <div className="text-sm text-gray-800">
-                                                        I had the privilege of interviewing an industry expert
-                                                        for an
-                                                        <a
-                                                            className="text-sm link"
-                                                            href="/metronic/tailwind/demo9/public-profile/profiles/blogger"
-                                                        >
-                                                            upcoming blog post
-                                                        </a>
-                                                    </div>
-                                                    <span className="text-xs text-gray-600">
-                                                        2 days ago, 4:07 PM
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start relative">
-                                            <div className="w-9 left-0 top-9 absolute bottom-0 translate-x-1/2 border-l border-l-gray-300"></div>
-                                            <div className="flex items-center justify-center shrink-0 rounded-full bg-gray-100 border border-gray-300 size-9 text-gray-600">
-                                                <i className="ki-filled ki-share text-base"></i>
-                                            </div>
-                                            <div className="pl-2.5 mb-7 text-md grow">
-                                                <div className="flex flex-col">
-                                                    <div className="text-sm text-gray-800">
-                                                        I couldn't resist sharing a sneak peek of our
-                                                        <a
-                                                            className="text-sm link"
-                                                            href="/metronic/tailwind/demo9/public-profile/profiles/blogger"
-                                                        >
-                                                            upcoming content
-                                                        </a>
-                                                    </div>
-                                                    <span className="text-xs text-gray-600">
-                                                        5 days ago, 4:07 PM
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start relative">
-                                            <div className="w-9 left-0 top-9 absolute bottom-0 translate-x-1/2 border-l border-l-gray-300"></div>
-                                            <div className="flex items-center justify-center shrink-0 rounded-full bg-gray-100 border border-gray-300 size-9 text-gray-600">
-                                                <i className="ki-filled ki-directbox-default text-base"></i>
-                                            </div>
-                                            <div className="pl-2.5 mb-7 text-md grow">
-                                                <div className="flex flex-col pb-2.5">
-                                                    <span className="text-sm text-gray-800">
-                                                        Attending the virtual blogging conference was an
-                                                        enriching experience
-                                                    </span>
-                                                    <span className="text-xs text-gray-600">
-                                                        2 days ago, 4:07 PM
-                                                    </span>
-                                                </div>
-                                                <div className="card shadow-none">
-                                                    <div className="card-body lg:py-4">
-                                                        <div className="flex justify-center py-4">
-                                                            <img
-                                                                alt="image"
-                                                                className="dark:hidden max-h-[160px]"
-                                                                src="/static/metronic/tailwind/dist/assets/media/illustrations/3.svg"
-                                                            />
-                                                            <img
-                                                                alt="image"
-                                                                className="light:hidden max-h-[160px]"
-                                                                src="/static/metronic/tailwind/dist/assets/media/illustrations/3-dark.svg"
-                                                            />
-                                                        </div>
-                                                        <div className="flex flex-col gap-1">
-                                                            <div className="text-md font-medium text-gray-900 text-center">
-                                                                Blogging Conference
-                                                            </div>
-                                                            <div className="flex items-center justify-center gap-1">
-                                                                <a
-                                                                    className="text-2sm font-semibold link"
-                                                                    href="/metronic/tailwind/demo9/public-profile/profiles/company"
-                                                                >
-                                                                    Axio new release
-                                                                </a>
-                                                                <span className="text-2sm text-gray-700 mr-2">
-                                                                    email campaign
-                                                                </span>
-                                                                <span className="badge badge-sm badge-success badge-outline">
-                                                                    Public
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start relative">
-                                            <div className="w-9 left-0 top-9 absolute bottom-0 translate-x-1/2 border-l border-l-gray-300"></div>
-                                            <div className="flex items-center justify-center shrink-0 rounded-full bg-gray-100 border border-gray-300 size-9 text-gray-600">
-                                                <i className="ki-filled ki-coffee text-base"></i>
-                                            </div>
-                                            <div className="pl-2.5 mb-7 text-md grow">
-                                                <div className="flex flex-col">
-                                                    <div className="text-sm text-gray-900">
-                                                        Reaching the milestone of
-                                                        <a
-                                                            className="text-sm font-medium link"
-                                                            href="/metronic/tailwind/demo9/public-profile/profiles/feeds"
-                                                        >
-                                                            10,000 followers
-                                                        </a>
-                                                        on the blog was a dream come true
-                                                    </div>
-                                                    <span className="text-xs text-gray-600">
-                                                        5 days ago, 4:07 PM
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start relative">
-                                            <div className="flex items-center justify-center shrink-0 rounded-full bg-gray-100 border border-gray-300 size-9 text-gray-600">
-                                                <i className="ki-filled ki-cup text-base"></i>
-                                            </div>
-                                            <div className="pl-2.5 text-md grow">
-                                                <div className="flex flex-col">
-                                                    <div className="text-sm text-gray-800">
-                                                        We recently
-                                                        <a
-                                                            className="text-sm font-medium link"
-                                                            href="/metronic/tailwind/demo9/public-profile/profiles/nft"
-                                                        >
-                                                            celebrated
-                                                        </a>
-                                                        the blog's 1-year anniversary
-                                                    </div>
-                                                    <span className="text-xs text-gray-600">
-                                                        3 months ago, 4:07 PM
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card-footer justify-center">
-                                    <a
-                                        className="btn btn-link"
-                                        href="/metronic/tailwind/demo9/public-profile/activity"
-                                    >
-                                        All-time Activities
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 <History />
                 </div>
                 {/* end: grid */}
             </div>

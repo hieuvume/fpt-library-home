@@ -1,13 +1,12 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/free-mode";
-import useSWR from "swr";
 import { bookTitleApi } from "@/api/book-title";
-import { FreeMode, Pagination } from "swiper/modules";
+import dayjs from "dayjs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import dayjs from "dayjs";
+import "swiper/css";
+import "swiper/css/free-mode";
+import { FreeMode } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import useSWR from "swr";
 
 const BestOfTheMonth = () => {
     const [currentMonth, setCurrentMonth] = useState(dayjs().format("MMMM, YYYY"));
@@ -33,7 +32,7 @@ const BestOfTheMonth = () => {
             <div className="">
                 <div className="container-fixed flex items-center justify-between flex-wrap gap-5">
                     <div className="flex flex-col justify-center items-start flex-wrap gap-1 lg:gap-2">
-                        <h1 className="font-medium text-xl text-gray-900">Best of the month</h1>
+                        <h1 className="font-medium text-2xl text-gray-900">Best of the month</h1>
                     </div>
                     <div className="flex items-center flex-wrap gap-1.5 lg:gap-3.5">
                         <div className="menu menu-default" data-menu="true">
@@ -98,11 +97,9 @@ const BestOfTheMonth = () => {
                             },
                         }}
                         freeMode={true}
-                        pagination={{
-                            clickable: true,
-                        }}
                         autoplay
-                        modules={[FreeMode, Pagination,]}
+                        loop
+                        modules={[FreeMode]}
                         className="w-full"
                     >
                         {(isLoading || error) && Array.from({ length: 6 }, (_, index) => <SwiperSlide key={index}><SkeletonLoader /></SwiperSlide>)}
@@ -119,7 +116,7 @@ const BestOfTheMonth = () => {
                                     />
 
                                     <div className="flex flex-col flex-grow justify-between h-full w-full">
-                                        <span className="text-sm font-semibold text-gray-900 text-center min-h-[40px] line-clamp-2">
+                                        <span className="text-sm font-semibold text-slate-900 text-center min-h-[40px] line-clamp-2">
                                             {book.book_title_name}
                                         </span>
                                         <p className="text-sm text-gray-500 mt-2 text-center min-h-[20px] truncate">

@@ -1,6 +1,10 @@
 import { Category } from "./category";
 import { Membership } from "./membership";
 
+export type Feedback = {
+
+}
+
 export type BookTitle = {
     _id: string;
     title: string;
@@ -8,6 +12,7 @@ export type BookTitle = {
     brief_content: string;
     cover_image: string;
     categories: Category[];
+    feedbacks: Feedback[]
     author: string[];
     ISBN: string;
     memberships: Membership[];

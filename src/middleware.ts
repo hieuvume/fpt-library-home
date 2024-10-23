@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const authRoutes = ['/auth/sign-in', '/auth/sign-up', '/auth/forgot-password', '/auth/reset-password'];
-const publicRoutes = ['/', '/about', '/contact'];
+const publicRoutes = ['/', '/about', '/contact',`/book/[id]`];
 const privateRoutes = ['/user/profile'];
 
 export async function middleware(req: NextRequest) {
@@ -21,7 +21,7 @@ export async function middleware(req: NextRequest) {
     }
 
     if (privateRoutes.includes(pathname)) {
-        if (!token) {
+        if (!isSingedIn) {
             return NextResponse.redirect(new URL('/auth/sign-in', req.url));
         }
         return NextResponse.next();
