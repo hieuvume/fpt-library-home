@@ -13,11 +13,5 @@ export default function BookDetailPage() {
     if (isLoading) {
         return <div>Loading...</div>
     }
-    console.log(data);
-    
-    return <div>
-        <h1>{data?.book_title?.ISBN}</h1>
-        <p>{data?.floor}</p>
-    </div>
-
+    return <div>Book Detail Page: {data?.max_borrow_duration}</div>
 }

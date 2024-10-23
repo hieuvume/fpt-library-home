@@ -1,3 +1,4 @@
+
 import { Brrowrd_record, SignInResponse, User, UserProfile } from "@/models/auth";
 import api from "./axios";
 
@@ -12,6 +13,10 @@ const userApi = {
         return api.put('/users/profile', data)
     },
 
+}
+
+export const getUsers = (): Promise<Users[]> => {
+    return axios.get(`/dashboard/users`)
 }
 
 export default userApi
