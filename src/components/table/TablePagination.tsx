@@ -99,9 +99,10 @@ const TablePagination = () => {
           className="select select-sm w-16"
           name="perpage"
           onChange={onChangeLimit}
+          defaultValue={limit}
         >
           {PER_PAGE_OPTIONS.map((option) => (
-            <option key={option} value={option} selected={option === limit}>
+            <option key={option} value={option}>
               {option}
             </option>
           ))}

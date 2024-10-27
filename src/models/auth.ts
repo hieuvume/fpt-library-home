@@ -1,11 +1,30 @@
 export type User = {
-  id: string;
+  id: string
+  username: string;
+  password: string;
   email: string;
   full_name: string;
-  avatar_url: string;
+  gender: string;
+  date_of_birth: string;
   phone_number: string;
+  address: string;
+  avatar_url: string
+  id_card: IDCard;
+  current_membership: any;
+  borrowed_books: string[];
+  role_id: string;
+  google_id: string;
+  google_access_token: string;
+  token_expires_at: string;
   created_at: string;
   updated_at: string;
+  status: Boolean
+}
+
+export type IDCard = {
+  id_number: number;
+  date: string;
+  place: string;
 }
 
 export type SignInResponse = {

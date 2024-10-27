@@ -106,7 +106,7 @@ const BestOfTheMonth = () => {
 
                         {(!isLoading && !error) && data?.map((book, index) => (
                             <SwiperSlide key={index} className="mb-10 h-full flex flex-col items-stretch">
-                                <div className="flex flex-col items-center bg-white p-2 pb-5 rounded-lg flex-grow h-full hover:shadow-md cursor-pointer">
+                                <div className="flex flex-col items-center p-2 pb-5 rounded-lg flex-grow h-full hover:shadow-md cursor-pointer">
                                     <Image
                                         width={200}
                                         height={300}
@@ -116,10 +116,10 @@ const BestOfTheMonth = () => {
                                     />
 
                                     <div className="flex flex-col flex-grow justify-between h-full w-full">
-                                        <span className="text-sm font-semibold text-slate-900 text-center min-h-[40px] line-clamp-2">
+                                        <span className="text-sm font-semibold text-slate-900 dark:text-white text-center min-h-[40px] line-clamp-2">
                                             {book.book_title_name}
                                         </span>
-                                        <p className="text-sm text-gray-500 mt-2 text-center min-h-[20px] truncate">
+                                        <p className="text-sm text-gray-500 dark:text-gray-800 mt-2 text-center min-h-[20px] truncate">
                                             By {book.author[0]}
                                         </p>
                                     </div>

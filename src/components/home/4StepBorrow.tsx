@@ -1,12 +1,12 @@
 const FourStepBorrow = () => {
   return (
-    <div className="relative w-full bg-neutral-200">
+    <div className="relative w-full bg-neutral-200 dark:bg-neutral-800">
       <div className="container-fixed py-10 sm:py-12 lg:py-16">
         <div className="md:max-w-2xl lg:max-w-4xl">
-          <p className="font-display text-3xl font-bold tracking-tight text-slate-900">
+          <p className="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
             4 Steps to Borrow Books Online
           </p>
-          <p className="mt-4 text-lg tracking-tight text-slate-700">
+          <p className="mt-4 text-lg tracking-tight text-slate-700 dark:text-slate-100">
             Learn how to borrow books online in four simple steps, from browsing
             the catalog to reserving and collecting your favorite titles, all
             from the comfort of your home
@@ -54,10 +54,10 @@ const FourStepBorrow = () => {
                   </time>
                 </div>
               </div>
-              <h3 className="mt-8 text-base font-medium tracking-tight text-slate-900 before:mb-2 before:block before:font-mono before:text-sm before:text-slate-500 before:content-[counter(video,decimal-leading-zero)]">
+              <h3 className="mt-8 text-base font-medium tracking-tight text-slate-900 dark:text-slate-50 before:mb-2 before:block before:font-mono before:text-sm before:text-slate-500 dark:before:text-slate-50 before:content-[counter(video,decimal-leading-zero)]">
                 Create an Account
               </h3>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-200">
                 Sign up quickly by entering your basic information. Get
                 immediate access to our online library
               </p>
@@ -99,10 +99,10 @@ const FourStepBorrow = () => {
                   </time>
                 </div>
               </div>
-              <h3 className="mt-8 text-base font-medium tracking-tight text-slate-900 before:mb-2 before:block before:font-mono before:text-sm before:text-slate-500 before:content-[counter(video,decimal-leading-zero)]">
+              <h3 className="mt-8 text-base font-medium tracking-tight text-slate-900 dark:text-slate-50 before:mb-2 before:block before:font-mono before:text-sm before:text-slate-500 dark:before:text-slate-50 before:content-[counter(video,decimal-leading-zero)]">
                 Upgrade Your Account
               </h3>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-200">
                 Unlock exclusive features by upgrading to a premium membership
                 and access to special titles
               </p>
@@ -144,10 +144,10 @@ const FourStepBorrow = () => {
                   </time>
                 </div>
               </div>
-              <h3 className="mt-8 text-base font-medium tracking-tight text-slate-900 before:mb-2 before:block before:font-mono before:text-sm before:text-slate-500 before:content-[counter(video,decimal-leading-zero)]">
+              <h3 className="mt-8 text-base font-medium tracking-tight text-slate-900 dark:text-slate-50 before:mb-2 before:block before:font-mono before:text-sm before:text-slate-500 dark:before:text-slate-50 before:content-[counter(video,decimal-leading-zero)]">
                 Reserve Your Books
               </h3>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-200">
                 Browse our catalog, select your preferred titles, and place a
                 reservation with just a few clicks
               </p>
@@ -189,10 +189,10 @@ const FourStepBorrow = () => {
                   </time>
                 </div>
               </div>
-              <h3 className="mt-8 text-base font-medium tracking-tight text-slate-900 before:mb-2 before:block before:font-mono before:text-sm before:text-slate-500 before:content-[counter(video,decimal-leading-zero)]">
+              <h3 className="mt-8 text-base font-medium tracking-tight text-slate-900 dark:text-slate-50 before:mb-2 before:block before:font-mono before:text-sm before:text-slate-500 dark:before:text-slate-50 before:content-[counter(video,decimal-leading-zero)]">
                 Pick Up Your Books
               </h3>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-200">
                 Go to the library at the scheduled time and collect your
                 reserved books with ease
               </p>

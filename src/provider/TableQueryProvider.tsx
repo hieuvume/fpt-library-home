@@ -86,6 +86,7 @@ export const TableQueryProvider: React.FC<TableQueryProviderProps<any>> = ({
         setHasPrevPage(data.hasPrevPage || false);
       },
       keepPreviousData: true,
+      revalidateOnFocus: false,
     }
   );
 

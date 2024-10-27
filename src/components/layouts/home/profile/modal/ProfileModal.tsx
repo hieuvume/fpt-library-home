@@ -8,6 +8,7 @@ import { Report } from "notiflix";
 import { userApi } from "@/api/user";
 import { log } from "console";
 import { useRouter } from "next/router";
+import { FlexModal } from "@/components/modal/FlexModal";
 
 const validationSchema = Yup.object({
   full_name: Yup.string()
@@ -48,7 +49,7 @@ export default function ProfileModal({ children }: { children: UserProfile }) {
   };
   return (
     <>
-      <BaseModal modalKey={"auth-modal"} title="Settings - Modal">
+      <FlexModal modalKey={"auth-modal"} title="Settings - Modal">
         <div className="flex grow gap-5 lg:gap-7.5">
           <div className="hidden lg:block w-[230px] shrink-0">
             <div
@@ -373,7 +374,7 @@ export default function ProfileModal({ children }: { children: UserProfile }) {
             </div>
           </div>
         </div>
-      </BaseModal>
+      </FlexModal>
     </>
   );
 }
