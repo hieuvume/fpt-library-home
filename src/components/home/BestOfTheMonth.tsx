@@ -117,9 +117,11 @@ const BestOfTheMonth = () => {
                                     />
 
                                     <div className="flex flex-col flex-grow justify-between h-full w-full">
-                                        <span className="text-sm font-semibold text-slate-900 dark:text-white text-center min-h-[40px] line-clamp-2">
+                                    <Link className="text-sm font-semibold hover:text-primary text-slate-900 text-center min-h-[40px] line-clamp-2"
+                                        href={`/book/${book._id}`}
+                                        >
                                             {book.book_title_name}
-                                        </span>
+                                        </Link>
                                         <p className="text-sm text-gray-500 dark:text-gray-800 mt-2 text-center min-h-[20px] truncate">
                                             By {book.author[0]}
                                         </p>

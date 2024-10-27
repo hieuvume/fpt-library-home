@@ -1,10 +1,11 @@
 import { BaseModal } from "@/components/modal/BaseModal";
+import { DetailModal } from "@/components/modal/DetailModal";
 import { BookDetails } from "@/models/book";
 
 export default function ModelDetails({ children }: { children: BookDetails[] }) {
     const TotalCopies = children.reduce((total, data) => total + data.availableCount, 0);
     return (
-        <BaseModal modalKey={"auth-modal"} title="Detail - Book">
+        <DetailModal modalKey={"auth-modal"} title="Detail - Book">
 
             <div className="card-header">
                 <h1 className="card-title">Register to Borrow</h1>
@@ -46,6 +47,6 @@ export default function ModelDetails({ children }: { children: BookDetails[] }) 
                 </div>
             </div>
 
-        </BaseModal>
+        </DetailModal>
     );
 }
