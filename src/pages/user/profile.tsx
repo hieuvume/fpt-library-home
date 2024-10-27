@@ -1,12 +1,13 @@
-import { userApi } from "@/api/user";
-import ProfileTopBar from "@/components/layouts/home/profiletopbar";
-import useSWR from "swr";
-import { formatDate } from "@/utils/index";
-import { Children, useState } from "react";
-import ProfileModal from "@/components/layouts/home/model";
-import { BorrowRecordHistoryWrapper } from "@/components/layouts/home/histories/BorrowRecordHistory";
+import Profile from "@/components/layouts/home/profile/Profile";
+import ProfileTopBar from "@/components/layouts/home/profile/ProfileTopBar";
+import useAuth from "@/hooks/useAuth";
+import { useEffect } from "react";
 export default function ProfilePage() {
-  const { data, isLoading } = useSWR(`userProfile`, () => userApi.profile());
+  const { user, mutateAuth, isLoading } = useAuth();
+
+  useEffect(() => {
+    mutateAuth();
+  }, [])
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -16,7 +17,7 @@ export default function ProfilePage() {
       <style
         dangerouslySetInnerHTML={{
           __html:
-            "\n      .hero-bg {\n\t\tbackground-image: url('/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-1.png');\n\t}\n\t.dark .hero-bg {\n\t\tbackground-image: url('/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-1-dark.png');\n\t}\n     ",
+            "\n      .hero-bg {\n\t\tbackground-image: url('/media/images/2600x1200/bg-1.png');\n\t}\n\t.dark .hero-bg {\n\t\tbackground-image: url('/media/images/2600x1200/bg-1-dark.png');\n\t}\n     ",
         }}
       />
       <div className="bg-center bg-cover bg-no-repeat hero-bg">
@@ -24,11 +25,11 @@ export default function ProfilePage() {
           <div className="flex flex-col items-center gap-2 lg:gap-3.5 py-4 lg:pt-5 lg:pb-10">
             <img
               className="rounded-full border-3 border-success size-[100px] shrink-0"
-              src={data?.avatar_url}
+              src={user?.avatar_url}
             />
             <div className="flex items-center gap-1.5">
               <div className="text-lg leading-5 font-semibold text-gray-900">
-                {data?.full_name}
+                {user?.full_name}
               </div>
               <svg
                 className="text-primary"
@@ -48,13 +49,13 @@ export default function ProfilePage() {
               <div className="flex gap-1.25 items-center">
                 <i className="ki-filled ki-phone text-gray-500 text-sm"></i>
                 <span className="text-gray-600 font-medium">
-                  {data?.phone_number}
+                  {user?.phone_number}
                 </span>
               </div>
               <div className="flex gap-1.25 items-center">
                 <i className="ki-filled ki-geolocation text-gray-500 text-sm"></i>
                 <span className="text-gray-600 font-medium">
-                  {data?.address}
+                  {user?.address}
                 </span>
               </div>
               <div className="flex gap-1.25 items-center">
@@ -63,324 +64,15 @@ export default function ProfilePage() {
                   className="text-gray-600 font-medium hover:text-primary"
                   href="mailto: jenny@kteam.com"
                 >
-                  {data?.email}
+                  {user?.email}
                 </a>
               </div>
             </div>
           </div>
         </div>
-        {/* End of Container */}
       </div>
-      {/* Container */}
       <ProfileTopBar />
-      {/* End of Container */}
-      {/* Container */}
-      <div className="container-fixed">
-        {/* begin: grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-7.5">
-          <div className="col-span-1">
-            <div className="grid gap-5 lg:gap-7.5">
-              {/* <div className="card">
-                                <div className="card-body">
-                                    <div className="flex flex-wrap justify-center gap-2 py-1">
-                                        <div className="flex flex-col items-center gap-1.5">
-                                            <span className="text-gray-900 text-2xl lg:text-2.5xl font-semibold">
-                                                397
-                                            </span>
-                                            <span className="text-gray-700 text-sm font-normal">
-                                                Topics
-                                            </span>
-                                        </div>
-                                        <span className="sm:ml-8 sm:pl-8 border-l border-l-gray-200"></span>
-                                        <div className="flex flex-col items-center gap-1.5">
-                                            <span className="text-gray-900 text-2x lg:text-2.5xl font-semibold">
-                                                8.2k
-                                            </span>
-                                            <span className="text-gray-700 text-sm">Upvotes</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
-              <div className="card">
-                <div className="card-header">
-                  <h3 className="card-title">Membership Card</h3>
-                </div>
-                <div className="card-body">
-                  <p className="text-sm text-gray-800 leading-5.5 mb-4">
-                    Members of the book borrowing system, with priority access
-                    to borrowing services and special offers for loyal readers.
-                  </p>
-                  <div className="grid gap-y-3.5">
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-simcard-2"></i>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.current_membership_id?.card_number}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-crown-2 text-base text-gray-500"></i>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.current_membership_id?.status}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-briefcase text-base text-gray-500"></i>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.current_membership_id?.membership_id.name}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-price-tag"></i>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.current_membership_id?.price} VND
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-time"></i>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {formatDate(data?.current_membership_id?.start_date)}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-timer"></i>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {formatDate(data?.current_membership_id?.end_date)}
-                      </a>
-                    </div>
-                    {/* <div className="flex items-center gap-2.5">
-                                            <i className="ki-filled ki-youtube text-base text-gray-500"></i>
-                                            <a
-                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                                                href="#"
-                                            >
-                                                keenthemes
-                                            </a>
-                                        </div> */}
-                  </div>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-header">
-                  <h3 className="card-title">Profile</h3>
-                  <button
-                    className="btn btn-sm btn-icon btn-icon-primary"
-                    data-modal-toggle="#auth-modal"
-                  >
-                    Edit
-                  </button>
-                </div>
-                <div>
-                  <ProfileModal children={data} />
-                </div>
-                <div className="card-body">
-                  <div className="grid gap-y-3.5">
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-simcard-2"></i>
-                      <label className="text-sm leading-none text-gray-900 hover:text-primary-active">
-                        Email:
-                      </label>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.email}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-crown-2 text-base text-gray-500"></i>
-                      <label className="text-sm leading-none text-gray-900 hover:text-primary-active">
-                        Phone:
-                      </label>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.phone_number}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-briefcase text-base text-gray-500"></i>
-                      <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
-                        Address:
-                      </label>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.address}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-price-tag"></i>
-                      <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
-                        Date of issue:
-                      </label>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {formatDate(data?.id_card?.date)}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-time"></i>
-                      <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
-                        Place of issue:
-                      </label>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.id_card?.place}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <i className="ki-filled ki-timer"></i>
-                      <label className="text-sm leading-none text-gray-950 hover:text-primary-active">
-                        ID Number:
-                      </label>
-                      <a
-                        className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                        href="#"
-                      >
-                        {data?.id_card?.id_number}
-                      </a>
-                    </div>
-                    {/* <div className="flex items-center gap-2.5">
-                                            <i className="ki-filled ki-youtube text-base text-gray-500"></i>
-                                            <a
-                                                className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                                                href="#"
-                                            >
-                                                keenthemes
-                                            </a>
-                                        </div> */}
-                  </div>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-header">
-                  <h3 className="card-title">Collaborate</h3>
-                </div>
-                <div className="card-body">
-                  <p className="text-sm text-gray-800 leading-5.5">
-                    Experienced UI/UX designer seeking new opportunities.
-                  </p>
-                </div>
-                <div className="card-footer justify-center">
-                  <a
-                    className="btn btn-link"
-                    href="/metronic/tailwind/demo9/public-profile/works"
-                  >
-                    View details
-                  </a>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-header">
-                  <h3 className="card-title">Skills</h3>
-                </div>
-                <div className="card-body">
-                  <div className="flex flex-wrap gap-2.5 mb-2">
-                    <span className="badge badge-sm badge-gray-200">
-                      Web Design
-                    </span>
-                    <span className="badge badge-sm badge-gray-200">
-                      Code Review
-                    </span>
-                    <span className="badge badge-sm badge-gray-200">Figma</span>
-                    <span className="badge badge-sm badge-gray-200">
-                      Product Development
-                    </span>
-                    <span className="badge badge-sm badge-gray-200">
-                      Webflow
-                    </span>
-                    <span className="badge badge-sm badge-gray-200">AI</span>
-                    <span className="badge badge-sm badge-gray-200">
-                      noCode
-                    </span>
-                    <span className="badge badge-sm badge-gray-200">
-                      Management
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <BorrowRecordHistoryWrapper />
-        </div>
-        {/* end: grid */}
-      </div>
-      {/* End of Container */}
-      {/* Footer */}
-      <footer className="footer">
-        {/* Container */}
-        <div className="container-fixed">
-          <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-3 py-5">
-            <div className="flex order-2 md:order-1 gap-2 font-normal text-2sm">
-              <span className="text-gray-500">2024©</span>
-              <a
-                className="text-gray-600 hover:text-primary"
-                href="https://keenthemes.com"
-              >
-                Keenthemes Inc.
-              </a>
-            </div>
-            <nav className="flex order-1 md:order-2 gap-4 font-normal text-2sm text-gray-600">
-              <a
-                className="hover:text-primary"
-                href="https://keenthemes.com/metronic/tailwind/docs"
-              >
-                Docs
-              </a>
-              <a
-                className="hover:text-primary"
-                href="https://1.envato.market/Vm7VRE"
-              >
-                Purchase
-              </a>
-              <a
-                className="hover:text-primary"
-                href="https://keenthemes.com/metronic/tailwind/docs/getting-started/license"
-              >
-                FAQ
-              </a>
-              <a
-                className="hover:text-primary"
-                href="https://devs.keenthemes.com"
-              >
-                Support
-              </a>
-              <a
-                className="hover:text-primary"
-                href="https://keenthemes.com/metronic/tailwind/docs/getting-started/license"
-              >
-                License
-              </a>
-            </nav>
-          </div>
-        </div>
-        {/* End of Container */}
-      </footer>
-      {/* End of Footer */}
+      <Profile />
     </>
   );
 }

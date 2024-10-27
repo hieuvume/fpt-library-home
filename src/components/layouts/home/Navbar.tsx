@@ -1,5 +1,4 @@
 import { NAVBAR_MENU } from "@/config/navbar";
-import Link from "next/link";
 import DropdownMenu from "./navbar/DropdownMenu";
 import MenuLink from "./navbar/MenuLink";
 

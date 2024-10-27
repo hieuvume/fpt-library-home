@@ -5,7 +5,8 @@ import {
   UserProfile,
 } from "@/models/auth";
 import api from "./axios";
-import { Users } from "@/models/user";
+import { ChangePasswordPayload, Users } from "@/models/user";
+import { BorrowRecord } from "@/models/borrow-record";
 
 const userApi = {
   profile: (): Promise<UserProfile> => {
@@ -14,8 +15,17 @@ const userApi = {
   histories: (query: string) => {
     return api.get(`/borrow-records/histories?${query}`);
   },
-  updateProfile: (data: UserProfile): Promise<UserProfile> => {
+  updateProfile: (data: any) => {
     return api.put("/users/profile", data);
+  },
+  updateAvatar: (avatar_url: string) => {
+    return api.put("/users/profile/avatar", { avatar_url });
+  },
+  getCurrentLoans: (): Promise<BorrowRecord[]> => {
+    return api.get("/borrow-records/current-loans");
+  },
+  updatePassword: (data: ChangePasswordPayload) => {
+    return api.put("/users/profile/password", data);
   },
 };
 

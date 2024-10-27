@@ -5,7 +5,6 @@ import TableHeader from "@/components/table/TableHeader";
 import TablePagination from "@/components/table/TablePagination";
 import { BorrowRecord } from "@/models/borrow-record";
 import { TableQueryProvider } from "@/provider/TableQueryProvider";
-import { formatCurrency } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Column } from "react-table";
@@ -90,12 +89,12 @@ export function BorrowRecordHistory() {
         <div className="card card-grid min-w-full">
           <div className="card-header">
             <h3 className="card-title">History Books</h3>
-            <a
+            {/* <a
               className="btn btn-link"
               href="/metronic/tailwind/demo9/public-profile/profiles/feeds"
             >
               View All
-            </a>
+            </a> */}
           </div>
           <div className="card-body">
             <Table columns={columns}></Table>
