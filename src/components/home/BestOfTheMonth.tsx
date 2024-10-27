@@ -1,6 +1,7 @@
 import { bookTitleApi } from "@/api/book-title";
 import dayjs from "dayjs";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -26,7 +27,7 @@ const BestOfTheMonth = () => {
     }, []);
 
     const { data, isLoading, error } = useSWR(`book-titles/best-of-the-month/${subMonth}`, () => bookTitleApi.getBestOfTheMonth(subMonth))
-
+    console.log(data?.map((book) => book._id))
     return (
         <>
             <div className="">
@@ -116,9 +117,11 @@ const BestOfTheMonth = () => {
                                     />
 
                                     <div className="flex flex-col flex-grow justify-between h-full w-full">
-                                        <span className="text-sm font-semibold text-slate-900 text-center min-h-[40px] line-clamp-2">
+                                        <Link className="text-sm font-semibold hover:text-primary text-slate-900 text-center min-h-[40px] line-clamp-2"
+                                        href={`/book/${book._id}`}
+                                        >
                                             {book.book_title_name}
-                                        </span>
+                                        </Link>
                                         <p className="text-sm text-gray-500 mt-2 text-center min-h-[20px] truncate">
                                             By {book.author[0]}
                                         </p>

@@ -21,6 +21,7 @@ export type BookTitle = {
 }
 
 export type BestBookTitleOfTheMonth = {
+    _id: string;
     book_title_name: string;
     author: string;
     cover_image: string;

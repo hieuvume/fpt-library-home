@@ -38,7 +38,30 @@ export type BookCreateRequest = {
     floor: number;
     position: number;
 };
-
+interface BookCopy {
+    uniqueId: string;
+    section: string;
+    shelf: string;
+    floor: number;
+    position: number;
+    status: string;
+    times_borrowed: number;
+    created_at: Date;
+    updated_at: Date;
+  }
+export type BookDetails = {
+    title: string;
+    description: string;
+    author: string[];
+    ISBN: string;
+    price: number;
+    cover_image: string;
+    categories: Category[];
+    copies: BookCopy[];
+    availableCount: number;
+    totalCount: number;
+    borrowedCount: number;
+}
 export type BookListResponse = {
     books: Book[];
     totalBook: number;
