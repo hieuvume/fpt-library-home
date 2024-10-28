@@ -1,3 +1,5 @@
+import { MembershipCard } from "./membership";
+
 export type User = {
   id: string
   username: string;
@@ -10,7 +12,7 @@ export type User = {
   address: string;
   avatar_url: string
   id_card: IDCard;
-  current_membership: any;
+  current_membership: MembershipCard;
   borrowed_books: string[];
   role_id: string;
   google_id: string;
@@ -73,30 +75,30 @@ export type UserProfile = {
 };
 
 export type Brrowrd_record = {
-  borrowDate: string;  
-  dueDate: string; 
+  borrowDate: string;
+  dueDate: string;
   returnDate: string | null;
-  isReturned: boolean; 
+  isReturned: boolean;
   penalty: number;
   book: {
     title: string;
-    author: string[]; 
-    description: string; 
-    categories: string[]; 
+    author: string[];
+    description: string;
+    categories: string[];
     memberships: {
       name: string;
       priceMonthly: number;
       priceYearly: number;
-    }[]; 
+    }[];
     librarian: {
-      name: string; 
-      email: string; 
-      phone: string; 
-      avatar: string; 
+      name: string;
+      email: string;
+      phone: string;
+      avatar: string;
     };
     section: string;
     shelf: string;
-    floor: number; 
+    floor: number;
     position: number;
   };
 };

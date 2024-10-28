@@ -1,6 +1,5 @@
 import { SignInResponse, User } from "@/models/auth";
 import api from "./axios";
-import { profile } from "console";
 
 const authApi = {
   signIn: (data): Promise<SignInResponse> => {
