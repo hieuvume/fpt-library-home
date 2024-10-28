@@ -1,5 +1,6 @@
 import useAuth from "@/hooks/useAuth"
-import { capitalize, formatCurrency } from "@/utils"
+import { capitalize, formatCurrency, formatDateShort } from "@/utils"
+import Link from "next/link"
 
 const MembershipCard = () => {
     const { user } = useAuth()
@@ -22,12 +23,12 @@ const MembershipCard = () => {
                             </p>
                         </div>
                         <div className="flex gap-2.5">
-                            <a href="#" className="btn btn-sm btn-light">
-                                Cancel Plan
-                            </a>
-                            <a href="#" className="btn btn-sm btn-primary">
+                            <Link href="/plans" className="btn btn-sm btn-light">
+                                Downgrade Plan
+                            </Link>
+                            <Link href="/plans" className="btn btn-sm btn-primary">
                                 Upgrade Plan
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex items-center flex-wrap gap-2 lg:gap-5">
@@ -45,11 +46,7 @@ const MembershipCard = () => {
                         </div>
                         <div className="grid grid-cols-1 content-between gap-1.5 border border-dashed border-gray-400 shrink-0 rounded-md px-3.5 py-2 min-w-24 max-w-auto">
                             <span className="text-gray-900 text-md leading-none font-medium">
-                                {new Date(current_membership?.end_date).toLocaleDateString("en-GB", {
-                                    day: "numeric",
-                                    month: "short",
-                                    year: "2-digit"
-                                })}
+                                {formatDateShort(current_membership?.end_date)}
                             </span>
                             <span className="text-gray-700 text-2sm">Next Billing Date</span>
                         </div>
