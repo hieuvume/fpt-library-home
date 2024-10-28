@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { getUsers } from "@/api/user"
 import { Users } from "@/models/user"
 import DashboardLayout from "@/components/layouts/DashboardLayout"
+import { number } from "yup"
 
 
 export default function UserManagePage() {
@@ -12,7 +13,7 @@ export default function UserManagePage() {
     const [search, setSearch] = useState('')
     const [activeOnly, setActiveOnly] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
-    const [usersPerPage, setUsersPerPage] = useState(5)
+    const [usersPerPage, setUsersPerPage] = useState(10)
 
     useEffect(() => {
         if (users) {
@@ -155,26 +156,12 @@ export default function UserManagePage() {
                                     >
                                         <thead>
                                             <tr>
-                                                <th className="w-[60px] text-center">
-                                                    <input
-                                                        className="checkbox checkbox-sm"
-                                                        data-datatable-check="true"
-                                                        type="checkbox"
-                                                    />
-                                                </th>
                                                 <th className="min-w-[300px]">
                                                     <span className="sort asc">
                                                         <span className="sort-label text-gray-700 font-normal">
                                                             Member
                                                         </span>
                                                         <span className="sort-icon"></span>
-                                                    </span>
-                                                </th>
-                                                <th className="min-w-[165px]">
-                                                    <span className="sort">
-                                                        <span className="sort-label text-gray-700 font-normal">
-                                                            Username
-                                                        </span>
                                                     </span>
                                                 </th>
                                                 <th className="text-gray-700 font-normal min-w-[220px]">
@@ -190,7 +177,7 @@ export default function UserManagePage() {
                                                 <th className="min-w-[165px]">
                                                     <span className="sort">
                                                         <span className="sort-label text-gray-700 font-normal">
-                                                            Location
+                                                            Address
                                                         </span>
                                                         <span className="sort-icon"></span>
                                                     </span>
@@ -217,20 +204,12 @@ export default function UserManagePage() {
                                         <tbody>
                                             {currentUsers.map((user) => (
                                                 <tr>
-                                                    <td className="text-center">
-                                                        <input
-                                                            className="checkbox checkbox-sm"
-                                                            data-datatable-row-check="true"
-                                                            type="checkbox"
-                                                            defaultValue={21}
-                                                        />
-                                                    </td>
                                                     <td>
                                                         <div className="flex items-center gap-2.5">
                                                             <div className="">
                                                                 <img
                                                                     className="h-9 rounded-full"
-                                                                    src="/static/metronic/tailwind/dist/assets/media/avatars/300-22.png"
+                                                                    src={user.avatar_url}
                                                                 />
                                                             </div>
                                                             <div className="flex flex-col gap-0.5">
@@ -240,22 +219,13 @@ export default function UserManagePage() {
                                                                 >
                                                                     {user.full_name}
                                                                 </a>
-                                                                <span className="text-xs text-gray-700 font-normal">
-                                                                    43 tasks
-                                                                </span>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                    <td className="text-gray-800 font-normal">
-                                                        {user.username}
                                                     </td>
                                                     <td>
                                                         <div className="flex flex-wrap gap-2.5 mb-2">
                                                             <span className="badge badge-sm badge-light badge-outline">
-                                                                Chat
-                                                            </span>
-                                                            <span className="badge badge-sm badge-light badge-outline">
-                                                                Tester
+                                                                Chat {user.role}
                                                             </span>
                                                         </div>
                                                     </td>
@@ -264,18 +234,13 @@ export default function UserManagePage() {
                                                     </td>
                                                     <td>
                                                         <div className="flex items-center gap-1.5">
-                                                            <img
-                                                                alt="flag"
-                                                                className="h-4 rounded-full"
-                                                                src="/static/metronic/tailwind/dist/assets/media/flags/ukraine.svg"
-                                                            />
                                                             <span className="leading-none text-gray-800 font-normal">
-                                                                Ukraine
+                                                                {user.address}
                                                             </span>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <span className={`badge badge-sm badge-outline ${user.status ? 'badge-success' : 'badge-error'}`}>
+                                                        <span className={`badge badge-sm badge-outline ${user.status ? 'badge-success' : 'badge-danger'}`}>
                                                             {user.status ? 'Active' : 'Inactive'}
                                                         </span>
                                                     </td>
@@ -360,7 +325,6 @@ export default function UserManagePage() {
                                             value={usersPerPage.toString()}
                                             onChange={handleUsersPerPageChange}
                                         >
-                                            <option value={5}>5</option>
                                             <option value={10}>10</option>
                                             <option value={20}>20</option>
                                             <option value={30}>30</option>
@@ -369,22 +333,31 @@ export default function UserManagePage() {
                                         per page
                                     </div>
                                     <div className="flex items-center gap-4 order-1 md:order-2">
-                                        <span data-datatable-info="true">{indexOfFirstUser+1}-{Math.min(indexOfLastUser, totalUsers)} of {filteredUsers.length}</span>
+                                        <span data-datatable-info="true">{indexOfFirstUser + 1}-{Math.min(indexOfLastUser, totalUsers)} of {filteredUsers.length}</span>
                                         <div className="pagination" data-datatable-pagination="true">
                                             <div className="pagination">
-                                                <button className="btn">
+                                                <button
+                                                    className="btn"
+                                                    onClick={() => setCurrentPage(currentPage - 1)}
+                                                    disabled={currentPage === 1}
+                                                >
                                                     <i className="ki-outline ki-black-left" />
                                                 </button>
                                                 {pageNumbers.map((number) => (
                                                     <button
                                                         key={number}
-                                                        // variant={`${currentPage === number ? "default" : "outline"}`}
+                                                        className={`btn ${currentPage === number ? "active": ""}`}
                                                         onClick={() => setCurrentPage(number)}
+                                                        disabled={currentPage === number}
                                                     >
                                                         {number}
                                                     </button>
                                                 ))}
-                                                <button className="btn">
+                                                <button
+                                                    className="btn"
+                                                    onClick={() => setCurrentPage(currentPage + 1)}
+                                                    disabled={currentPage === pageNumbers.length}
+                                                >
                                                     <i className="ki-outline ki-black-right" />
                                                 </button>
                                             </div>

@@ -20,4 +20,8 @@ export const getUsers = (): Promise<Users[]> => {
     return api.get(`/dashboard/users`)
 }
 
+export const banUsers = (updateUser: Users): Promise<Users> => {
+    return api.put(`/dashboard/users/${updateUser.id}`,updateUser)
+}
+
 export default userApi
