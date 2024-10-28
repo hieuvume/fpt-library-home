@@ -1,7 +1,12 @@
-
-import { Brrowrd_record, SignInResponse, User, UserProfile } from "@/models/auth";
+import {
+  Brrowrd_record,
+  SignInResponse,
+  User,
+  UserProfile,
+} from "@/models/auth";
 import api from "./axios";
-import { Users } from "@/models/user";
+import { ChangePasswordPayload, Users } from "@/models/user";
+import { BorrowRecord } from "@/models/borrow-record";
 
 const userApi = {
     profile: (): Promise<UserProfile> => {
@@ -16,12 +21,14 @@ const userApi = {
 
 }
 
-export const getUsers = (): Promise<Users[]> => {
-    return api.get(`/dashboard/users`)
+const dashboardUserApi = {
+    getUsers: (): Promise<Users[]> => {
+        return api.get(`/dashboard/users`)
+    },
+    banUsers: (updateUser: Users): Promise<Users> => {
+        return api.put(`/dashboard/users/${updateUser.id}`,updateUser)
+    },
+
 }
 
-export const banUsers = (updateUser: Users): Promise<Users> => {
-    return api.put(`/dashboard/users/${updateUser.id}`,updateUser)
-}
-
-export default userApi
+export { dashboardUserApi, userApi };

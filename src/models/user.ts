@@ -4,6 +4,7 @@ export type Users = {
     password: string;
     email: string;
     full_name: string;
+    date_of_birth: Date;
     phone_number: string;
     id_card: object;
     current_membership_id: string;
@@ -16,13 +17,10 @@ export type Users = {
     updated_at: Date;
     avatar_url: string
     status: Boolean
-
     address: string;
+}
 
-//   @Factory((faker) => ({
-//         id_number: faker.string.numeric(12),
-//         date: faker.date.past(),
-//         place: faker.location.city(),
-//     }))
-// role: Role;
+export type ChangePasswordPayload = {
+    current_password: string;
+    password: string;
 }

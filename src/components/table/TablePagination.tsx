@@ -1,7 +1,16 @@
 import { useTableQuery } from "@/provider/TableQueryProvider";
 
-const CardPagination = () => {
-  const { currentPage, totalPages, hasNextPage, hasPrevPage, setPage } = useTableQuery();
+const TablePagination = () => {
+  const {
+    currentPage,
+    totalPages,
+    hasNextPage,
+    hasPrevPage,
+    limit,
+    setPage,
+    setLimit,
+  } = useTableQuery();
+  const PER_PAGE_OPTIONS = [5, 10, 20, 30, 50];
   const maxPageDisplay = 5; // Giới hạn số trang hiển thị
 
   const renderPageNumbers = () => {
@@ -17,7 +26,7 @@ const CardPagination = () => {
     pages.push(
       <button
         key={1}
-        className={`btn ${currentPage === 1 ? 'active' : ''}`}
+        className={`btn ${currentPage === 1 ? "active" : ""}`}
         disabled={currentPage === 1}
         onClick={() => setPage(1)}
       >
@@ -35,11 +44,15 @@ const CardPagination = () => {
     }
 
     // Tạo các nút số trang ở giữa, không bao gồm trang đầu và cuối
-    for (let i = Math.max(startPage, 2); i < Math.min(endPage, totalPages); i++) {
+    for (
+      let i = Math.max(startPage, 2);
+      i < Math.min(endPage, totalPages);
+      i++
+    ) {
       pages.push(
         <button
           key={i}
-          className={`btn ${i === currentPage ? 'active' : ''}`}
+          className={`btn ${i === currentPage ? "active" : ""}`}
           disabled={i === currentPage}
           onClick={() => setPage(i)}
         >
@@ -62,7 +75,7 @@ const CardPagination = () => {
       pages.push(
         <button
           key={totalPages}
-          className={`btn ${currentPage === totalPages ? 'active' : ''}`}
+          className={`btn ${currentPage === totalPages ? "active" : ""}`}
           disabled={currentPage === totalPages}
           onClick={() => setPage(totalPages)}
         >
@@ -74,26 +87,46 @@ const CardPagination = () => {
     return pages;
   };
 
+  const onChangeLimit = (e) => {
+    setLimit(parseInt(e.target.value));
+  };
+
   return (
-    <div className="card-footer justify-center flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
+    <div className="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
+      <div className="flex items-center gap-2 order-2 md:order-1">
+        Show
+        <select
+          className="select select-sm w-16"
+          name="perpage"
+          onChange={onChangeLimit}
+          defaultValue={limit}
+        >
+          {PER_PAGE_OPTIONS.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        per page
+      </div>
+
       <div className="flex items-center gap-4 order-1 md:order-2">
-        <div className="pagination" data-datatable-pagination="true">
+        {/* <span>1-5 of 33</span> */}
+        <div className="pagination">
           <div className="pagination">
             {/* Nút Previous */}
             <button
-              className={`btn ${!hasPrevPage ? 'disabled' : ''}`}
+              className={`btn ${!hasPrevPage ? "disabled" : ""}`}
               disabled={!hasPrevPage}
               onClick={() => setPage(currentPage - 1)}
             >
               <i className="ki-outline ki-black-left" />
             </button>
 
-            {/* Nút số trang */}
             {renderPageNumbers()}
 
-            {/* Nút Next */}
             <button
-              className={`btn ${!hasNextPage ? 'disabled' : ''}`}
+              className={`btn ${!hasNextPage ? "disabled" : ""}`}
               disabled={!hasNextPage}
               onClick={() => setPage(currentPage + 1)}
             >
@@ -106,4 +139,4 @@ const CardPagination = () => {
   );
 };
 
-export default CardPagination;
+export default TablePagination;

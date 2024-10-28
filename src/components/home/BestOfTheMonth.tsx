@@ -1,6 +1,7 @@
 import { bookTitleApi } from "@/api/book-title";
 import dayjs from "dayjs";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -26,7 +27,7 @@ const BestOfTheMonth = () => {
     }, []);
 
     const { data, isLoading, error } = useSWR(`book-titles/best-of-the-month/${subMonth}`, () => bookTitleApi.getBestOfTheMonth(subMonth))
-
+    console.log(data?.map((book) => book._id))
     return (
         <>
             <div className="">
@@ -106,7 +107,7 @@ const BestOfTheMonth = () => {
 
                         {(!isLoading && !error) && data?.map((book, index) => (
                             <SwiperSlide key={index} className="mb-10 h-full flex flex-col items-stretch">
-                                <div className="flex flex-col items-center bg-white p-2 pb-5 rounded-lg flex-grow h-full hover:shadow-md cursor-pointer">
+                                <div className="flex flex-col items-center p-2 pb-5 rounded-lg flex-grow h-full hover:shadow-md cursor-pointer">
                                     <Image
                                         width={200}
                                         height={300}
@@ -116,10 +117,12 @@ const BestOfTheMonth = () => {
                                     />
 
                                     <div className="flex flex-col flex-grow justify-between h-full w-full">
-                                        <span className="text-sm font-semibold text-slate-900 text-center min-h-[40px] line-clamp-2">
+                                    <Link className="text-sm font-semibold hover:text-primary text-slate-900 text-center min-h-[40px] line-clamp-2"
+                                        href={`/book/${book._id}`}
+                                        >
                                             {book.book_title_name}
-                                        </span>
-                                        <p className="text-sm text-gray-500 mt-2 text-center min-h-[20px] truncate">
+                                        </Link>
+                                        <p className="text-sm text-gray-500 dark:text-gray-800 mt-2 text-center min-h-[20px] truncate">
                                             By {book.author[0]}
                                         </p>
                                     </div>

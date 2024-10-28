@@ -17,12 +17,15 @@ const BookTitleItem = ({ bookTitle }: { bookTitle: BookTitle }) => {
           />
         </div>
         <div className="flex flex-col">
-          <a
-            className="text-base font-medium hover:text-primary text-gray-900 leading-4"
-            href="#"
+          <Link
+          className="text-base font-medium hover:text-primary text-gray-900 leading-4"
+            href={`/book/${bookTitle?._id}`}
+            passHref
           >
-            {bookTitle?.title}
-          </a>
+        
+              {bookTitle?.title}
+     
+          </Link>
           <div className="mb-1">
             {bookTitle.author.map((author, index) => (
               <Link key={index} href={"/search?keyword=" + author} className="text-2sm font-medium text-brand leading-[14px] hover:text-primary-active mb-px me-2">

@@ -1,62 +1,66 @@
 import axios from "axios"
 import useSWR from 'swr'
 import { useState, useEffect } from 'react'
-import { getUsers } from "@/api/user"
 import { Users } from "@/models/user"
 import DashboardLayout from "@/components/layouts/DashboardLayout"
-import { number } from "yup"
+import { dashboardUserApi } from "@/api/user";
 
 
 export default function UserManagePage() {
-    const { data: users, isLoading } = useSWR(`users`, () => getUsers())
+  const { data: users, isLoading } = useSWR(`users`, () =>
+    dashboardUserApi.getUsers()
+  );
     const [filteredUsers, setFilteredUsers] = useState<Users[]>([])
     const [search, setSearch] = useState('')
     const [activeOnly, setActiveOnly] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [usersPerPage, setUsersPerPage] = useState(10)
 
-    useEffect(() => {
-        if (users) {
-            filterUsers()
-        }
-    }, [search, activeOnly, users, usersPerPage])
-
-
-    const filterUsers = () => {
-        if (!users) return
-
-        let filtered = users.filter(user =>
-            user.full_name.toLowerCase().includes(search.toLowerCase())
-        )
-        if (activeOnly) {
-            filtered = filtered.filter(user => user.status === true)
-        }
-        setFilteredUsers(filtered)
-        setCurrentPage(1)
+  useEffect(() => {
+    if (users) {
+      filterUsers();
     }
+  }, [search, activeOnly, users, usersPerPage]);
 
-    const handleUsersPerPageChange = (event) => {
-        setUsersPerPage(Number(event.target.value))  // Chuyển đổi thành kiểu số nguyên
-        setCurrentPage(1)  // Reset lại trang hiện tại về 1 mỗi khi thay đổi số lượng người dùng trên trang
+  const filterUsers = () => {
+    if (!users) return;
+
+    let filtered = users.filter((user) =>
+      user.full_name.toLowerCase().includes(search.toLowerCase())
+    );
+    if (activeOnly) {
+      filtered = filtered.filter((user) => user.status === true);
     }
+    setFilteredUsers(filtered);
+    setCurrentPage(1);
+  };
 
-    const totalUsers = filteredUsers.length
-    const totalPages = Math.ceil(totalUsers / usersPerPage)
+  const handleUsersPerPageChange = (event) => {
+    setUsersPerPage(Number(event.target.value)); // Chuyển đổi thành kiểu số nguyên
+    setCurrentPage(1); // Reset lại trang hiện tại về 1 mỗi khi thay đổi số lượng người dùng trên trang
+  };
 
-    // Đảm bảo currentPage không vượt quá tổng số trang
-    const adjustedCurrentPage = currentPage > totalPages ? totalPages : currentPage
-    const indexOfLastUser = currentPage * usersPerPage
-    const indexOfFirstUser = indexOfLastUser - usersPerPage
-    const currentUsers = filteredUsers.slice(indexOfFirstUser, Math.min(indexOfLastUser, totalUsers))
+  const totalUsers = filteredUsers.length;
+  const totalPages = Math.ceil(totalUsers / usersPerPage);
 
-    const pageNumbers = []
-    for (let i = 1; i <= Math.ceil(filteredUsers.length / usersPerPage); i++) {
-        pageNumbers.push(i)
-    }
+  // Đảm bảo currentPage không vượt quá tổng số trang
+  const adjustedCurrentPage =
+    currentPage > totalPages ? totalPages : currentPage;
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filteredUsers.slice(
+    indexOfFirstUser,
+    Math.min(indexOfLastUser, totalUsers)
+  );
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(filteredUsers.length / usersPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
     return (
         <>
@@ -455,5 +459,5 @@ export default function UserManagePage() {
     )
 }
 UserManagePage.getLayout = function getLayout(page) {
-    return <DashboardLayout>{page}</DashboardLayout>;
+  return <DashboardLayout>{page}</DashboardLayout>;
 };
