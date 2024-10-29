@@ -26,7 +26,16 @@ export const formatOriginDate = (dateString) => {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
-}
+};
+
+export const formatDateShort = (dateString) => {
+  if (!dateString) return "";
+  return new Date(dateString).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "2-digit",
+  });
+};
 
 export const formatDateTime = (dateString) => {
   if (!dateString) return "";
@@ -126,4 +135,8 @@ export const maskText = (
     mask.repeat(text.length - start - end) +
     text.slice(text.length - end)
   );
+};
+
+export const capitalize = (text: string) => {
+  return text[0]?.toUpperCase() + text.slice(1);
 };
