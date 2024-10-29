@@ -269,7 +269,7 @@ const Profile = () => {
         </div>
         <div className="col-span-1">
           <div className="grid gap-5 lg:gap-7.5">
-            {current_membership.membership.name !== 'Basic' ? (
+            {current_membership?.membership.name !== 'Basic' ? (
               <MembershipCard />
             ) : (
               <BecomeAMembership />
