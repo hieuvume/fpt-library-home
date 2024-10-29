@@ -6,11 +6,6 @@ export default function ModelDetails({ children }: { children: BookDetails[] }) 
     const TotalCopies = children.reduce((total, data) => total + data.availableCount, 0);
     return (
         <DetailModal modalKey={"auth-modal"} title="Detail - Book">
-
-            <div className="card-header">
-                <h1 className="card-title">Register to Borrow</h1>
-            </div>
-
             <div className="card-body lg:py-7.5">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

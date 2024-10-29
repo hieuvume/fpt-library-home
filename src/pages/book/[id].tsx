@@ -6,6 +6,7 @@ import FeedbackDetails from "@/components/layouts/home/feedback"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import useSWR from "swr"
+import NotFoundPage from "../404"
 
 export default function BookDetailPage() {
     const router = useRouter()
@@ -15,6 +16,15 @@ export default function BookDetailPage() {
     const {data:feebacks,isLoading:loadingFeedback,error:errorFeedback}=useSWR(`feebacks/${bookId}`, () => bookApi.findFeedbacksByTitleId(bookId))
     if (loadingDetails) {
         return <div>Loading...</div>
+    }
+    if (errorDetails) {
+        return <NotFoundPage />
+    }
+    if (loadingFeedback) {
+        return <div>Loading...</div>
+    }
+    if (errorFeedback) {
+        return <NotFoundPage />
     }
     console.log(feebacks?.docs[0].feedbacks?.map((data) => data.rating))
     return (

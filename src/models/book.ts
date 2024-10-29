@@ -50,6 +50,7 @@ interface BookCopy {
     updated_at: Date;
   }
 export type BookDetails = {
+    bookTitleId:string;
     title: string;
     description: string;
     author: string[];
