@@ -1,16 +1,19 @@
 import { User } from "./auth"
-import { MembershipCard } from "./membership"
+import { Membership, MembershipCard } from "./membership"
 
 export type Payment = {
     _id: string
     user: User
     transaction_id: string
+    months: number
     amount: number
     payment_method: string
     payment_type: string
     payment_status: string
-    membership_card: MembershipCard
+    membership: Membership
+    from: MembershipCard
+    to: MembershipCard
     details: string
-    payment_date: Date
-    created_at: Date
+    payment_date: string
+    created_at: string
 }

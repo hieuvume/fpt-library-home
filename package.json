@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.4.8",
     "@popperjs/core": "^2.11.8",
     "@types/react-table": "^7.7.20",
     "axios": "^1.7.7",
@@ -26,6 +27,7 @@
     "react-table": "^7.8.0",
     "swiper": "^11.1.14",
     "swr": "^2.2.5",
+    "use-debounce": "^10.0.4",
     "yup": "^1.4.0"
   },
   "devDependencies": {
