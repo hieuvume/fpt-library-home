@@ -15,6 +15,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.vietqr.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'momosv3.apimienphi.com',
       }
     ],
   },

@@ -1,0 +1,34 @@
+import { Payment } from "@/models/payment";
+import api from "./axios";
+
+const paymentApi = {
+    histories: (query: string) => {
+        return api.get(`/payments/histories?${query}`);
+    },
+    getPayment: (id: string): Promise<Payment> => {
+        return api.get(`/payments/${id}`);
+    },
+    cancelPayment: (id: string) => {
+        return api.put(`/payments/${id}/cancel`);
+    }
+}
+
+const dashboardPaymentApi = {
+    getAll: (query: string) => {
+        return api.get(`/dashboard/payments?${query}`);
+    },
+    getPayment: (id: string): Promise<Payment> => {
+        return api.get(`/dashboard/payments/${id}`);
+    },
+    approvePayment: (id: string) => {
+        return api.put(`/dashboard/payments/${id}/approve`);
+    },
+    cancelPayment: (id: string) => {
+        return api.put(`/dashboard/payments/${id}/cancel`);
+    },
+    rollbackPayment: (id: string) => {
+        return api.put(`/dashboard/payments/${id}/rollback`);
+    }
+}
+
+export { dashboardPaymentApi, paymentApi };
