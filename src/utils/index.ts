@@ -138,7 +138,8 @@ export const maskText = (
 };
 
 export const capitalize = (text: string) => {
-  return text[0]?.toUpperCase() + text.slice(1);
+  if (!text) return "";
+  return text[0].toUpperCase() + text.slice(1);
 };
 
 export const getBankQRCode = (bankCode: string, bankAccountNumber: string, amount: number, content: string) => {

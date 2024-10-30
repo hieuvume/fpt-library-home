@@ -23,11 +23,14 @@ const dashboardPaymentApi = {
     approvePayment: (id: string) => {
         return api.put(`/dashboard/payments/${id}/approve`);
     },
-    cancelPayment: (id: string) => {
-        return api.put(`/dashboard/payments/${id}/cancel`);
+    rejectPayment: (id: string) => {
+        return api.put(`/dashboard/payments/${id}/reject`);
     },
     rollbackPayment: (id: string) => {
         return api.put(`/dashboard/payments/${id}/rollback`);
+    },
+    deletePayment: (id: string) => {
+        return api.delete(`/dashboard/payments/${id}`);
     }
 }
 

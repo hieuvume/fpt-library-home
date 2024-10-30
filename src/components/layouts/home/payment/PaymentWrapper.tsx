@@ -20,7 +20,7 @@ import { useRouter } from "next/router";
 const columns: ReadonlyArray<Column<Payment>> = [
   {
     Header: ({ column: { id } }) => <TableHeader title="" id={id} className="w-14" />,
-    accessor: "id",
+    id: "id",
     Cell: IDCell
   },
   {
@@ -45,7 +45,7 @@ const columns: ReadonlyArray<Column<Payment>> = [
   },
   {
     Header: ({ column: { id } }) => <TableHeader title="Note" id={id} />,
-    accessor: "note",
+    accessor: "details",
     Cell: ({ value }) => <span className="text-gray-500">{value}</span>,
   },
   {
@@ -72,7 +72,7 @@ const PaymentTable = () => {
       // remove query param
       router.replace(router.pathname, undefined, { scroll: false })
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.paymentId, setData])
   return (
     <div className="card card-grid min-w-full">
