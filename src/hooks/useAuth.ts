@@ -10,7 +10,8 @@ const useAuth = () => {
   const { data, error, mutate } = useSWR<User>("/auth/me", () => authApi.me(), {
     onError: (err) => {
       if (err?.statusCode == 401) {
-        logout();
+        removeAccessToken();
+        mutate(null, false);
         // if (router.pathname != "/login") {
         //   router.push("/login");
         // }
@@ -28,6 +29,7 @@ const useAuth = () => {
     removeAccessToken();
     // authApi.logout()
     mutate(null, false);
+    router.push("/");
   };
 
   const loginWithGoogle = () => {

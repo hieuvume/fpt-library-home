@@ -19,7 +19,6 @@ const TableHeader: FC<Props> = ({ id, sortable, title, className }) => {
   }, [isSelectedForSorting, sort]);
 
   const onSortColumn = () => {
-    console.log(sort);
     if (!sortable || isLoading) return;
 
     console.log(id, sort);
@@ -41,9 +40,9 @@ const TableHeader: FC<Props> = ({ id, sortable, title, className }) => {
       className={`${className || 'min-w-[120px]'} ${sortable ? "cursor-pointer" : ""}`}
       onClick={onSortColumn}
     >
-      <span className={`sort ${sort !== undefined ? sort.order : ""}`}>
+      <span className={`sort ${isSelectedForSorting && sort !== undefined ? sort.order : ""}`}>
         <span className="sort-label text-gray-700 font-normal">{title}</span>
-        <span className="sort-icon"></span>
+        {sortable && (<span className="sort-icon"></span>)}
       </span>
     </th>
   );
