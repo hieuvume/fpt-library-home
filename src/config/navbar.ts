@@ -12,12 +12,12 @@ export const NAVBAR_MENU: MenuItem[] = [
         href: '/'
     },
     {
-        title: 'About',
-        href: '/about'
+        title: 'Plans',
+        href: '/plans'
     },
     {
-        title: 'Services',
-        href: '/services'
+        title: 'About',
+        href: '/about'
     },
     {
         title: 'Contact',

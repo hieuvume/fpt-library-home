@@ -3,14 +3,16 @@ import { BaseModal } from "@/components/modal/BaseModal";
 import useAuth from "@/hooks/useAuth";
 import { Membership } from "@/models/membership";
 import { formatCurrency, formatDateShort } from "@/utils";
-import { Confirm } from "notiflix";
+import { Confirm, Report } from "notiflix";
+import { useState } from "react";
 
 type DowngradePlanProps = {
   plan?: Membership;
 };
 
 const DowngradePlan = ({ plan }: DowngradePlanProps) => {
-  const { user } = useAuth();
+  const [loading, setLoading] = useState(false)
+  const { user, mutateAuth } = useAuth();
   const { current_membership } = user || {};
   const { membership } = current_membership || {};
 
@@ -49,9 +51,14 @@ const DowngradePlan = ({ plan }: DowngradePlanProps) => {
       "Yes",
       "No",
       () => {
+        setLoading(true)
         membershipApi.downgradePlan(plan._id).then((res) => {
-          console.log(res);
-        });
+          Report.success('Downgrade success', "Downgrade successfully!", "OK", () => {
+            mutateAuth()
+          });
+        }).catch((error) => {
+          Report.failure('Upgrade failed', error.response.data.message, "OK");
+        }).finally(() => setLoading(false));
       }
     );
   };
@@ -120,7 +127,7 @@ const DowngradePlan = ({ plan }: DowngradePlanProps) => {
             </div>
           </div>
           <div className="text-blue-500 font-semibold text-sm">
-            {formatCurrency(remainingAmount.toFixed(0))}đ 
+            {formatCurrency(remainingAmount.toFixed(0))}đ
           </div>
         </div>
         <div className="flex flex-center justify-between flex-wrap gap-2 mb-1">

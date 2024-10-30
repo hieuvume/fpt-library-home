@@ -6,7 +6,7 @@ import React, {
   ReactNode,
 } from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 // Định nghĩa giao diện cho phân trang kèm theo filters và sort
 interface TableQueryContextType<T> {
@@ -24,6 +24,7 @@ interface TableQueryContextType<T> {
   hasNextPage: boolean;
   hasPrevPage: boolean;
   sort: { field: string; order: "asc" | "desc" } | undefined;
+  refresh: () => void;
 }
 
 const TableQueryContext = createContext<TableQueryContextType<any> | undefined>(
@@ -45,6 +46,7 @@ interface TableQueryProviderProps<T> {
   fetcher: (url: string) => Promise<T>;
   limit: number;
   setLimit?: (limit: number) => void;
+  defaultSort?: { field: string; order: "asc" | "desc" };
   initialFilters?: Record<string, any>;
 }
 
@@ -54,6 +56,7 @@ export const TableQueryProvider: React.FC<TableQueryProviderProps<any>> = ({
   requestKey,
   fetcher,
   limit: defaultLimit = 5,
+  defaultSort = { field: "created_at", order: "desc" },
 }) => {
   const router = useRouter();
   const [limit, setLimit] = useState<number>(defaultLimit);
@@ -62,7 +65,7 @@ export const TableQueryProvider: React.FC<TableQueryProviderProps<any>> = ({
   const [filters, setFilters] = useState<Record<string, any>>(initialFilters);
   const [sort, setSortState] = useState<
     { field: string; order: "asc" | "desc" } | undefined
-  >(undefined);
+  >(defaultSort);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [hasPrevPage, setHasPrevPage] = useState(false);
 
@@ -76,7 +79,7 @@ export const TableQueryProvider: React.FC<TableQueryProviderProps<any>> = ({
 
   const url = `${requestKey}?${queryParams}`;
 
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     router.isReady ? url : null,
     () => fetcher(queryParams),
     {
@@ -121,6 +124,7 @@ export const TableQueryProvider: React.FC<TableQueryProviderProps<any>> = ({
         sort,
         limit,
         setLimit,
+        refresh: mutate
       }}
     >
       {children}

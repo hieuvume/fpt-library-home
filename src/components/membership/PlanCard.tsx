@@ -55,13 +55,12 @@ const PlanCard: React.FC<PlanCardProps> = ({
       </div>
       <div>
         <button
-          className={`btn ${
-            isCurrentPlan ? "btn-light" : "btn-primary"
-          } btn-sm flex justify-center w-full`}
+          className={`btn ${(isCurrentPlan || monthlyPrice === 0) ? "btn-light" : "btn-primary"
+            } btn-sm flex justify-center w-full`}
           onClick={onUpgrade}
-          data-modal-toggle="#plan-action-modal"
+          data-modal-toggle={`${(!isCurrentPlan && monthlyPrice > 0) ? '#plan-action-modal' : ''}`}
         >
-          {isCurrentPlan ? "Current Plan" : displayedText}
+          {isCurrentPlan ? "Current Plan" : monthlyPrice > 0 ? displayedText : "Get Started"}
         </button>
       </div>
     </td>

@@ -6,7 +6,7 @@ export const formatCurrency = (value) => {
       value = value.toString();
     }
     return value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  } catch (error) {}
+  } catch (error) { }
   return 0;
 };
 
@@ -140,3 +140,11 @@ export const maskText = (
 export const capitalize = (text: string) => {
   return text[0].toUpperCase() + text.slice(1);
 };
+
+export const getBankQRCode = (bankCode: string, bankAccountNumber: string, amount: number, content: string) => {
+  return `https://img.vietqr.io/image/${bankCode}-${bankAccountNumber}-qr_only.png?amount=${amount}&addInfo=${content}`;
+}
+
+export const getMomoQRCode = (phone: string, amount: number, content: string) => {
+  return `https://momosv3.apimienphi.com/api/QRCode?phone=${phone}&amount=${amount}&note=${content}`;
+}
