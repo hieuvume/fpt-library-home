@@ -4,7 +4,10 @@ import { BorrowRecordHistoryWrapper } from "@/components/layouts/home/histories/
 
 export default function LoansPage() {
     return (
-        <><LoansRecordHistoryWrapper /></>
+        <div className="container-fixed">
+   <><LoansRecordHistoryWrapper /></>
+        </div>
+     
     )
 }
 LoansPage.getLayout = function getLayout(page) {

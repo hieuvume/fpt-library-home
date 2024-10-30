@@ -1,7 +1,21 @@
-import { User } from "./auth";
+
 import { Book } from "./book";
 import { BookTitle } from "./book-title";
 
+
+export type User = {
+  _id: string
+  username: string;
+  password: string;
+  email: string;
+  full_name: string;
+  gender: string;
+  date_of_birth: string;
+  phone_number: string;
+  address: string;
+  avatar_url: string
+
+}
 export type BorrowRecord = {
   _id: string;
   user: User;

@@ -2,6 +2,7 @@ import { BookCreateRequest, BookDetails, BookListResponse } from '@/models/book'
 import axios from './axios'; // Ensure this points to your axios instance
 import {  FeedbackResponse } from '@/models/feedback';
 import { date } from 'yup';
+import { BorrowRecord } from '@/models/borrow-record';
 
 
 
@@ -29,6 +30,12 @@ const bookDashboardApi = {
   },
   getCurrentLoans:(query: string) => {
     return axios.get(`/borrow-records-dashboard/current-loans?${query}`);
+  },
+  getDetailLoan: (id: string): Promise<BorrowRecord> => {
+    return axios.get(`/borrow-records-dashboard/details/${id}`);
+  },
+  approvedBook:(data)=>{
+    return axios.put(`/borrow-records-dashboard/update-status`,data)
   }
 }
 

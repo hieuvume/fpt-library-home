@@ -1,6 +1,7 @@
 import { bookDashboardApi } from "@/api/book";
 import { userApi } from "@/api/user";
 import DateCell from "@/components/table/cell/DateCell";
+import LinkCell from "@/components/table/cell/LinkCell";
 import Table from "@/components/table/Table";
 import TableHeader from "@/components/table/TableHeader";
 import TablePagination from "@/components/table/TablePagination";
@@ -21,7 +22,7 @@ const columns: ReadonlyArray<Column<BorrowRecord>> = [
             <Image
               width={100}
               height={100}
-              className="max-w-8"
+              className="dark:hidden max-h-[50px] rounded-lg  w-full"
               alt="book"
               src={value?.cover_image}
             />
@@ -33,6 +34,9 @@ const columns: ReadonlyArray<Column<BorrowRecord>> = [
             >
               {value?.title}
             </Link>
+            <span className="text-xs text-gray-700 font-normal">
+              {Array.isArray(value?.author) ? value.author.join(', ') : value?.author || 'No author available'}
+            </span>
             {/* <span className="text-xs text-gray-700 font-normal">26 tasks</span> */}
           </div>
         </div>
@@ -40,9 +44,31 @@ const columns: ReadonlyArray<Column<BorrowRecord>> = [
     ),
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Due" id={id} />,
+    Header: ({ column: { id } }) => (
+      <TableHeader title="Date created" id={id} sortable />
+    ),
+    accessor: "borrow_date",
+    Cell: DateCell,
+  },
+  {
+    Header: ({ column: { id } }) => <TableHeader title="Time to receive books" id={id} />,
     accessor: "due_date",
     Cell: DateCell,
+  },
+  {
+    Header: ({ column: { id } }) => <TableHeader title="Book return time" id={id} />,
+    accessor: "return_date",
+    Cell: DateCell,
+  },
+ 
+  {
+    Header: ({ column: { id } }) => <TableHeader title="User Borrow" id={id} />,
+    accessor: "user",
+    Cell: ({ value }) => (
+      <>
+        {value?.full_name}
+      </>
+    ),
   },
   {
     Header: ({ column: { id } }) => <TableHeader title="Status" id={id} />,
@@ -67,27 +93,22 @@ const columns: ReadonlyArray<Column<BorrowRecord>> = [
 
       return (
         <span
-          className={`badge badge-xs badge-outline ${getBadgeClass(value)}`}
+          className={`badge badge-xs badge-outline text-xs ${getBadgeClass(value)}`}
         >
-          {value}
+          {value.toUpperCase()}
         </span>
       );
     },
   },
   {
     Header: ({ column: { id } }) => (
-      <TableHeader title="Created" id={id} sortable />
+      <TableHeader title="Browse" id={id} />
     ),
-    accessor: "borrow_date",
-    Cell: DateCell,
-  },
-  {
-    Header: ({ column: { id } }) => <TableHeader title="User Borrow" id={id} />,
-    accessor: "user",
+    accessor: "_id",
     Cell: ({ value }) => (
-        <>
-        {value?.full_name}
-        </>
+      <>
+        <LinkCell href={`detail-books-loans/${value}`} value="Browse" />
+      </>
     ),
   },
 ];

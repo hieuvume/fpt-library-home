@@ -12,7 +12,7 @@ const LoanItem = ({ record }: { record: BorrowRecord }) => {
         <Image
           width={80}
           height={80}
-          className="max-w-6"
+          className="max-w-10 rounded-lg  w-full"
           alt="book"
           src={record.book_title.cover_image}
         />

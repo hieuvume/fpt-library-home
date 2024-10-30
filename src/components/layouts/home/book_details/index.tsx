@@ -21,31 +21,28 @@ export default function BookDetails({ children }: { children: BookDetails[] }) {
                 <div className="card-header" id="advanced_settings_appearance">
                     <h1 className="card-title">Details Book</h1>
                 </div>
-                <div className="card-body lg:py-7.5">
-                    <div className="mb-5">
-                        <h2 className="text-md font-medium text-gray-900">Book Title</h2>
-                        <span className="text-1sm text-gray-700">
+
+                <div className="card-body px-10 py-7.5 lg:pe-12.5">
+                    <div className="flex flex-wrap md:flex-nowrap items-center gap-6 md:gap-10">
+                        <div className="flex flex-col gap-3">
+                            <h2 className="text-1.5xl font-semibold text-gray-900">
                             {children?.map((data) => data.title)}
-                        </span>
-                    </div>
-                    <div className="grid grid-cols-2 lg:grid-cols-2 gap-5 lg:gap-7.5 ">
-                        <div className="">
-                            <label
-                                className="form-label max-w-48 text-gray-800 font-normal"
-
-                            >
-                                <Image
-                                    width={2200}
-                                    height={120}
-                                    alt="Book Cover"
-                                    className="rounded-lg max-h-[270px] max-w-full "
-                                    src={children[0]?.cover_image}
-                                />
-                            </label>
-                            <span className="text-sm font-medium text-gray-900">Img</span>
+                            </h2>
+                            <p className="text-sm text-gray-700 leading-5.5">
+                            {children?.map((data) => data.description)}
+                            </p>
                         </div>
-
+                        <img
+                            alt="image"
+                            className="dark:hidden max-h-[180px] rounded-lg  max-w-full"
+                            src={children[0]?.cover_image}
+                        />
+                    
                     </div>
+                </div>
+
+
+                <div className="card-body lg:py-7.5">
                     <div className="border-t border-gray-200 mt-7 mb-8"></div>
                     <div className="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5 mb-8">
                         <label className="form-label max-w-48 text-gray-800 font-normal">
@@ -99,9 +96,6 @@ export default function BookDetails({ children }: { children: BookDetails[] }) {
                             }
                         </div>
                     </div>
-                    <div className="flex justify-end">
-                        <button className="btn btn-primary">Save Changes</button>
-                    </div>
 
                 </div>
 
@@ -120,6 +114,7 @@ export default function BookDetails({ children }: { children: BookDetails[] }) {
                             <span className="form-info text-gray-800 font-normal">
                                 {children.map((data) => data.totalCount)}
                             </span>
+
                             <button className="form-info text-gray-800 font-normal  hover:text-primary text-gray-900" data-modal-toggle="#auth-modal">Detail</button>
                             <ModelDetails children={children} />
                         </div>
@@ -145,7 +140,7 @@ export default function BookDetails({ children }: { children: BookDetails[] }) {
                                 {children.map((data) => data.borrowedCount)}
                             </span>
                             <button className="form-info text-gray-800 font-normal  hover:text-primary text-gray-900" data-modal-toggle="#brorrow">Book loan</button>
-                            <ModelBorrow children={data} bookTitleId={children[0].bookTitleId}/>
+                            <ModelBorrow children={data} bookTitleId={children[0].bookTitleId} />
                         </div>
                     </div>
 

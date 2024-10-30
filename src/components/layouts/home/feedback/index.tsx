@@ -44,10 +44,13 @@ export default function FeedbackDetails({ children }: { children: Feedback[] }) 
       stars.push(
         <i
           key={i}
-          className={`ki-filled ki-star ${i <= rating ? 'text-yellow-500' : 'text-gray-300'}`}
+          className={`text-base leading-none ${
+            i <= rating ? 'rating-on ki-solid ki-star text-yellow-500' : 'rating-off ki-solid ki-star text-gray-300'
+          }`}
           style={{ fontSize: '1rem' }}
         />
       );
     }
     return stars;
   }
+  
