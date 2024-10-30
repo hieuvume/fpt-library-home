@@ -35,6 +35,7 @@ export default function ProfileTopBar() {
                 <MenuItem href="/user/profile" title="Profiles" />
                 <MenuItem href="/membership" title="Membership" />
                 <MenuItem href="/payments" title="Payment" />
+                <MenuItem href="/book-borrow" title="Loans" />
               </div>
             </div>
           </div>

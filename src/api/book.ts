@@ -14,7 +14,7 @@ const bookApi = {
     return axios.get(`books/details/${id}`);
   },
   findFeedbacksByTitleId: (id: string): Promise<FeedbackResponse> => {
-    return axios.get(`feedbacks/${id}`);
+    return axios.get(`feebacks/${id}`);
   },
   getEarLiestFreeTime: (id: string): Promise<any> => {
     return axios.get(`books/${id}/availability-info`)

@@ -9,11 +9,20 @@ interface Props {
 
 export default function ModelBorrow({ children, bookTitleId }: Props) {
     const handleBorrow = () => {
-        bookApi.borrowBook({bookTitleId:bookTitleId}).then((data) => {
+        bookApi.borrowBook({ bookTitleId: bookTitleId }).then((data) => {
             console.log(data)
-            Report.success("Success", "Borrow book successfully!", "OK", () => {
-                location.reload()
-            });
+            try {
+                if (data.status == 200) {
+                    Report.success("Success", "Borrow book successfully!", "OK", () => {
+                        location.reload()
+                    });
+                }
+            } catch (e) {
+                Report.failure("Error", `Borrow book ${e} `, "OK", () => {
+                    location.reload()
+                });
+            }
+
 
         });
     }
