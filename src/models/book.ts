@@ -10,8 +10,8 @@ export type Book = {
     position: number;
     status: string;
     times_borrowed: number;
-    created_at: Date;
-    updated_at: Date;
+    created_at: string;
+    updated_at: string;
 }
 
 export type Category = {
@@ -63,7 +63,7 @@ export type BookDetails = {
     totalCount: number;
     borrowedCount: number;
 }
-export type BookListResponse = {
+export interface BookListResponse  {
     books: Book[];
     totalBook: number;
 }

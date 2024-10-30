@@ -1,7 +1,11 @@
+import membershipApi from "@/api/membership";
 import { BaseModal } from "@/components/modal/BaseModal";
 import useAuth from "@/hooks/useAuth";
+import { KTModal } from "@/metronic/core";
 import { Membership } from "@/models/membership";
 import { formatCurrency, formatDateShort } from "@/utils";
+import { useRouter } from "next/router";
+import { Confirm, Report } from "notiflix";
 import { useState } from "react";
 
 type UpgradePlanProps = {
@@ -9,11 +13,14 @@ type UpgradePlanProps = {
 };
 
 const UpgradePlan = ({ plan }: UpgradePlanProps) => {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const { current_membership } = user || {};
   const { membership } = current_membership || {};
 
   const [selectedMonths, setSelectedMonths] = useState(1);
+  const [paymentMethod, setPaymentMethod] = useState("banking");
 
   const startDate = new Date(current_membership?.start_date);
   const endDate = new Date(current_membership?.end_date);
@@ -25,8 +32,7 @@ const UpgradePlan = ({ plan }: UpgradePlanProps) => {
   );
 
   // Chọn giá dựa trên số tháng (monthly_price hoặc yearly_price)
-  const pricePerMonth =
-    selectedMonths < 12 ? plan?.price_monthly : plan?.price_yearly;
+  const pricePerMonth = selectedMonths < 12 ? plan?.price_monthly : plan?.price_yearly;
   const totalAmount = pricePerMonth * selectedMonths;
 
   // Tính phí còn lại của gói hiện tại
@@ -41,6 +47,26 @@ const UpgradePlan = ({ plan }: UpgradePlanProps) => {
 
   const newPlanEndDate = new Date(today);
   newPlanEndDate.setDate(newPlanEndDate.getDate() + selectedMonths * 30);
+
+  const onUpgrade = () => {
+    Confirm.show(
+      "Confirm to upgrade plan",
+      "Are you sure you want to upgrade your plan?",
+      "Yes",
+      "No",
+      () => {
+        setLoading(true)
+        membershipApi.upgradePlan(plan._id, selectedMonths, paymentMethod).then((res) => {
+          Report.success('Upgrade success', "Upgrade successfully!", "OK", () => {
+            KTModal.closeModal('plan-action-modal');
+            router.push(`/payments?paymentId=${res._id}`);
+          });
+        }).catch((error) => {
+          Report.failure('Upgrade failed', error.message, "OK");
+        }).finally(() => setLoading(false));
+      }
+    );
+  }
 
   return (
     <div className="grid gap-5">
@@ -150,7 +176,29 @@ const UpgradePlan = ({ plan }: UpgradePlanProps) => {
             {formatCurrency(finalAmount.toFixed(0))}đ
           </div>
         </div>
-        <button className="btn btn-primary justify-center">Upgrade</button>
+        <div className="flex flex-center justify-between items-center flex-wrap gap-2 mb-1">
+          <div className="flex flex-center gap-1.5">
+            <i className="ki-filled ki-bank text-gray-500"></i>
+            <div className="flex flex-center text-gray-700 font-medium text-2sm">
+              Payment method
+            </div>
+          </div>
+          {/* <div className="text-green-600 font-semibold text-sm">
+            
+          </div> */}
+
+          <select
+            className="select select-sm w-44"
+            defaultValue={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value)}
+          >
+            <option value="banking">Bank transfer</option>
+            <option value="momo">Momo wallet</option>
+            <option value="cash">Cash at the library</option>
+          </select>
+        </div>
+        {/* note payment  */}
+        <button className="btn btn-primary justify-center" onClick={onUpgrade} disabled={loading}>{loading ? 'Upgrading...' : 'Upgrade'}</button>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import { bookApi } from "@/api/book"
-import { getSetting } from "@/api/setting"
 import BookDetails from "@/components/layouts/home/book_details"
 import FeedbackDetails from "@/components/layouts/home/feedback"
 
@@ -12,8 +11,8 @@ export default function BookDetailPage() {
     const router = useRouter()
     const bookId = router.query.id as string
     if (!bookId) return <div>Loading...</div>
-    const { data:details, isLoading:loadingDetails, error:errorDetails } = useSWR(`books/details/${bookId}`, () => bookApi.getDetailsById(bookId))
-    const {data:feebacks,isLoading:loadingFeedback,error:errorFeedback}=useSWR(`feebacks/${bookId}`, () => bookApi.findFeedbacksByTitleId(bookId))
+    const { data: details, isLoading: loadingDetails, error: errorDetails } = useSWR(`books/details/${bookId}`, () => bookApi.getDetailsById(bookId))
+    const { data: feebacks, isLoading: loadingFeedback, error: errorFeedback } = useSWR(`feebacks/${bookId}`, () => bookApi.findFeedbacksByTitleId(bookId))
     if (loadingDetails) {
         return <div>Loading...</div>
     }

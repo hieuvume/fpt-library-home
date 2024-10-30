@@ -1,6 +1,7 @@
 import FourStepBorrow from "@/components/home/4StepBorrow";
 import BestOfTheMonth from "@/components/home/BestOfTheMonth";
 import FullWidthLayout from "@/components/layouts/FullWidthLayout";
+import {  BorrowRecordHistoryWrapper } from "@/components/layouts/home/histories/BorrowRecordHistory";
 import SearchBar from "@/components/layouts/home/SearchBar";
 
 export default function Home() {
@@ -11,6 +12,8 @@ export default function Home() {
       </div>
       <BestOfTheMonth />
       <FourStepBorrow />
+
+      <BorrowRecordHistoryWrapper/>
       
       <section
         id="free-chapters"

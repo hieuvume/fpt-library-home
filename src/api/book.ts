@@ -8,13 +8,13 @@ import { BorrowRecord } from '@/models/borrow-record';
 
 const bookApi = {
   getBookById: (id: string): Promise<BookCreateRequest> => {
-    return axios.get(`books/${id}`)
+    return axios.get(`books/${id}`);
   },
-  getDetailsById:(id: string): Promise<BookDetails[]> => {
-    return axios.get(`books/details/${id}`)
-  },  
+  getDetailsById: (id: string): Promise<BookDetails[]> => {
+    return axios.get(`books/details/${id}`);
+  },
   findFeedbacksByTitleId: (id: string): Promise<FeedbackResponse> => {
-    return axios.get(`feebacks/${id}`)
+    return axios.get(`feedbacks/${id}`);
   },
   getEarLiestFreeTime: (id: string): Promise<any> => {
     return axios.get(`books/${id}/availability-info`)
@@ -39,4 +39,4 @@ const bookDashboardApi = {
   }
 }
 
-export { bookApi, bookDashboardApi }
+export { bookApi, bookDashboardApi };
