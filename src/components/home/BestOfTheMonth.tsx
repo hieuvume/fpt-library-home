@@ -10,32 +10,39 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
 
 const BestOfTheMonth = () => {
-    const [currentMonth, setCurrentMonth] = useState(dayjs().format("MMMM, YYYY"));
-    const [monthsList, setMonthsList] = useState([]);
-    const [subMonth, setSubMonth] = useState(0);
+  const [currentMonth, setCurrentMonth] = useState(
+    dayjs().format("MMMM, YYYY")
+  );
+  const [monthsList, setMonthsList] = useState([]);
+  const [subMonth, setSubMonth] = useState(0);
 
-    useEffect(() => {
-        const generateMonthsList = () => {
-            const months = [];
-            for (let i = 0; i < 6; i++) {
-                const month = dayjs().subtract(i, "month").format("MMMM, YYYY");
-                months.push(month);
-            }
-            setMonthsList(months);
-        };
-        generateMonthsList();
-    }, []);
+  useEffect(() => {
+    const generateMonthsList = () => {
+      const months = [];
+      for (let i = 0; i < 6; i++) {
+        const month = dayjs().subtract(i, "month").format("MMMM, YYYY");
+        months.push(month);
+      }
+      setMonthsList(months);
+    };
+    generateMonthsList();
+  }, []);
 
-    const { data, isLoading, error } = useSWR(`book-titles/best-of-the-month/${subMonth}`, () => bookTitleApi.getBestOfTheMonth(subMonth))
-    console.log(data?.map((book) => book._id))
-    return (
-        <>
-            <div className="">
-                <div className="container-fixed flex items-center justify-between flex-wrap gap-5">
-                    <div className="flex flex-col justify-center items-start flex-wrap gap-1 lg:gap-2">
-                        <h1 className="font-medium text-2xl text-gray-900">Best of the month</h1>
-                    </div>
-                    <div className="flex items-center flex-wrap gap-1.5 lg:gap-3.5">
+  const { data, isLoading, error } = useSWR(
+    `book-titles/best-of-the-month/${subMonth}`,
+    () => bookTitleApi.getBestOfTheMonth(subMonth)
+  );
+  console.log(data?.map((book) => book._id));
+  return (
+    <>
+      <div className="">
+        <div className="container-fixed flex items-center justify-between flex-wrap gap-5">
+          <div className="flex flex-col justify-center items-start flex-wrap gap-1 lg:gap-2">
+            <h1 className="font-medium text-2xl text-gray-900">
+              Best of the month
+            </h1>
+          </div>
+          {/* <div className="flex items-center flex-wrap gap-1.5 lg:gap-3.5">
                         <div className="menu menu-default" data-menu="true">
                             <div
                                 className="menu-item menu-item-dropdown"
@@ -72,79 +79,91 @@ const BestOfTheMonth = () => {
                                 </div>
                             </div>
                         </div>
+                    </div> */}
+        </div>
+      </div>
+
+      <div className="container-fixed">
+        <div className="flex items-center justify-center flex-col ">
+          <Swiper
+            breakpoints={{
+              320: {
+                slidesPerView: 2,
+                spaceBetween: 5,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 6,
+                spaceBetween: 10,
+              },
+            }}
+            freeMode={true}
+            autoplay
+            loop
+            modules={[FreeMode]}
+            className="w-full"
+          >
+            {(isLoading || error) &&
+              Array.from({ length: 6 }, (_, index) => (
+                <SwiperSlide key={index}>
+                  <SkeletonLoader />
+                </SwiperSlide>
+              ))}
+
+            {!isLoading &&
+              !error &&
+              data?.map((book, index) => (
+                <SwiperSlide
+                  key={index}
+                  className="mb-10 h-full flex flex-col items-stretch"
+                >
+                  <Link
+                    className="flex flex-col items-center p-2 pb-5 rounded-lg flex-grow h-full hover:shadow-md cursor-pointer"
+                    href={`/book/${book._id}`}
+                  >
+                    <Image
+                      width={200}
+                      height={300}
+                      src={book.cover_image}
+                      alt={book.book_title_name}
+                      className="w-full h-52 object-cover mb-4 rounded-lg"
+                    />
+
+                    <div className="flex flex-col flex-grow justify-between h-full w-full">
+                      <span
+                        className="text-sm font-semibold hover:text-primary text-slate-900 text-center min-h-[40px] line-clamp-2"
+                      >
+                        {book.book_title_name}
+                      </span>
+                      <p className="text-sm text-gray-500 dark:text-gray-800 mt-2 text-center min-h-[20px] truncate">
+                        By {book.author[0]}
+                      </p>
                     </div>
-                </div>
-            </div>
-
-            <div className="container-fixed">
-                <div className="flex items-center justify-center flex-col ">
-                    <Swiper
-                        breakpoints={{
-                            320: {
-                                slidesPerView: 2,
-                                spaceBetween: 5,
-                            },
-                            640: {
-                                slidesPerView: 2,
-                                spaceBetween: 10,
-                            },
-                            768: {
-                                slidesPerView: 4,
-                                spaceBetween: 10,
-                            },
-                            1024: {
-                                slidesPerView: 6,
-                                spaceBetween: 10,
-                            },
-                        }}
-                        freeMode={true}
-                        autoplay
-                        loop
-                        modules={[FreeMode]}
-                        className="w-full"
-                    >
-                        {(isLoading || error) && Array.from({ length: 6 }, (_, index) => <SwiperSlide key={index}><SkeletonLoader /></SwiperSlide>)}
-
-                        {(!isLoading && !error) && data?.map((book, index) => (
-                            <SwiperSlide key={index} className="mb-10 h-full flex flex-col items-stretch">
-                                <div className="flex flex-col items-center p-2 pb-5 rounded-lg flex-grow h-full hover:shadow-md cursor-pointer">
-                                    <Image
-                                        width={200}
-                                        height={300}
-                                        src={book.cover_image}
-                                        alt={book.book_title_name}
-                                        className="w-full h-52 object-cover mb-4 rounded-lg"
-                                    />
-
-                                    <div className="flex flex-col flex-grow justify-between h-full w-full">
-                                    <Link className="text-sm font-semibold hover:text-primary text-slate-900 text-center min-h-[40px] line-clamp-2"
-                                        href={`/book/${book._id}`}
-                                        >
-                                            {book.book_title_name}
-                                        </Link>
-                                        <p className="text-sm text-gray-500 dark:text-gray-800 mt-2 text-center min-h-[20px] truncate">
-                                            By {book.author[0]}
-                                        </p>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </div>
-            </div>
-
-        </>
-    )
-}
+                  </Link>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </div>
+      </div>
+    </>
+  );
+};
 
 const SkeletonLoader = () => {
-    return (
-        <div className="flex flex-col items-center bg-white p-2 pb-5 rounded-lg flex-grow h-full">
-            <div className="animate-pulse w-full h-52 bg-gray-200 rounded-lg mb-4"></div>
-            <div className="animate-pulse bg-gray-200 h-5 w-3/4 mx-auto rounded mb-2"></div>
-            <div className="animate-pulse bg-gray-200 h-4 w-1/2 mx-auto rounded"></div>
-        </div>
-    )
-}
+  return (
+    <div className="flex flex-col items-center bg-white p-2 pb-5 rounded-lg flex-grow h-full">
+      <div className="animate-pulse w-full h-52 bg-gray-200 rounded-lg mb-4"></div>
+      <div className="animate-pulse bg-gray-200 h-5 w-3/4 mx-auto rounded mb-2"></div>
+      <div className="animate-pulse bg-gray-200 h-4 w-1/2 mx-auto rounded"></div>
+    </div>
+  );
+};
 
-export default BestOfTheMonth
+export default BestOfTheMonth;

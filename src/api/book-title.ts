@@ -9,6 +9,9 @@ const bookTitleApi = {
   search: (query: string): Promise<PaginationResponse<BookTitle>> => {
     return axios.get(`book-titles/search?${query}`);
   },
+  getDetailsById: (id: string): Promise<BookTitle> => {
+    return axios.get(`book-titles/${id}/details`);
+  },
 };
 
 const bookTitleDashboardApi = {};

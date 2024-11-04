@@ -133,21 +133,6 @@ const Search = () => {
 };
 
 const SearchPage = () => {
-  // const { data } = useQuery<PaginationResponse<BookTitle>>({
-  //   fetcher: bookTitleApi.search,
-  //   initialQuery: {
-  //     keyword: keyword as string,
-  //   },
-  // });
-
-  // const { data } = useSWR<PaginationResponse<BookTitle>>(
-  //   keyword !== undefined ? `/search/${keyword}` : null,
-  //   () => bookTitleApi.search(keyword as string),
-  //   {
-  //     revalidateOnFocus: false,
-  //   }
-  // );
-
   return (
     <TableQueryProvider
       fetcher={bookTitleApi.search}
