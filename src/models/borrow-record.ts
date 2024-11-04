@@ -24,6 +24,7 @@ export type BorrowRecord = {
   before_status: string;
   after_status: string;
   borrow_date: Date;
+  status: string;
   due_date: Date;
   return_date: Date;
   is_returned: boolean;

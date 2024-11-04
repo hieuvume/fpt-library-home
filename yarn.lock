@@ -4605,7 +4605,7 @@ merge2@^1.3.0, merge2@^1.4.1:
     cookies-next "^4.3.0"
     dayjs "^1.11.13"
     formik "^2.4.6"
-    metronic-tailwind-next "file:../../../AppData/Local/Yarn/Cache/v6/npm-metronic-tailwind-next-0.1.0-6cfbdd9c-01ca-4b97-97ed-ab3058b6718d-1730266461666/node_modules/metronic-tailwind-next"
+    metronic-tailwind-next "file:../../../AppData/Local/Yarn/Cache/v6/npm-metronic-tailwind-next-0.1.0-117e88a7-ae4a-4b9e-8a60-627b116abf2e-1730269500456/node_modules/metronic-tailwind-next"
     next "14.2.4"
     next-auth "^4.24.8"
     next-fonts "^1.5.1"

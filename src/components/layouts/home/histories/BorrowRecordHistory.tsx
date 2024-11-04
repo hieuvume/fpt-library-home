@@ -6,6 +6,7 @@ import TableHeader from "@/components/table/TableHeader";
 import TablePagination from "@/components/table/TablePagination";
 import { BorrowRecord } from "@/models/borrow-record";
 import { TableQueryProvider } from "@/provider/TableQueryProvider";
+import { formatDateTime } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Column } from "react-table";
@@ -47,17 +48,29 @@ const columns: ReadonlyArray<Column<BorrowRecord>> = [
       <TableHeader title="Date created" id={id} sortable />
     ),
     accessor: "borrow_date",
-    Cell: DateCell,
+    Cell:  ({ value }) => (
+      <span className="text-gray-800 font-normal">
+       {value ? value ? formatDateTime(value) : '' : 'N/A'}
+       </span>
+   ),
   },
   {
     Header: ({ column: { id } }) => <TableHeader title="Time to receive books" id={id} />,
     accessor: "due_date",
-    Cell: DateCell,
+    Cell:  ({ value }) => (
+      <span className="text-gray-800 font-normal">
+       {value ? value ? formatDateTime(value) : '' : 'N/A'}
+       </span>
+   ),
   },
   {
     Header: ({ column: { id } }) => <TableHeader title="Book return time" id={id} />,
     accessor: "return_date",
-    Cell: DateCell,
+    Cell:  ({ value }) => (
+      <span className="text-gray-800 font-normal">
+       {value ? value ? formatDateTime(value) : '' : 'N/A'}
+       </span>
+   ),
   },
 
   {

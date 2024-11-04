@@ -10,9 +10,9 @@ interface Props {
 export default function ModelBorrow({ children, bookTitleId }: Props) {
     const handleBorrow = () => {
         bookApi.borrowBook({ bookTitleId: bookTitleId }).then((data) => {
-            console.log(data)
+            console.log(data.statusCode)
             try {
-                if (data.status == 200) {
+                if (data) {
                     Report.success("Success", "Borrow book successfully!", "OK", () => {
                         location.reload()
                     });

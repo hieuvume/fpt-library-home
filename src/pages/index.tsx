@@ -13,7 +13,7 @@ export default function Home() {
       <BestOfTheMonth />
       <FourStepBorrow />
 
-      <BorrowRecordHistoryWrapper/>
+      {/* <BorrowRecordHistoryWrapper/> */}
       
       <section
         id="free-chapters"

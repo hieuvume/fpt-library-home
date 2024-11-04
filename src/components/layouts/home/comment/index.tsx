@@ -5,7 +5,7 @@ import { Notify, Report } from 'notiflix'
 export default function CommentSection(children) {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
-  console.log(children.children[0].book_title)
+  //console.log(children.children[0].book_title)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
