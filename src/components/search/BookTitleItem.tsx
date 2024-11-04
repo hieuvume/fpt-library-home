@@ -4,6 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const BookTitleItem = ({ bookTitle }: { bookTitle: BookTitle }) => {
+  const minimumMembership = bookTitle.memberships.reduce((prev, current) => {
+    return prev.price_monthly < current.price_monthly ? prev : current;
+  });
+
   return (
     <>
       <div className="flex flex-col md:flex-row md:items-center gap-5">
@@ -18,17 +22,19 @@ const BookTitleItem = ({ bookTitle }: { bookTitle: BookTitle }) => {
         </div>
         <div className="flex flex-col">
           <Link
-          className="text-base font-medium hover:text-primary text-gray-900 leading-4"
+            className="text-base font-medium hover:text-primary text-gray-900 leading-4"
             href={`/book/${bookTitle?._id}`}
             passHref
           >
-        
-              {bookTitle?.title}
-     
+            {bookTitle?.title}
           </Link>
           <div className="mb-1">
             {bookTitle.author.map((author, index) => (
-              <Link key={index} href={"/search?keyword=" + author} className="text-2sm font-medium text-brand leading-[14px] hover:text-primary-active mb-px me-2">
+              <Link
+                key={index}
+                href={"/search?keyword=" + author}
+                className="text-2sm font-medium text-brand leading-[14px] hover:text-primary-active mb-px me-2"
+              >
                 {author}
               </Link>
             ))}
@@ -39,12 +45,19 @@ const BookTitleItem = ({ bookTitle }: { bookTitle: BookTitle }) => {
           <div className="flex gap-3 items-center">
             <div className="flex gap-1 items-center">
               <i className="ki-filled ki-heart text-base text-gray-500"></i>
-              <span className="text-2sm text-gray-800 py-2">{bookTitle.times_borrowed}</span>
+              <span className="text-2sm text-gray-800 py-2">
+                {bookTitle.times_borrowed}
+              </span>
             </div>
             <div className="flex gap-1 items-center">
               <i className="ki-filled ki-messages text-base text-gray-500"></i>
-              <span className="text-2sm text-gray-800 py-2">{bookTitle.feedbacks.length}</span>
+              <span className="text-2sm text-gray-800 py-2">
+                {bookTitle.feedbacks.length}
+              </span>
             </div>
+            <span className={`badge badge-xs badge-${minimumMembership.color || 'primary'} badge-outline`}>
+              From {minimumMembership.name} Plan
+            </span>
           </div>
         </div>
       </div>

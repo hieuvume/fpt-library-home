@@ -1,12 +1,13 @@
-import { BookCreateRequest, BookDetails, BookListResponse } from '@/models/book';
-import axios from './axios';
+import { BookCreateRequest, BookListResponse } from '@/models/book';
+import { BookTitle } from '@/models/book-title';
 import { FeedbackResponse } from '@/models/feedback';
+import axios from './axios';
 
 const bookApi = {
   getBookById: (id: string): Promise<BookCreateRequest> => {
     return axios.get(`books/${id}`);
   },
-  getDetailsById: (id: string): Promise<BookDetails[]> => {
+  getDetailsById: (id: string): Promise<BookTitle> => {
     return axios.get(`books/details/${id}`);
   },
   findFeedbacksByTitleId: (id: string): Promise<FeedbackResponse> => {

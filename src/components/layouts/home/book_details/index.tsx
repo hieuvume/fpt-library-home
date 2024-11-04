@@ -1,7 +1,7 @@
 import type { BookDetails } from "@/models/book";
 import Image from "next/image";
 import FeedbackDetails from "../feedback";
-import ModelDetails from "../model_details";
+import BookDetailsModal from "../book/BookDetailsModal";
 import useAuth from "@/hooks/useAuth";
 
 export default function BookDetails({ children }: { children: BookDetails[] }) {
@@ -129,7 +129,7 @@ export default function BookDetails({ children }: { children: BookDetails[] }) {
                                 {children.map((data) => data.totalCount)}
                             </span>
                             <button className="form-info text-gray-800 font-normal  hover:text-primary text-gray-900" data-modal-toggle="#auth-modal">Detail</button>
-                            <ModelDetails  children={children}/>
+                            <BookDetailsModal children={children}/>
                         </div>
                     </div>
                     <div className="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5 mb-8">
