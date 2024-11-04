@@ -6,7 +6,7 @@ export const formatCurrency = (value) => {
       value = value.toString();
     }
     return value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  } catch (error) {}
+  } catch (error) { }
   return 0;
 };
 
@@ -26,7 +26,16 @@ export const formatOriginDate = (dateString) => {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
-}
+};
+
+export const formatDateShort = (dateString) => {
+  if (!dateString) return "";
+  return new Date(dateString).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "2-digit",
+  });
+};
 
 export const formatDateTime = (dateString) => {
   if (!dateString) return "";
@@ -127,3 +136,15 @@ export const maskText = (
     text.slice(text.length - end)
   );
 };
+
+export const capitalize = (text: string) => {
+  return text[0].toUpperCase() + text.slice(1);
+};
+
+export const getBankQRCode = (bankCode: string, bankAccountNumber: string, amount: number, content: string) => {
+  return `https://img.vietqr.io/image/${bankCode}-${bankAccountNumber}-qr_only.png?amount=${amount}&addInfo=${content}`;
+}
+
+export const getMomoQRCode = (phone: string, amount: number, content: string) => {
+  return `https://momosv3.apimienphi.com/api/QRCode?phone=${phone}&amount=${amount}&note=${content}`;
+}

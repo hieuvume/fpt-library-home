@@ -1,12 +1,16 @@
 import { userApi } from "@/api/user";
 import useAuth from "@/hooks/useAuth";
-import { formatDate, formatOriginDate, maskText, uploadImage } from "@/utils";
+import { capitalize, formatDate, formatOriginDate, maskText, uploadImage } from "@/utils";
+import BecomeAMembership from "./BecomeAMembership";
 import CurrentLoans from "./CurrentLoans";
-import UpdateProfileModal from "./modal/UpdateProfileModal";
+import MembershipCard from "./MembershipCard";
 import ChangePasswordModal from "./modal/ChangePasswordModal";
+import UpdateProfileModal from "./modal/UpdateProfileModal";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, mutateAuth } = useAuth();
+
+  const { current_membership } = user || {};
 
   const onChangeAvatar = async (e) => {
     const file = e.target.files[0];
@@ -14,6 +18,7 @@ const Profile = () => {
     if (file) {
       const url = await uploadImage(file);
       userApi.updateAvatar(url);
+      mutateAuth()
     }
   };
 
@@ -70,10 +75,9 @@ const Profile = () => {
                               <div
                                 className="image-input-preview rounded-full"
                                 style={{
-                                  backgroundImage: `url(${
-                                    user?.avatar_url ||
+                                  backgroundImage: `url(${user?.avatar_url ||
                                     "/media/avatars/blank.png"
-                                  })`,
+                                    })`,
                                 }}
                               ></div>
                               <div className="flex items-center justify-center cursor-pointer h-5 left-0 right-0 bottom-0 bg-dark-clarity absolute">
@@ -150,7 +154,7 @@ const Profile = () => {
                     <tr>
                       <td className="py-3 text-gray-600 font-normal">Gender</td>
                       <td className="py-3 text-gray-700 text-sm font-normal">
-                        {user?.gender?.toLocaleUpperCase() || "Male"}
+                        {capitalize(user?.gender || "Male")}
                       </td>
                       <td className="py-3 text-center">
                         <button
@@ -265,46 +269,16 @@ const Profile = () => {
         </div>
         <div className="col-span-1">
           <div className="grid gap-5 lg:gap-7.5">
-            <div className="card flex-col gap-5 justify-between bg-[center_top_1.3rem] bg-no-repeat pt-5 pb-5 lg:pt-10 px-5 start-now-bg bg-[length:700px]">
-              <div className="text-center">
-                <h3 className="text-gray-900 text-lg font-semibold leading-6 mb-1.5">
-                  Become a Membership
-                  <br />
-                  Enjoy Exclusive Book-Borrowing Benefits
-                </h3>
-                <span className="text-gray-700 text-sm block mb-5">
-                  Discover membership plans that unlock access to a wider
-                  selection of great books and exclusive offers.
-                </span>
-                <a className="btn btn-dark btn-sm" href="/plans">
-                  Join Now
-                </a>
-              </div>
-              {/* <div className="text-center">
-                <img
-                  alt=""
-                  className="dark:hidden max-h-[300px]"
-                  src="/media/images/2600x1200/3.png"
-                />
-                <img
-                  alt=""
-                  className="light:hidden max-h-[300px]"
-                  src="/media/images/2600x1200/3-dark.png"
-                />
-              </div> */}
-            </div>
+            {current_membership.membership.name !== 'Basic' ? (
+              <MembershipCard />
+            ) : (
+              <BecomeAMembership />
+            )}
             <CurrentLoans />
           </div>
         </div>
       </div>
       {/* end: grid */}
-      {/* <UpdateProfileModal
-        modalKey="update-email"
-        name="email"
-        type="email"
-        label="Email"
-        defaultValue={user?.email}
-      /> */}
       <UpdateProfileModal
         modalKey="update-full-name"
         name="full_name"
@@ -342,7 +316,7 @@ const Profile = () => {
         defaultValue={user?.gender}
       />
       <ChangePasswordModal />
-    </div>
+    </div >
   );
 };
 

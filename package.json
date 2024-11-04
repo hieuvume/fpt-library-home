@@ -11,6 +11,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.4.8",
     "@popperjs/core": "^2.11.8",
+    "@types/react-table": "^7.7.20",
     "axios": "^1.7.7",
     "cookies-next": "^4.3.0",
     "dayjs": "^1.11.13",

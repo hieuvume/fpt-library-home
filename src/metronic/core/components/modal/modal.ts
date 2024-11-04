@@ -332,10 +332,17 @@ export class KTModal extends KTComponent implements KTModalInterface {
 
   public static openModal(id: string): void {
     const modalElement = document.querySelector(`#${id}`);
-    console.log(modalElement);
     const modal = KTModal.getInstance(modalElement as HTMLElement);
     if (modal) {
       modal.show();
+    }
+  }
+
+  public static closeModal(id: string): void {
+    const modalElement = document.querySelector(`#${id}`);
+    const modal = KTModal.getInstance(modalElement as HTMLElement);
+    if (modal) {
+      modal.hide();
     }
   }
 
