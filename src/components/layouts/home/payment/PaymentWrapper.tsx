@@ -1,21 +1,21 @@
-import { paymentApi } from "@/api/payment"
-import DateCell from "@/components/table/cell/DateCell";
-import Table from "@/components/table/Table"
-import TableHeader from "@/components/table/TableHeader";
-import TablePagination from "@/components/table/TablePagination"
-import { Payment } from "@/models/payment";
-import { TableQueryProvider } from "@/provider/TableQueryProvider"
-import { Column } from "react-table";
-import PaymentStatusCell from "./cell/PaymentStatusCell";
-import PaymentMethodCell from "./cell/PaymentMethodCell";
+import { paymentApi } from "@/api/payment";
 import CurrencyCell from "@/components/table/cell/CurrencyCell";
+import DateCell from "@/components/table/cell/DateCell";
 import IDCell from "@/components/table/cell/IDCell";
-import PaymentActionCell from "./cell/PaymentActionCell";
-import { ObjectDataProvider, useObjectData } from "@/provider/ObjectDataProvider";
-import PaymentGuideModal from "./modal/PaymentGuideModal";
-import { useEffect } from "react";
+import Table from "@/components/table/Table";
+import TableHeader from "@/components/table/TableHeader";
+import TablePagination from "@/components/table/TablePagination";
 import { KTModal } from "@/metronic/core";
+import { Payment } from "@/models/payment";
+import { ObjectDataProvider, useObjectData } from "@/provider/ObjectDataProvider";
+import { TableQueryProvider } from "@/provider/TableQueryProvider";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { Column } from "react-table";
+import PaymentActionCell from "./cell/PaymentActionCell";
+import PaymentMethodCell from "./cell/PaymentMethodCell";
+import PaymentStatusCell from "./cell/PaymentStatusCell";
+import PaymentGuideModal from "./modal/PaymentGuideModal";
 
 const columns: ReadonlyArray<Column<Payment>> = [
   {
@@ -78,12 +78,6 @@ const PaymentTable = () => {
     <div className="card card-grid min-w-full">
       <div className="card-header">
         <h3 className="card-title">Billing and Invoicing</h3>
-        {/* <a
-                            className="btn btn-link"
-                            href="/metronic/tailwind/demo9/public-profile/profiles/feeds"
-                            >
-                            View All
-                        </a> */}
       </div>
       <div className="card-body">
         <Table columns={columns}></Table>

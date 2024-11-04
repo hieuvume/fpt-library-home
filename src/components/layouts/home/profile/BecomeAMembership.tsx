@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const BecomeAMembership = () => {
     return (
         <div className="card flex-col gap-5 justify-between bg-[center_top_1.3rem] bg-no-repeat pt-5 pb-5 lg:pt-10 px-5 start-now-bg bg-[length:700px]">
@@ -11,9 +13,9 @@ const BecomeAMembership = () => {
                     Discover membership plans that unlock access to a wider
                     selection of great books and exclusive offers.
                 </span>
-                <a className="btn btn-dark btn-sm" href="/plans">
+                <Link className="btn btn-dark btn-sm" href="/plans">
                     Join Now
-                </a>
+                </Link>
             </div>
         </div>
     )

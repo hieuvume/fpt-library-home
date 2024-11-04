@@ -12,9 +12,6 @@ const userApi = {
     profile: (): Promise<UserProfile> => {
         return api.get("/users/profile");
     },
-    histories: (query: string) => {
-        return api.get(`/borrow-records/histories?${query}`);
-    },
     updateProfile: (data: any) => {
         return api.put("/users/profile", data);
     },

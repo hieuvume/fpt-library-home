@@ -33,7 +33,7 @@ export default function ProfileTopBar() {
             <div className="scrollable-x-auto">
               <div className="menu gap-3" data-menu="true">
                 <MenuItem href="/user/profile" title="Profiles" />
-                <MenuItem href="/membership" title="Membership" />
+                <MenuItem href="/borrows" title="Borrows" />
                 <MenuItem href="/payments" title="Payment" />
               </div>
             </div>

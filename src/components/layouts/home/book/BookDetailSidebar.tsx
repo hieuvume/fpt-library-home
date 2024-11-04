@@ -123,6 +123,8 @@ const BookDetailSidebar = ({ book }: { book: BookTitle }) => {
                       className={`btn btn-secondary btn-sm ${
                         !isCanBorrow ? "disabled" : ""
                       }`}
+                      disabled={!isCanBorrow}
+                      data-modal-toggle="#book-borrow-confirm"
                     >
                       Borrow
                     </button>

@@ -1,5 +1,6 @@
 import { userApi } from "@/api/user";
 import { BorrowRecord } from "@/models/borrow-record";
+import { formatDateShort } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import useSWR from "swr";
@@ -21,54 +22,8 @@ const LoanItem = ({ record }: { record: BorrowRecord }) => {
             {record.book_title.title.slice(0, 35)}...
           </span>
           <span className="text-xs text-gray-700">
-            4.7 MB 26 Sep 2024 3:20 PM
+            Due at {formatDateShort(record.due_date)}
           </span>
-        </div>
-      </div>
-      <div className="menu" data-menu="true">
-        <div
-          className="menu-item menu-item-dropdown"
-          data-menu-item-offset="0, 10px"
-          data-menu-item-placement="bottom-end"
-          data-menu-item-toggle="dropdown"
-          data-menu-item-trigger="click|lg:click"
-        >
-          <button className="menu-toggle btn btn-sm btn-icon btn-light btn-clear">
-            <i className="ki-filled ki-dots-vertical"></i>
-          </button>
-          <div
-            className="menu-dropdown menu-default w-full max-w-[175px]"
-            data-menu-dismiss="true"
-          >
-            <div className="menu-item">
-              <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-document"></i>
-                </span>
-                <span className="menu-title">Details</span>
-              </a>
-            </div>
-            <div className="menu-item">
-              <a
-                className="menu-link"
-                data-modal-toggle="#share_profile_modal"
-                href="#"
-              >
-                <span className="menu-icon">
-                  <i className="ki-filled ki-share"></i>
-                </span>
-                <span className="menu-title">Share</span>
-              </a>
-            </div>
-            <div className="menu-item">
-              <a className="menu-link" href="#">
-                <span className="menu-icon">
-                  <i className="ki-filled ki-file-up"></i>
-                </span>
-                <span className="menu-title">Export</span>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -83,7 +38,7 @@ const CurrentLoans = () => {
   return (
     <div className="card">
       <div className="card-header">
-        <h3 className="card-title">Current Loans</h3>
+        <h3 className="card-title">Current Borrows</h3>
       </div>
       <div className="card-body">
         <div className="grid gap-2.5 lg:gap-5">
@@ -93,11 +48,8 @@ const CurrentLoans = () => {
         </div>
       </div>
       <div className="card-footer justify-center">
-        <Link
-          className="btn btn-link"
-          href="/user/loans"
-        >
-          All Loans
+        <Link className="btn btn-link" href="/borrows">
+          All Borrows
         </Link>
       </div>
     </div>

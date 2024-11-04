@@ -89,7 +89,7 @@ const BookDetail = ({ book }: { book: BookTitle }) => {
                 </label>
                 <div className="flex items-center gap-7.5 grow">
                   <span className="form-info text-gray-800 font-normal">
-                    {rating.toFixed(1)} <i className="ki-filled ki-star" />
+                    {isNaN(rating) ? 0 :rating.toFixed(1)} <i className="ki-filled ki-star" />
                   </span>
                 </div>
               </div>

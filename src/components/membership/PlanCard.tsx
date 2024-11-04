@@ -22,11 +22,11 @@ const PlanCard: React.FC<PlanCardProps> = ({
   annualBilling,
 }) => {
   const displayedPrice = annualBilling ? yearlyPrice : monthlyPrice;
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const { current_membership } = user || {};
-  const isUpgrade =
-    current_membership?.membership?.price_monthly < monthlyPrice;
-  const displayedText = isUpgrade ? "Upgrade" : "Downgrade";
+  const isDowngrade =
+    current_membership?.membership?.price_monthly > monthlyPrice;
+  const displayedText = isDowngrade ? "Downgrade" : "Upgrade";
 
   return (
     <td className="!border-b-0 table-border-l table-border-t !p-5 !pt-7.5 relative">
@@ -54,14 +54,31 @@ const PlanCard: React.FC<PlanCardProps> = ({
         )}
       </div>
       <div>
-        <button
-          className={`btn ${(isCurrentPlan || monthlyPrice === 0) ? "btn-light" : "btn-primary"
+        {isAuthenticated ? (
+          <button
+            className={`btn ${
+              isCurrentPlan || monthlyPrice === 0 ? "btn-light" : "btn-primary"
             } btn-sm flex justify-center w-full`}
-          onClick={onUpgrade}
-          data-modal-toggle={`${(!isCurrentPlan && monthlyPrice > 0) ? '#plan-action-modal' : ''}`}
-        >
-          {isCurrentPlan ? "Current Plan" : monthlyPrice > 0 ? displayedText : "Get Started"}
-        </button>
+            onClick={onUpgrade}
+            data-modal-toggle={`${
+              !isCurrentPlan && monthlyPrice > 0 ? "#plan-action-modal" : ""
+            }`}
+          >
+            {isCurrentPlan
+              ? "Current Plan"
+              : monthlyPrice > 0
+              ? displayedText
+              : "Get Started"}
+          </button>
+        ) : (
+          <button
+            className={`btn ${
+              isCurrentPlan || monthlyPrice === 0 ? "btn-light" : "btn-primary"
+            } btn-sm flex justify-center w-full`}
+          >
+            Login to Upgrade
+          </button>
+        )}
       </div>
     </td>
   );

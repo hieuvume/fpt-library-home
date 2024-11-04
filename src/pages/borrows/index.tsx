@@ -1,11 +1,11 @@
-import PaymentWrapper from "@/components/layouts/home/payment/PaymentWrapper";
+import BorrowsWrapper from "@/components/layouts/home/borrows/BorrowsWrapper";
 import ProfileHeader from "@/components/layouts/home/profile/ProfileHeader";
 import ProfileTopBar from "@/components/layouts/home/profile/ProfileTopBar";
 import { withAuth } from "@/components/withAuth";
 import useAuth from "@/hooks/useAuth";
 import { useEffect } from "react";
 
-const PaymentPage = () => {
+const BorrowPage = () => {
   const { mutateAuth } = useAuth();
 
   useEffect(() => {
@@ -17,9 +17,9 @@ const PaymentPage = () => {
     <>
       <ProfileHeader />
       <ProfileTopBar />
-      <PaymentWrapper />
+      <BorrowsWrapper />
     </>
   );
 };
 
-export default withAuth(PaymentPage);
+export default withAuth(BorrowPage);

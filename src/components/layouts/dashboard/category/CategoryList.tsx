@@ -9,15 +9,15 @@ import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { Column } from "react-table";
 
-const columns: ReadonlyArray<Column<Category[]>> = [
+const columns: ReadonlyArray<Column<Category>> = [
   {
     Header: ({ column: { id } }) => <TableHeader title="Title" id={id} />,
     accessor: "title", // Thay đổi để khớp với dữ liệu trả về từ API
-    Cell: ({ value }) => (
+    Cell: ({ value, row: { original } }) => (
       <div className="flex items-center gap-2.5">
         <Link
           className="leading-none font-medium text-gray-900 hover:text-primary"
-          href={`/books/${value?._id}`}
+          href={`/books/${original?._id}`}
         >
           {value}
         </Link>
@@ -57,12 +57,11 @@ export function CategoriesList() {
     }
   };
 
-
   return (
     <>
       <div className="container-fixed col-span-1 lg:col-span-2">
         <div className="flex items-center gap-2.5">
-          <Button className="btn btn-sm btn-primary" onClick={handleAddClick} >
+          <Button className="btn btn-sm btn-primary" onClick={handleAddClick}>
             Add Member
           </Button>
         </div>
@@ -78,7 +77,10 @@ export function CategoriesList() {
             <TablePagination />
           </div>
         </div>
-        <div ref={formRef} className="flex flex-col items-stretch grow gap-5 lg:gap-7.5">
+        <div
+          ref={formRef}
+          className="flex flex-col items-stretch grow gap-5 lg:gap-7.5"
+        >
           <div className="card pb-2.5">
             <div className="card-header" id="basic_settings">
               <h3 className="card-title"></h3>
@@ -97,9 +99,7 @@ export function CategoriesList() {
                 />
               </div>
               <div className="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label className="form-label max-w-56">
-                  Description
-                </label>
+                <label className="form-label max-w-56">Description</label>
                 <input
                   className="input"
                   placeholder="description must have 10-100 characters"
@@ -111,7 +111,10 @@ export function CategoriesList() {
                 />
               </div>
               <div className="flex justify-end">
-                <button className="btn btn-primary" onClick={handleCreateCategory}>
+                <button
+                  className="btn btn-primary"
+                  onClick={handleCreateCategory}
+                >
                   Create new Category
                 </button>
               </div>
@@ -120,7 +123,6 @@ export function CategoriesList() {
         </div>
       </div>
     </>
-
   );
 }
 

@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 function Sidebar() {
   return <div
     className="sidebar dark:bg-coal-600 bg-light border-r border-r-gray-200 dark:border-r-coal-100 fixed top-0 bottom-0 z-20 hidden lg:flex flex-col items-stretch shrink-0"
@@ -65,7 +67,7 @@ function Sidebar() {
 
 
           <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
-            <a
+            <Link
               className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
               href="/dashboard"
               tabIndex={0}
@@ -76,7 +78,7 @@ function Sidebar() {
               <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
                 Dashboard
               </span>
-            </a>
+            </Link>
           </div>
           <div className="menu-item pt-2.25 pb-px">
             <span className="menu-heading uppercase pl-[10px] pr-[10px] text-2sm font-semibold text-gray-500">
@@ -426,7 +428,7 @@ function Sidebar() {
               </div>
             </div>
             <div className="menu-item">
-              <a
+              <Link
                 className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
                 href="/dashboard/book-list"
                 tabIndex={0}
@@ -438,7 +440,7 @@ function Sidebar() {
 
                   Book List
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
           <div
@@ -1585,7 +1587,7 @@ function Sidebar() {
           </div>
 
           <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
-            <a
+            <Link
               className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
               href="/dashboard/users/manage"
               tabIndex={0}
@@ -1596,11 +1598,11 @@ function Sidebar() {
               <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
                 User Management
               </span>
-            </a>
+            </Link>
           </div>
 
           <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
-            <a
+            <Link
               className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
               href="/dashboard/category/list"
               tabIndex={0}
@@ -1611,7 +1613,7 @@ function Sidebar() {
               <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
                 Category Management
               </span>
-            </a>
+            </Link>
           </div>
 
 

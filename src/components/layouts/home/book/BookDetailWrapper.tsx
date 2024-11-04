@@ -7,6 +7,7 @@ import BookDetailSidebar from "./BookDetailSidebar";
 import BookDetailsModal from "./BookDetailsModal";
 import BookFeedbacks from "./BookFeedbacks";
 import NotFoundPage from "@/pages/404";
+import BookBorrowConfirm from "./BookBorrowConfirm";
 
 const BookDetailWrapper = () => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const BookDetailWrapper = () => {
         </div>
       </div>
       <BookDetailsModal book={data} />
+      <BookBorrowConfirm book={data} />
     </>
   );
 };

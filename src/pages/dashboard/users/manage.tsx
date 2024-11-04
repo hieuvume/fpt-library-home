@@ -208,8 +208,8 @@ export default function UserManagePage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {currentUsers.map((user) => (
-                        <tr>
+                      {currentUsers.map((user, index) => (
+                        <tr key={index}>
                           <td>
                             <div className="flex items-center gap-2.5">
                               <div className="">
@@ -441,7 +441,7 @@ export default function UserManagePage() {
                 </div>
                 <p className="text-gray-800 text-2sm">
                   Click below to RSVP for our exclusive event. Limited spaces
-                  available, so don't miss out. Reserve your spot now with this
+                  available, so dont miss out. Reserve your spot now with this
                   special invitation link!
                 </p>
               </div>

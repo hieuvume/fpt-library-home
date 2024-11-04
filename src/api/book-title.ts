@@ -12,6 +12,9 @@ const bookTitleApi = {
   getDetailsById: (id: string): Promise<BookTitle> => {
     return axios.get(`book-titles/${id}/details`);
   },
+  borrowBook: (id: string): Promise<any> => {
+    return axios.post(`book-titles/${id}/borrow`);
+  },
 };
 
 const bookTitleDashboardApi = {};

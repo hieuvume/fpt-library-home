@@ -9,9 +9,10 @@ export type BorrowRecord = {
   book_title: BookTitle;
   before_status: string;
   after_status: string;
-  borrow_date: Date;
-  due_date: Date;
-  return_date: Date;
+  borrow_date: string;
+  due_date: string;
+  return_date: string;
   is_returned: boolean;
   penatly_total: number;
+  status: string
 };

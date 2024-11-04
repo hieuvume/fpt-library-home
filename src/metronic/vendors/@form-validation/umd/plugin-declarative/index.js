@@ -142,7 +142,7 @@
             var arr = clazz.split('.');
             // TODO: Find a safer way to create a plugin instance from the class
             // Currently, I have to use `any` here instead of a construtable interface
-            var fn = window || this; // eslint-disable-line @typescript-eslint/no-explicit-any
+            var fn = window || this;
             for (var i = 0, len = arr.length; i < len; i++) {
                 fn = fn[arr[i]];
             }

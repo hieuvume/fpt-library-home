@@ -1386,7 +1386,6 @@ export class KTDataTable<T extends KTDataTableDataInterface> extends KTComponent
 	 * @returns {string[]} An array of checked row IDs
 	 */
 	public getChecked(): string[] {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		return this._getChecked() as any;
 	}
 

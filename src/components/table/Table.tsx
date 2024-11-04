@@ -53,7 +53,7 @@ export default function Table<T extends object>({ columns }: TableProps<T>) {
                     {isLoading ? (
                       <p className="break-words text-sm text-gray-500 dark:text-gray-400 font-semibold"></p>
                     ) : (
-                      <>Không có dữ liệu nào được tìm thấy</>
+                      <>No data found</>
                     )}
                   </div>
                 </td>

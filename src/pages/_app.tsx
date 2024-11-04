@@ -8,9 +8,9 @@ import HomeLayout from "@/components/layouts/HomeLayout";
 import Head from "next/head";
 import { setupAxios } from "@/api/axios";
 import axios from "axios";
+import useAuth from "@/hooks/useAuth";
 
-
-setupAxios(axios)
+setupAxios(axios);
 
 const GlobalInit = dynamic(() => import("../components/GlobalInit"), {
   ssr: false,
