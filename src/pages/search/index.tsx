@@ -56,8 +56,10 @@ const Search = () => {
             </div>
             <div className="card-body">
               <p className="text-sm text-gray-800 leading-5.5 mb-4">
-                Experienced and creative professional with a passion great as
-                for problem-solving and a commitment to excellence.
+                Your go-to platform for easy and efficient book borrowing,
+                offering tailored options for both casual readers and Premium
+                members. Explore, reserve, and enjoy a seamless reading
+                experience with us!
               </p>
               <div className="grid gap-y-3.5">
                 <div className="flex items-center gap-2.5">
@@ -66,7 +68,7 @@ const Search = () => {
                     className="text-sm leading-none text-gray-900 hover:text-primary-active"
                     href="#"
                   >
-                    KeenThemes
+                    Readora
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
@@ -79,21 +81,12 @@ const Search = () => {
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <i className="ki-filled ki-briefcase text-base text-gray-500"></i>
-                  <a
-                    className="text-sm leading-none text-gray-900 hover:text-primary-active"
-                    href="#"
-                  >
-                    UI/UX Desiger
-                  </a>
-                </div>
-                <div className="flex items-center gap-2.5">
                   <i className="ki-filled ki-sms text-base text-gray-500"></i>
                   <a
                     className="text-sm leading-none text-gray-900 hover:text-primary-active"
                     href="#"
                   >
-                    enny@kteam.com
+                    contact@readora.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
@@ -102,7 +95,7 @@ const Search = () => {
                     className="text-sm leading-none text-gray-900 hover:text-primary-active"
                     href="#"
                   >
-                    https://keenthemes.com
+                    https://readora.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
@@ -111,7 +104,7 @@ const Search = () => {
                     className="text-sm leading-none text-gray-900 hover:text-primary-active"
                     href="#"
                   >
-                    keenthemes
+                    Readora
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
@@ -120,7 +113,7 @@ const Search = () => {
                     className="text-sm leading-none text-gray-900 hover:text-primary-active"
                     href="#"
                   >
-                    keenthemes
+                    Readora
                   </a>
                 </div>
               </div>

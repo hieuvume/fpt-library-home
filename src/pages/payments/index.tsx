@@ -1,7 +1,6 @@
 import PaymentWrapper from "@/components/layouts/home/payment/PaymentWrapper";
 import ProfileHeader from "@/components/layouts/home/profile/ProfileHeader";
 import ProfileTopBar from "@/components/layouts/home/profile/ProfileTopBar";
-import { withAuth } from "@/components/withAuth";
 import useAuth from "@/hooks/useAuth";
 import { useEffect } from "react";
 
@@ -21,5 +20,6 @@ const PaymentPage = () => {
     </>
   );
 };
+PaymentPage.requiresAuth = true;
 
-export default withAuth(PaymentPage);
+export default PaymentPage;

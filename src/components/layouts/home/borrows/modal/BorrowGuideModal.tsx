@@ -123,7 +123,7 @@ const BorrowGuideModal = () => {
           </div>
         </>
       )}
-      {data?.status === "reject" && (
+      {data?.status === "rejected" && (
         <div className="grid gap-5 mb-2">
           <div className="flex flex-col">
             <label className="text-gray-900 font-semibold text-base text-center">
@@ -151,6 +151,20 @@ const BorrowGuideModal = () => {
           </div>
         </div>
       )}
+      {data?.status === "borrowing" && (
+        <div className="grid gap-5 mb-2">
+          <div className="flex flex-col">
+            <label className="text-gray-900 font-semibold text-base text-center">
+              Borrow has borrowed
+            </label>
+            <div className="text-2sm font-medium text-gray-800 p-2 text-center">
+              You have borrowed the book "
+              <span className="font-semibold">{data?.book_title?.title}</span>"
+              . Please return the book before the due date.
+            </div>
+          </div>
+        </div>
+      )}
       {data?.status === "losted" && (
         <div className="grid gap-5 mb-2">
           <div className="flex flex-col">
@@ -161,6 +175,20 @@ const BorrowGuideModal = () => {
               You have losted the book "
               <span className="font-semibold">{data?.book_title?.title}</span>"
               . Please contact the library for further support
+            </div>
+          </div>
+        </div>
+      )}
+      {data?.status === "returned" && (
+        <div className="grid gap-5 mb-2">
+          <div className="flex flex-col">
+            <label className="text-gray-900 font-semibold text-base text-center">
+              Borrow has returned
+            </label>
+            <div className="text-2sm font-medium text-gray-800 p-2 text-center">
+              You have returned the book "
+              <span className="font-semibold">{data?.book_title?.title}</span>"
+              . Thank you for using our service.
             </div>
           </div>
         </div>

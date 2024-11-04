@@ -1,9 +1,8 @@
 import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
-import Topbar from "./topbar/Topbar";
-import { isWindows } from "react-device-detect";
 import HeaderSearch from "./HeaderSearch";
+import Topbar from "./topbar/Topbar";
 
 function Header() {
   const { isAuthenticated, redirectToLogin } = useAuth();

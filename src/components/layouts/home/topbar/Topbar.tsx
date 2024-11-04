@@ -1647,133 +1647,27 @@ const Topbar = () => {
                                         <span className="menu-title">My Profile</span>
                                     </Link>
                                 </div>
-                                <div
-                                    className="menu-item menu-item-dropdown"
-                                    data-menu-item-offset="-50px, 0"
-                                    data-menu-item-placement="left-start"
-                                    data-menu-item-toggle="dropdown"
-                                    data-menu-item-trigger="click|lg:hover"
-                                >
-                                    <div className="menu-link">
-                                        <span className="menu-icon">
-                                            <i className="ki-filled ki-setting-2"></i>
-                                        </span>
-                                        <span className="menu-title">My Account</span>
-                                        <span className="menu-arrow">
-                                            <i className="ki-filled ki-right text-3xs"></i>
-                                        </span>
-                                    </div>
-                                    <div className="menu-dropdown menu-default light:border-gray-300 w-full max-w-[220px]">
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/account/home/get-started"
-                                            >
-                                                <span className="menu-icon">
-                                                    <i className="ki-filled ki-coffee"></i>
-                                                </span>
-                                                <span className="menu-title">Get Started</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/account/home/user-profile"
-                                            >
-                                                <span className="menu-icon">
-                                                    <i className="ki-filled ki-some-files"></i>
-                                                </span>
-                                                <span className="menu-title">My Profile</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a className="menu-link" href="#">
-                                                <span className="menu-icon">
-                                                    <i className="ki-filled ki-icon"></i>
-                                                </span>
-                                                <span className="menu-title">Billing</span>
-                                                <span
-                                                    className="menu-badge"
-                                                    data-tooltip="true"
-                                                    data-tooltip-placement="top"
-                                                >
-                                                    <i className="ki-filled ki-information-2 text-md text-gray-500"></i>
-                                                    <span
-                                                        className="tooltip"
-                                                        data-tooltip-content="true"
-                                                    >
-                                                        Payment and subscription info
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/account/security/overview"
-                                            >
-                                                <span className="menu-icon">
-                                                    <i className="ki-filled ki-medal-star"></i>
-                                                </span>
-                                                <span className="menu-title">Security</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/account/members/teams"
-                                            >
-                                                <span className="menu-icon">
-                                                    <i className="ki-filled ki-setting"></i>
-                                                </span>
-                                                <span className="menu-title">
-                                                    Members &amp; Roles
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/account/integrations"
-                                            >
-                                                <span className="menu-icon">
-                                                    <i className="ki-filled ki-switch"></i>
-                                                </span>
-                                                <span className="menu-title">Integrations</span>
-                                            </a>
-                                        </div>
-                                        <div className="menu-separator"></div>
-                                        <div className="menu-item">
-                                            <a
-                                                className="menu-link"
-                                                href="/metronic/tailwind/demo9/account/security/overview"
-                                            >
-                                                <span className="menu-icon">
-                                                    <i className="ki-filled ki-shield-tick"></i>
-                                                </span>
-                                                <span className="menu-title">Notifications</span>
-                                                <label className="switch switch-sm">
-                                                    <input
-                                                        defaultChecked
-                                                        name="check"
-                                                        type="checkbox"
-                                                        defaultValue={1}
-                                                    />
-                                                </label>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div className="menu-item">
-                                    <a
+                                    <Link
                                         className="menu-link"
-                                        href="https://devs.keenthemes.com"
+                                        href="/borrows"
                                     >
                                         <span className="menu-icon">
                                             <i className="ki-filled ki-message-programming"></i>
                                         </span>
-                                        <span className="menu-title">Dev Forum</span>
-                                    </a>
+                                        <span className="menu-title">Borrows</span>
+                                    </Link>
+                                </div>
+                                <div className="menu-item">
+                                    <Link
+                                        className="menu-link"
+                                        href="/payments"
+                                    >
+                                        <span className="menu-icon">
+                                            <i className="ki-filled ki-message-programming"></i>
+                                        </span>
+                                        <span className="menu-title">Payments</span>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="menu-separator"></div>
