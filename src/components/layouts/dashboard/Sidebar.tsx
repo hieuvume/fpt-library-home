@@ -62,52 +62,21 @@ function Sidebar() {
           data-menu-accordion-expand-all="false"
           id="sidebar_menu"
         >
-          <div
-            className="menu-item"
-            data-menu-item-toggle="accordion"
-            data-menu-item-trigger="click"
-          >
-            <div
-              className="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] pl-[10px] pr-[10px] py-[6px]"
+
+
+          <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
+            <a
+              className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
+              href="/dashboard"
               tabIndex={0}
             >
-              <span className="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
-                <i className="ki-filled ki-element-11 text-lg"></i>
+              <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
+                <i className="ki-filled ki-chart-simple text-lg"></i>
               </span>
-              <span className="menu-title text-sm font-semibold text-gray-700 menu-item-active:text-primary menu-link-hover:!text-primary">
-                Dashboards
+              <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
+                Dashboard
               </span>
-              <span className="menu-arrow text-gray-400 w-[20px] shrink-0 justify-end ml-1 mr-[-10px]">
-                <i className="ki-filled ki-plus text-2xs menu-item-show:hidden"></i>
-                <i className="ki-filled ki-minus text-2xs hidden menu-item-show:inline-flex"></i>
-              </span>
-            </div>
-            <div className="menu-accordion gap-0.5 pl-[10px] relative before:absolute before:left-[20px] before:top-0 before:bottom-0 before:border-l before:border-gray-200">
-              <div className="menu-item">
-                <a
-                  className="menu-link gap-[14px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
-                  href="html/demo1.html"
-                  tabIndex={0}
-                >
-                  <span className="menu-bullet flex w-[6px] relative before:absolute before:top-0 before:size-[6px] before:rounded-full before:-translate-x-1/2 before:-translate-y-1/2 menu-item-active:before:bg-primary menu-item-hover:before:bg-primary"></span>
-                  <span className="menu-title text-2sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                    Light Sidebar
-                  </span>
-                </a>
-              </div>
-              <div className="menu-item">
-                <a
-                  className="menu-link gap-[14px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
-                  href="html/demo1/dashboards/dark-sidebar.html"
-                  tabIndex={0}
-                >
-                  <span className="menu-bullet flex w-[6px] relative before:absolute before:top-0 before:size-[6px] before:rounded-full before:-translate-x-1/2 before:-translate-y-1/2 menu-item-active:before:bg-primary menu-item-hover:before:bg-primary"></span>
-                  <span className="menu-title text-2sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                    Dark Sidebar
-                  </span>
-                </a>
-              </div>
-            </div>
+            </a>
           </div>
           <div className="menu-item pt-2.25 pb-px">
             <span className="menu-heading uppercase pl-[10px] pr-[10px] text-2sm font-semibold text-gray-500">
@@ -466,7 +435,7 @@ function Sidebar() {
                   <i className="ki-filled ki-book text-lg"></i>
                 </span>
                 <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                  
+
                   Book List
                 </span>
               </a>
@@ -1611,7 +1580,7 @@ function Sidebar() {
           </div>
           <div className="menu-item pt-2.25 pb-px">
             <span className="menu-heading uppercase pl-[10px] pr-[10px] text-2sm font-semibold text-gray-500">
-              Apps
+              Management
             </span>
           </div>
 
@@ -1630,38 +1599,22 @@ function Sidebar() {
             </a>
           </div>
 
-          <div className="menu-item">
-            <div
-              className="menu-label gap-[10px] pl-[10px] pr-[10px] py-[6px] border border-transparent"
+          <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
+            <a
+              className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
+              href="/dashboard/category/list"
               tabIndex={0}
             >
               <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
-                <i className="ki-filled ki-questionnaire-tablet text-lg"></i>
+                <i className="ki-filled ki-category text-lg"></i>
               </span>
-              <span className="menu-title text-sm font-semibold text-gray-700">
-                Projects
+              <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
+                Category Management
               </span>
-              <span className="menu-badge mr-[-10px]">
-                <span className="badge badge-xs">Soon</span>
-              </span>
-            </div>
+            </a>
           </div>
-          <div className="menu-item">
-            <div
-              className="menu-label gap-[10px] pl-[10px] pr-[10px] py-[6px] border border-transparent"
-              tabIndex={0}
-            >
-              <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
-                <i className="ki-filled ki-handcart text-lg"></i>
-              </span>
-              <span className="menu-title text-sm font-semibold text-gray-700">
-                eCommerce
-              </span>
-              <span className="menu-badge mr-[-10px]">
-                <span className="badge badge-xs">Soon</span>
-              </span>
-            </div>
-          </div>
+
+
           <div className="menu-item pt-2.25 pb-px">
             <span className="menu-heading uppercase pl-[10px] pr-[10px] text-2sm font-semibold text-gray-500">
               Miscellaneous
