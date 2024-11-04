@@ -4,15 +4,15 @@ import { BookTitle } from "@/models/book-title";
 const BookDetailSidebar = ({ book }: { book: BookTitle }) => {
   const { user, isAuthenticated } = useAuth();
 
-  const availableCopies = book.books.filter(
+  const availableCopies = book?.books.filter(
     (book) => book.status === "available"
   ).length;
-  const borrowedCopies = book.books.filter(
+  const borrowedCopies = book?.books.filter(
     (book) => book.status === "borrowed"
   ).length;
 
-  const minimumMembership = book.memberships.reduce((prev, current) => {
-    return prev.price_monthly < current.price_monthly ? prev : current;
+  const minimumMembership = book?.memberships.reduce((prev, current) => {
+    return prev?.price_monthly < current.price_monthly ? prev : current;
   });
 
   return (
@@ -28,7 +28,7 @@ const BookDetailSidebar = ({ book }: { book: BookTitle }) => {
                   </td>
                   <td className="text-sm ext-gray-900 pb-3">
                     <span className="cursor-pointer text-primary">
-                      {book.books.length} copies
+                      {book?.books?.length} copies
                     </span>
                   </td>
                 </tr>
@@ -52,9 +52,9 @@ const BookDetailSidebar = ({ book }: { book: BookTitle }) => {
                   </td>
                   <td className="text-sm ext-gray-900 pb-3">
                     <span
-                      className={`badge badge-sm badge-${minimumMembership.color} badge-outline`}
+                      className={`badge badge-sm badge-${minimumMembership?.color} badge-outline`}
                     >
-                      {minimumMembership.name}
+                      {minimumMembership?.name}
                     </span>
                   </td>
                 </tr>
