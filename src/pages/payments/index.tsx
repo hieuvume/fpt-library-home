@@ -7,31 +7,30 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const PaymentPage = () => {
+  const { redirectToLogin, mutateAuth, isLoading, isAuthenticated } = useAuth();
+  const router = useRouter();
 
-    const { user, mutateAuth, isLoading, isAuthenticated } = useAuth();
-    const router = useRouter()
+  useEffect(() => {
+    mutateAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    useEffect(() => {
-        mutateAuth();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+  if (!isAuthenticated) {
+    redirectToLogin();
+    return <div>Redirecting...</div>;
+  }
 
-    if (!isAuthenticated) {
-        router.push('/auth/sign-in')
-        return <div>Redirecting...</div>
-    }
+  return (
+    <>
+      <ProfileHeader />
+      <ProfileTopBar />
+      <PaymentWrapper />
+    </>
+  );
+};
 
-    return (
-        <>
-            <ProfileHeader />
-            <ProfileTopBar />
-            <PaymentWrapper />
-        </>
-    );
-}
-
-export default PaymentPage
+export default PaymentPage;

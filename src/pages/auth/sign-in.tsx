@@ -19,6 +19,7 @@ const validationSchema = Yup.object().shape({
 export default function SignInPage() {
   const { mutateAuth, loginWithGoogle } = useAuth();
   const router = useRouter();
+  const { redirect } = router.query;
 
   return (
     <div className="flex items-center justify-center grow bg-center bg-no-repeat page-bg">
@@ -31,7 +32,8 @@ export default function SignInPage() {
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting, setFieldError }) => {
             setSubmitting(true);
-            authApi.signIn(values)
+            authApi
+              .signIn(values)
               .then((data) => {
                 const { access_token } = data;
                 saveAccessToken(access_token);
@@ -39,13 +41,18 @@ export default function SignInPage() {
                   .me()
                   .then((data) => {
                     mutateAuth(data, false);
-                    router.push("/");
+                    if (redirect) {
+                      router.push(redirect as string);
+                    } else {
+                      router.push("/");
+                    }
                   })
                   .finally(() => setSubmitting(false));
-              }).catch((error) => {
-                handleErrorResponse(error, setFieldError)
-                setSubmitting(false)
               })
+              .catch((error) => {
+                handleErrorResponse(error, setFieldError);
+                setSubmitting(false);
+              });
           }}
         >
           {({ isSubmitting }) => (
@@ -58,16 +65,16 @@ export default function SignInPage() {
                   <span className="text-2sm text-gray-700 me-1.5">
                     Need an account?
                   </span>
-                  <Link
-                    className="text-2sm link"
-                    href="/auth/sign-up"
-                  >
+                  <Link className="text-2sm link" href="/auth/sign-up">
                     Sign up
                   </Link>
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-2.5">
-                <span className="btn btn-light btn-sm justify-center" onClick={loginWithGoogle}>
+                <span
+                  className="btn btn-light btn-sm justify-center"
+                  onClick={loginWithGoogle}
+                >
                   <Image
                     width={20}
                     height={20}
@@ -106,8 +113,12 @@ export default function SignInPage() {
                 />
                 <span className="checkbox-label">Remember me</span>
               </label>
-              <button type="submit" className="btn btn-primary flex justify-center grow" disabled={isSubmitting}>
-                {isSubmitting ? 'Loading...' : 'Sign in'}
+              <button
+                type="submit"
+                className="btn btn-primary flex justify-center grow"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Loading..." : "Sign in"}
               </button>
             </Form>
           )}

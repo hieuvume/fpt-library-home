@@ -1,8 +1,7 @@
 import { Book } from "./book";
 import { Category } from "./category";
+import { Feedback } from "./feedback";
 import { Membership } from "./membership";
-
-export type Feedback = {};
 
 export type BookTitle = {
   _id: string;

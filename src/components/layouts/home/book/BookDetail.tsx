@@ -4,9 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 const BookDetail = ({ book }: { book: BookTitle }) => {
+  const rating =
+    book?.feedbacks
+      ?.map((feedback) => feedback.rating)
+      .reduce((a, b) => a + b, 0) / book?.feedbacks?.length;
+
   return (
     <>
-      <div className="card">
+      <div className="card mb-5">
         <div className="card-body lg:py-7.5">
           <div className="flex flex-col md:flex-row gap-5">
             <div className="flex items-center gap-5 shrink-0">
@@ -18,7 +23,7 @@ const BookDetail = ({ book }: { book: BookTitle }) => {
                 src={book?.cover_image}
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col grow">
               <div className="text-base font-medium hover:text-primary text-gray-900 leading-4">
                 {book?.title}
               </div>
@@ -78,18 +83,28 @@ const BookDetail = ({ book }: { book: BookTitle }) => {
                   </span>
                 </div>
               </div>
+              <div className="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5 mb-2">
+                <label className="form-label max-w-48 text-gray-800 fw-semibold">
+                  Rating
+                </label>
+                <div className="flex items-center gap-7.5 grow">
+                  <span className="form-info text-gray-800 font-normal">
+                    {rating.toFixed(1)} <i className="ki-filled ki-star" />
+                  </span>
+                </div>
+              </div>
               <div className="flex gap-5 items-center mt-auto">
                 <div className="flex gap-1 items-center">
                   <i className="ki-filled ki-heart text-base text-danger"></i>
                   <span className="text-2sm text-gray-800 py-2">
-                    {book.times_borrowed} borrowed
+                    {book.times_borrowed} Borrowed
                   </span>
                 </div>
                 <div className="flex gap-1 items-center">
                   <i className="ki-filled ki-messages text-base text-primary"></i>
                   <span className="text-2sm text-gray-800 py-2">
                     {book.feedbacks.length}{" "}
-                    {book.feedbacks.length > 1 ? "reviews" : "review"}
+                    {book.feedbacks.length > 1 ? "Reviews" : "Review"}
                   </span>
                 </div>
               </div>

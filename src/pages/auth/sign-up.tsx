@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function SignUpPage() {
-  const { mutateAuth, loginWithGoogle } = useAuth();
+  const { mutateAuth, loginWithGoogle, redirectToLogin } = useAuth();
   const router = useRouter();
 
   return (
@@ -44,7 +44,8 @@ export default function SignUpPage() {
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting, setFieldError }) => {
             setSubmitting(true);
-            authApi.signUp(values)
+            authApi
+              .signUp(values)
               .then((data) => {
                 Report.success("Success", "Sign up successfully!", "OK", () => {
                   const { access_token } = data;
@@ -57,10 +58,11 @@ export default function SignUpPage() {
                     })
                     .finally(() => setSubmitting(false));
                 });
-              }).catch((error) => {
-                handleErrorResponse(error, setFieldError)
-                setSubmitting(false)
               })
+              .catch((error) => {
+                handleErrorResponse(error, setFieldError);
+                setSubmitting(false);
+              });
           }}
         >
           {({ isSubmitting }) => (
@@ -73,13 +75,19 @@ export default function SignUpPage() {
                   <span className="text-2sm text-gray-700 me-1.5">
                     Already have an Account ?
                   </span>
-                  <Link className="text-2sm link" href="/auth/sign-in/">
+                  <span
+                    className="text-2sm link cursor-pointer"
+                    onClick={redirectToLogin}
+                  >
                     Sign In
-                  </Link>
+                  </span>
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-2.5">
-                <span className="btn btn-light btn-sm justify-center" onClick={loginWithGoogle}>
+                <span
+                  className="btn btn-light btn-sm justify-center"
+                  onClick={loginWithGoogle}
+                >
                   <Image
                     width={20}
                     height={20}

@@ -1,6 +1,6 @@
 import { bookApi } from "@/api/book"
 import BookDetails from "@/components/layouts/home/book_details"
-import FeedbackDetails from "@/components/layouts/home/feedback"
+import BookFeedbacks from "@/components/layouts/home/book/BookFeedbacks"
 
 import { useRouter } from "next/router"
 import useSWR from "swr"
@@ -24,7 +24,7 @@ export default function BookDetailPage() {
                 <div className="col-span-2">
                     <div className="flex flex-col gap-5 lg:gap-7.5">
                         <BookDetails children={details} />
-                        <FeedbackDetails children={feebacks?.docs[0].feedbacks} />
+                        <BookFeedbacks children={feebacks?.docs[0].feedbacks} />
                     </div>
                 </div>
                 <div className="col-span-1">

@@ -6,8 +6,7 @@ import { isWindows } from "react-device-detect";
 import HeaderSearch from "./HeaderSearch";
 
 function Header() {
-
-  const { isAuthenticated, user } = useAuth()
+  const { isAuthenticated, redirectToLogin } = useAuth();
 
   return (
     <header
@@ -101,25 +100,20 @@ function Header() {
           {/* End of Navs */}
         </div>
         {/* End of Logo */}
-        <HeaderSearch/>
+        <HeaderSearch />
         {/* Topbar */}
-        {isAuthenticated ? <Topbar /> : (
+        {isAuthenticated ? (
+          <Topbar />
+        ) : (
           <div className="flex items-center gap-2 lg:gap-3.5 lg:w-[400px] justify-end">
             <div className="flex items-center gap-3">
-              <Link
-                className="btn btn-sm btn-light"
-                href="/auth/sign-up"
-              >
+              <Link className="btn btn-sm btn-light" href="/auth/sign-up">
                 Sign up
               </Link>
-              <Link
-                className="btn btn-sm btn-dark"
-                href="/auth/sign-in"
-              >
+              <button className="btn btn-sm btn-dark" onClick={redirectToLogin}>
                 Sign in
-              </Link>
+              </button>
             </div>
-
           </div>
         )}
 

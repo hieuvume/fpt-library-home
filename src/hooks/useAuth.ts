@@ -1,5 +1,6 @@
 import authApi from "@/api/auth";
 import { config } from "@/config";
+import { authRoutes, privateRoutes } from "@/middleware";
 import { User } from "@/models/auth";
 import { removeAccessToken } from "@/utils/auth";
 import { useRouter } from "next/router";
@@ -7,14 +8,12 @@ import useSWR from "swr";
 
 const useAuth = () => {
   const router = useRouter();
+  const { redirect } = router.query;
   const { data, error, mutate } = useSWR<User>("/auth/me", () => authApi.me(), {
     onError: (err) => {
       if (err?.statusCode == 401) {
         removeAccessToken();
         mutate(null, false);
-        // if (router.pathname != "/login") {
-        //   router.push("/login");
-        // }
       }
     },
     revalidateOnFocus: false,
@@ -29,7 +28,9 @@ const useAuth = () => {
     removeAccessToken();
     // authApi.logout()
     mutate(null, false);
-    router.push("/");
+    if (privateRoutes.includes(router.pathname)) {
+      router.push("/auth/sign-in");
+    }
   };
 
   const loginWithGoogle = () => {
@@ -45,6 +46,17 @@ const useAuth = () => {
     login,
     logout,
     loginWithGoogle,
+    redirectToLogin: () => {
+      if (redirect) {
+        router.push(`/auth/sign-in?redirect=${redirect}`);
+      } else {
+        if (authRoutes.includes(router.pathname)) {
+          router.push("/auth/sign-in");
+          return;
+        }
+        router.push(`/auth/sign-in?redirect=${router.asPath}`);
+      }
+    },
   };
 };
 
