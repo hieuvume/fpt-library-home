@@ -28,7 +28,7 @@ const BookDetail = ({ book }: { book: BookTitle }) => {
                 {book?.title}
               </div>
               <p className="text-2sm text-gray-800 leading-[22px] mb-4">
-                {book.description}
+                {book?.description}
               </p>
 
               <div className="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5 mb-2">
@@ -46,7 +46,7 @@ const BookDetail = ({ book }: { book: BookTitle }) => {
                   Author
                 </label>
                 <div className="">
-                  {book.author.map((author, index) => (
+                  {book?.author.map((author, index) => (
                     <Link
                       key={index}
                       href={"/search?keyword=" + author}
@@ -62,7 +62,7 @@ const BookDetail = ({ book }: { book: BookTitle }) => {
                   Category
                 </label>
                 <div className="">
-                  {book.categories.map((category, index) => (
+                  {book?.categories.map((category, index) => (
                     <Link
                       key={index}
                       href={"/search?keyword=" + category.title}
