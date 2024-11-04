@@ -13,6 +13,10 @@ const dashboardCategoryApi = {
         description:string
     }) => {
         return api.post('/dashboard/categories', data)
+    },
+
+    deleteCategory: (id: string) => {
+        return api.delete(`/dashboard/categories/${id}`)
     }
 
 }

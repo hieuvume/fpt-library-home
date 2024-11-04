@@ -29,8 +29,39 @@ const columns: ReadonlyArray<Column<Category[]>> = [
     accessor: "description",
     Cell: ({ value }) => <span>{value}</span>,
   },
+  {
+    Header: ({ column: { id } }) => <TableHeader title="Action" id={id} />,
+    accessor: 'action',
+    Cell: ({ row }) => (
+      <>
+        <button className="btn btn-success">View</button>
+        <button className="btn btn-danger" onClick={() => handleDeleteCategory(row.original._id)}>Delete</button>
+      </>
+    ),
+  },
   // Các cột khác nếu có, như Due, Status, Created
 ];
+
+const handleDeleteCategory = async (categoryId: string) => {
+  // Hiển thị hộp thoại xác nhận
+  const isConfirmed = window.confirm("Bạn có chắc chắn muốn xóa danh mục này không?");
+
+  if (!isConfirmed) {
+    return; // Nếu không đồng ý, thoát khỏi hàm
+  }
+
+  try {
+    // Gọi API để xóa danh mục theo ID
+    await dashboardCategoryApi.deleteCategory(categoryId);
+    alert("Category deleted successfully!");
+    // Tùy chọn: Làm mới dữ liệu để phản ánh sự thay đổi trong bảng
+    // Ví dụ: nếu bạn có hàm fetchCategories để lấy danh sách đã cập nhật:
+    // fetchCategories();
+  } catch (error) {
+    console.error("Failed to delete category:", error);
+    alert("Failed to delete category");
+  }
+};
 
 export function CategoriesList() {
   const formRef = useRef(null); // Tạo ref cho form
@@ -58,12 +89,14 @@ export function CategoriesList() {
   };
 
 
+
+
   return (
     <>
       <div className="container-fixed col-span-1 lg:col-span-2">
         <div className="flex items-center gap-2.5">
           <Button className="btn btn-sm btn-primary" onClick={handleAddClick} >
-            Add Member
+            Add Category
           </Button>
         </div>
         {/* Table */}
