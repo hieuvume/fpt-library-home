@@ -70,8 +70,7 @@ const BorrowsTable = () => {
     if (router.query?.borrowId) {
       setData(router.query.borrowId as string);
       KTModal.openModal("borrow-guide");
-      // remove query param
-      router.replace(router.pathname, undefined, { scroll: false });
+      window.history.replaceState(null, '', '/borrows')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.borrowId, setData]);

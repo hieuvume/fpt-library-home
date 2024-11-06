@@ -11,14 +11,23 @@ const membershipApi = {
       membershipId,
     });
   },
-  upgradePlan: (membershipId: string, months: number, payment_method: string): Promise<Payment> => {
+  upgradePlan: (
+    membershipId: string,
+    months: number,
+    payment_method: string
+  ): Promise<Payment> => {
     return api.post(`/membership-card/upgrade`, {
       membershipId,
       months,
       payment_method,
     });
-  }
+  },
+  extendsPlan: (months: number, payment_method: string): Promise<Payment> => {
+    return api.post(`/membership-card/extends`, {
+      months,
+      payment_method,
+    });
+  },
 };
-
 
 export default membershipApi;

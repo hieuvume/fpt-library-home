@@ -7,7 +7,10 @@ import TableHeader from "@/components/table/TableHeader";
 import TablePagination from "@/components/table/TablePagination";
 import { KTModal } from "@/metronic/core";
 import { Payment } from "@/models/payment";
-import { ObjectDataProvider, useObjectData } from "@/provider/ObjectDataProvider";
+import {
+  ObjectDataProvider,
+  useObjectData,
+} from "@/provider/ObjectDataProvider";
 import { TableQueryProvider } from "@/provider/TableQueryProvider";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -19,29 +22,41 @@ import PaymentGuideModal from "./modal/PaymentGuideModal";
 
 const columns: ReadonlyArray<Column<Payment>> = [
   {
-    Header: ({ column: { id } }) => <TableHeader title="" id={id} className="w-14" />,
+    Header: ({ column: { id } }) => (
+      <TableHeader title="" id={id} className="w-14" />
+    ),
     id: "id",
-    Cell: IDCell
+    Cell: IDCell,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Transaction Id" id={id} sortable />,
+    Header: ({ column: { id } }) => (
+      <TableHeader title="Transaction Id" id={id} sortable />
+    ),
     accessor: "transaction_id",
-    Cell: ({ value }) => <span className="text-primary">{value.toUpperCase()}</span>,
+    Cell: ({ value }) => (
+      <span className="text-primary">{value.toUpperCase()}</span>
+    ),
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Method" id={id} sortable />,
+    Header: ({ column: { id } }) => (
+      <TableHeader title="Method" id={id} sortable />
+    ),
     accessor: "payment_method",
-    Cell: PaymentMethodCell
+    Cell: PaymentMethodCell,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Amount" id={id} sortable />,
+    Header: ({ column: { id } }) => (
+      <TableHeader title="Amount" id={id} sortable />
+    ),
     accessor: "amount",
-    Cell: CurrencyCell
+    Cell: CurrencyCell,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Status" id={id} sortable />,
+    Header: ({ column: { id } }) => (
+      <TableHeader title="Status" id={id} sortable />
+    ),
     accessor: "payment_status",
-    Cell: PaymentStatusCell
+    Cell: PaymentStatusCell,
   },
   {
     Header: ({ column: { id } }) => <TableHeader title="Note" id={id} />,
@@ -49,31 +64,34 @@ const columns: ReadonlyArray<Column<Payment>> = [
     Cell: ({ value }) => <span className="text-gray-500">{value}</span>,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Date" id={id} sortable />,
+    Header: ({ column: { id } }) => (
+      <TableHeader title="Date" id={id} sortable />
+    ),
     accessor: "created_at",
     Cell: DateCell,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="" id={id} className="w-8" />,
+    Header: ({ column: { id } }) => (
+      <TableHeader title="" id={id} className="w-8" />
+    ),
     id: "action",
-    Cell: ({ row: { original } }) => (<PaymentActionCell payment={original} />),
+    Cell: ({ row: { original } }) => <PaymentActionCell payment={original} />,
   },
 ];
 
-
 const PaymentTable = () => {
-  const { setData } = useObjectData<string>()
-  const router = useRouter()
+  const { setData } = useObjectData<string>();
+  const router = useRouter();
 
   useEffect(() => {
     if (router.query?.paymentId) {
       setData(router.query.paymentId as string);
-      KTModal.openModal("payment-guide")
-      // remove query param
-      router.replace(router.pathname, undefined, { scroll: false })
+      KTModal.openModal("payment-guide");
+      window.history.replaceState(null, '', '/payments')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.paymentId, setData])
+  }, [router.query.paymentId, setData]);
+
   return (
     <div className="card card-grid min-w-full">
       <div className="card-header">
@@ -84,8 +102,8 @@ const PaymentTable = () => {
       </div>
       <TablePagination />
     </div>
-  )
-}
+  );
+};
 
 const PaymentWrapper = () => {
   return (
@@ -103,7 +121,7 @@ const PaymentWrapper = () => {
         </div>
       </div>
     </ObjectDataProvider>
-  )
-}
+  );
+};
 
-export default PaymentWrapper
+export default PaymentWrapper;

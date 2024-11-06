@@ -13,7 +13,7 @@ function OwnerSidebar() {
         className="sidebar-header hidden lg:flex items-center relative justify-between px-3 lg:px-6 shrink-0"
         id="sidebar_header"
       >
-        <a className="dark:hidden" href="/">
+        <Link className="dark:hidden" href="/">
           <img
             alt=""
             className="default-logo min-h-[22px] max-w-none"
@@ -24,7 +24,7 @@ function OwnerSidebar() {
             className="small-logo min-h-[22px] max-w-none"
             src="/media/app/mini-logo.svg"
           />
-        </a>
+        </Link>
         <a className="hidden dark:block" href="html/demo1.html">
           <img
             alt=""
@@ -68,7 +68,7 @@ function OwnerSidebar() {
             <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
               <Link
                 className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
-                href="/dashboard/owner"
+                href="/dashboard"
                 tabIndex={0}
               >
                 <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">

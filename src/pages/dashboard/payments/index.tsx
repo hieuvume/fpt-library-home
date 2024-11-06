@@ -4,6 +4,7 @@ import PaymentMethodCell from "@/components/layouts/home/payment/cell/PaymentMet
 import PaymentStatusCell from "@/components/layouts/home/payment/cell/PaymentStatusCell";
 import ActionCell from "@/components/table/cell/ActionCell";
 import CurrencyCell from "@/components/table/cell/CurrencyCell";
+import CustomerCell from "@/components/table/cell/CustomerCell";
 import DateCell from "@/components/table/cell/DateCell";
 import Table from "@/components/table/Table";
 import TableHeader from "@/components/table/TableHeader";
@@ -32,20 +33,7 @@ const columns: ReadonlyArray<Column<Payment>> = [
   {
     Header: ({ column: { id } }) => <TableHeader title="Customer" id={id} />,
     accessor: "user",
-    Cell: ({ value }) => (
-      <>
-        <div className="flex items-center gap-2">
-          <Image
-            className="w-8 h-8 rounded-full"
-            src={value.avatar_url}
-            alt=""
-            width={50}
-            height={50}
-          />
-          <span className="text-gray-800 fw-semibold">{value.full_name}</span>
-        </div>
-      </>
-    ),
+    Cell: CustomerCell,
   },
   {
     Header: ({ column: { id } }) => (

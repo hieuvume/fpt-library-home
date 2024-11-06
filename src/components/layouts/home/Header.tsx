@@ -5,7 +5,8 @@ import HeaderSearch from "./HeaderSearch";
 import Topbar from "./topbar/Topbar";
 
 function Header() {
-  const { isAuthenticated, redirectToLogin } = useAuth();
+  const { isAuthenticated, redirectToLogin, isAdmin, isLibrarian, isOwner } =
+    useAuth();
 
   return (
     <header
@@ -68,29 +69,29 @@ function Header() {
                 </button>
                 <div className="menu-dropdown w-48 py-2">
                   <div className="menu-item">
-                    <a
-                      className="menu-link"
-                      href="/metronic/tailwind/demo9/public-profile/profiles/default"
-                      tabIndex={0}
-                    >
+                    <Link href="/" className="menu-link" tabIndex={0}>
                       <span className="menu-icon">
                         <i className="ki-filled ki-profile-circle"></i>
                       </span>
-                      <span className="menu-title">MetronicTeam</span>
-                    </a>
+                      <span className="menu-title">Home</span>
+                    </Link>
                   </div>
-                  <div className="menu-item">
-                    <a
-                      className="menu-link"
-                      href="/metronic/tailwind/demo9/"
-                      tabIndex={0}
-                    >
-                      <span className="menu-icon">
-                        <i className="ki-filled ki-setting-2"></i>
-                      </span>
-                      <span className="menu-title">KeenTeam</span>
-                    </a>
-                  </div>
+                  {isAdmin() || isLibrarian() || isOwner() ? (
+                    <div className="menu-item">
+                      <Link
+                        className="menu-link"
+                        href="/dashboard"
+                        tabIndex={0}
+                      >
+                        <span className="menu-icon">
+                          <i className="ki-filled ki-setting-2"></i>
+                        </span>
+                        <span className="menu-title">Dashboard</span>
+                      </Link>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>

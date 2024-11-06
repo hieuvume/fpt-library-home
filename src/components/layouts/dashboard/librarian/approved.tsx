@@ -1,12 +1,11 @@
 import { borrowRecordDashboardApi } from "@/api/borrow-record";
 import { BaseModal } from "@/components/modal/BaseModal";
-import { BorrowRecord, dashboardBorrowRecord } from "@/models/borrow-record";
-import { useState } from "react";
-import useSWR, { mutate } from "swr";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { Report } from "notiflix";
+import { BorrowRecord } from "@/models/borrow-record";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
+import { Report } from "notiflix";
+import useSWR from "swr";
+import * as Yup from "yup";
 
 const validationSchema = Yup.object({
   uniqueId: Yup.string().required("Unique ID is required"),
@@ -15,9 +14,9 @@ const validationSchema = Yup.object({
   before_status: Yup.string().required("Before status is required"),
 });
 
-export default function Approve({ BorrowRecord }: { BorrowRecord: dashboardBorrowRecord }) {
-  const bookId = BorrowRecord?.book_title?._id;
-  console.log(BorrowRecord?.user._id);
+export default function Approve({ record }: { record: BorrowRecord }) {
+  const bookId = record?.book_title?._id;
+
   const router = useRouter();
   const { data, isLoading, error } = useSWR(
     bookId ? `/borrow-records-dashboard/book-loans/${bookId}` : null,
@@ -26,15 +25,16 @@ export default function Approve({ BorrowRecord }: { BorrowRecord: dashboardBorro
 
   const handleSubmit = (values) => {
     const data = {
-      borrowId: BorrowRecord._id,
+      borrowId: record._id,
       bookId: values.uniqueId,
       borrowStatus: values.status,
-      bookStatus: 'borrowed',
-      userId: BorrowRecord.user._id,
+      bookStatus: "borrowed",
+      userId: record.user._id,
     };
     borrowRecordDashboardApi.approveBrrow(data).then(() => {
-     
-      Report.success("Success", "Approve borrow successfully", "OK",()=> window.location.reload());
+      Report.success("Success", "Approve borrow successfully", "OK", () =>
+        window.location.reload()
+      );
     });
   };
 
@@ -53,7 +53,10 @@ export default function Approve({ BorrowRecord }: { BorrowRecord: dashboardBorro
         {({ isSubmitting }) => (
           <Form className="space-y-4 p-4">
             <div>
-              <label htmlFor="uniqueId" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="uniqueId"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Book Unique ID
               </label>
               <Field
@@ -68,10 +71,17 @@ export default function Approve({ BorrowRecord }: { BorrowRecord: dashboardBorro
                   </option>
                 ))}
               </Field>
-              <ErrorMessage name="uniqueId" component="div" className="text-red-500 text-sm" />
+              <ErrorMessage
+                name="uniqueId"
+                component="div"
+                className="text-red-500 text-sm"
+              />
             </div>
             <div>
-              <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="status"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Status
               </label>
               <Field
@@ -85,10 +95,17 @@ export default function Approve({ BorrowRecord }: { BorrowRecord: dashboardBorro
                 <option value="Reserved">Reserved</option>
                 <option value="Overdue">Overdue</option>
               </Field>
-              <ErrorMessage name="status" component="div" className="text-red-500 text-sm" />
+              <ErrorMessage
+                name="status"
+                component="div"
+                className="text-red-500 text-sm"
+              />
             </div>
             <div>
-              <label htmlFor="before_status" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="before_status"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Before Status
               </label>
               <Field
@@ -97,10 +114,17 @@ export default function Approve({ BorrowRecord }: { BorrowRecord: dashboardBorro
                 placeholder="Previous status of the book"
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-              <ErrorMessage name="before_status" component="div" className="text-red-500 text-sm" />
+              <ErrorMessage
+                name="before_status"
+                component="div"
+                className="text-red-500 text-sm"
+              />
             </div>
             <div>
-              <label htmlFor="note" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="note"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Note
               </label>
               <Field
@@ -109,7 +133,11 @@ export default function Approve({ BorrowRecord }: { BorrowRecord: dashboardBorro
                 placeholder="Add any relevant notes about the book's condition..."
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-              <ErrorMessage name="note" component="div" className="text-red-500 text-sm" />
+              <ErrorMessage
+                name="note"
+                component="div"
+                className="text-red-500 text-sm"
+              />
             </div>
             <button
               type="submit"

@@ -37,6 +37,22 @@ const useAuth = () => {
     window.location.href = config.GOOGLE_LOGIN_URL;
   };
 
+  const isAdmin = () => {
+    return data?.role?.role_name === "ADMIN";
+  };
+
+  const isOwner = () => {
+    return data?.role?.role_name === "OWNER";
+  };
+
+  const isUser = () => {
+    return data?.role?.role_name === "USER";
+  };
+
+  const isLibrarian = () => {
+    return data?.role?.role_name === "LIBRARIAN";
+  };
+
   return {
     user: data,
     isAuthenticated: !!data,
@@ -57,6 +73,10 @@ const useAuth = () => {
         router.push(`/auth/sign-in?redirect=${router.asPath}`);
       }
     },
+    isAdmin,
+    isOwner,
+    isUser,
+    isLibrarian,
   };
 };
 

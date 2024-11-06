@@ -27,6 +27,7 @@ const PlanCard: React.FC<PlanCardProps> = ({
   const isDowngrade =
     current_membership?.membership?.price_monthly > monthlyPrice;
   const displayedText = isDowngrade ? "Downgrade" : "Upgrade";
+  const isExpired = new Date(current_membership?.end_date || "") < new Date();
 
   return (
     <td className="!border-b-0 table-border-l table-border-t !p-5 !pt-7.5 relative">

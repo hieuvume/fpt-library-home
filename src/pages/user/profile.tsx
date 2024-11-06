@@ -1,6 +1,7 @@
 import Profile from "@/components/layouts/home/profile/Profile";
 import ProfileHeader from "@/components/layouts/home/profile/ProfileHeader";
 import ProfileTopBar from "@/components/layouts/home/profile/ProfileTopBar";
+import ExtendsPlanModal from "@/components/membership/modal/ExtendsPlanModal";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -28,6 +29,7 @@ export default function ProfilePage() {
       <ProfileHeader />
       <ProfileTopBar />
       <Profile />
+      <ExtendsPlanModal />
     </>
   );
 }

@@ -13,6 +13,7 @@ const GoogleLoginPage = () => {
   const { mutateAuth, redirectToLogin } = useAuth();
 
   useEffect(() => {
+    console.log('Login via Google', token);
     if (token) {
       saveAccessToken(token);
       authApi

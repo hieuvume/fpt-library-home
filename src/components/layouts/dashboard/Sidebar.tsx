@@ -13,7 +13,7 @@ function Sidebar() {
         className="sidebar-header hidden lg:flex items-center relative justify-between px-3 lg:px-6 shrink-0"
         id="sidebar_header"
       >
-        <a className="dark:hidden" href="/">
+        <Link className="dark:hidden" href="/">
           <img
             alt=""
             className="default-logo min-h-[22px] max-w-none"
@@ -24,7 +24,7 @@ function Sidebar() {
             className="small-logo min-h-[22px] max-w-none"
             src="/media/app/mini-logo.svg"
           />
-        </a>
+        </Link>
         <a className="hidden dark:block" href="html/demo1.html">
           <img
             alt=""
