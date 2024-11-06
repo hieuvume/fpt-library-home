@@ -1,4 +1,6 @@
+import { BorrowRecord, dashboardBorrowRecord } from "@/models/borrow-record";
 import api from "./axios";
+import { Book } from "@/models/book";
 
 const borrowRecordApi = {
   histories: (query: string) => {
@@ -9,6 +11,22 @@ const borrowRecordApi = {
   },
 };
 
-const borrowRecordDashboardApi = {};
+const borrowRecordDashboardApi = {
+  getCurrentLoans: (query: string) => {
+    return api.get(`/borrow-records-dashboard/current-loans?${query}`);
+  },
+  statusStatistics: ():Promise<any[]>=>{
+    return api.get(`/borrow-records-dashboard/status-statistics`);
+  },
+  getDetailLoan: (id: string):Promise<dashboardBorrowRecord> => {
+    return api.get(`/borrow-records-dashboard/details/${id}`);
+  },
+  getBookLoans: (id :string):Promise<Book[]> => {
+    return api.get(`/borrow-records-dashboard/book-loans/${id}`);
+  },
+  approveBrrow: ( data: any) => {
+    return api.put(`/borrow-records-dashboard/approve`, data);
+  }
+};
 
 export { borrowRecordApi, borrowRecordDashboardApi };

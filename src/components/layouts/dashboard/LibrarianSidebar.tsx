@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 
-function Sidebar() {
+function LibrarianSidebar() {
   return (
     <div
       className="sidebar dark:bg-coal-600 bg-light border-r border-r-gray-200 dark:border-r-coal-100 fixed top-0 bottom-0 z-20 hidden lg:flex flex-col items-stretch shrink-0"
@@ -13,30 +14,24 @@ function Sidebar() {
         className="sidebar-header hidden lg:flex items-center relative justify-between px-3 lg:px-6 shrink-0"
         id="sidebar_header"
       >
-        <a className="dark:hidden" href="/">
-          <img
-            alt=""
-            className="default-logo min-h-[22px] max-w-none"
-            src="/media/app/default-logo.svg"
-          />
-          <img
-            alt=""
-            className="small-logo min-h-[22px] max-w-none"
-            src="/media/app/mini-logo.svg"
-          />
-        </a>
-        <a className="hidden dark:block" href="html/demo1.html">
-          <img
-            alt=""
-            className="default-logo min-h-[22px] max-w-none"
-            src="/media/app/default-logo-dark.svg"
-          />
-          <img
-            alt=""
-            className="small-logo min-h-[22px] max-w-none"
-            src="/media/app/mini-logo.svg"
-          />
-        </a>
+            <Link href="/">
+              <Image
+                alt=""
+                width={30}
+                height={30}
+                className="dark:hidden min-h-[30px]"
+                src="/logo.png"
+              />
+
+              <Image
+                alt=""
+                width={30}
+                height={30}
+                className="hidden dark:inline-block min-h-[30px]"
+                src="/logo-white.png"
+              />
+            </Link>
+   
         <button
           className="btn btn-icon btn-icon-md size-[30px] rounded-lg border border-gray-200 dark:border-gray-300 bg-light text-gray-500 hover:text-gray-700 toggle absolute left-full top-2/4 -translate-x-2/4 -translate-y-2/4"
           data-toggle="body"
@@ -65,37 +60,24 @@ function Sidebar() {
             data-menu-accordion-expand-all="false"
             id="sidebar_menu"
           >
-            <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
-              <Link
-                className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
-                href="/dashboard"
-                tabIndex={0}
-              >
-                <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
-                  <i className="ki-filled ki-chart-simple text-lg"></i>
-                </span>
-                <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                  Dashboard
-                </span>
-              </Link>
-            </div>
+
             <div className="menu-item pt-2.25 pb-px">
               <span className="menu-heading uppercase pl-[10px] pr-[10px] text-2sm font-semibold text-gray-500">
-                Management
+                LIBRARIAN
               </span>
             </div>
 
             <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
               <Link
                 className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
-                href="/dashboard/book-list"
+                href="/dashboard/librarian"
                 tabIndex={0}
               >
                 <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
                   <i className="ki-filled ki-users text-lg"></i>
                 </span>
                 <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                  Book List
+                  Borrow Books
                 </span>
               </Link>
             </div>
@@ -158,43 +140,8 @@ function Sidebar() {
                 </span>
               </Link>
             </div>
-            <div className="menu-item pt-2.25 pb-px">
-              <span className="menu-heading uppercase pl-[10px] pr-[10px] text-2sm font-semibold text-gray-500">
-                Miscellaneous
-              </span>
-            </div>
-            <div className="menu-item">
-              <div
-                className="menu-label gap-[10px] pl-[10px] pr-[10px] py-[6px] border border-transparent"
-                tabIndex={0}
-              >
-                <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
-                  <i className="ki-filled ki-some-files text-lg"></i>
-                </span>
-                <span className="menu-title text-sm font-semibold text-gray-700">
-                  Modals
-                </span>
-                <span className="menu-badge mr-[-10px]">
-                  <span className="badge badge-xs">Soon</span>
-                </span>
-              </div>
-            </div>
-            <div className="menu-item">
-              <div
-                className="menu-label gap-[10px] pl-[10px] pr-[10px] py-[6px] border border-transparent"
-                tabIndex={0}
-              >
-                <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
-                  <i className="ki-filled ki-note-2 text-lg"></i>
-                </span>
-                <span className="menu-title text-sm font-semibold text-gray-700">
-                  Wizards
-                </span>
-                <span className="menu-badge mr-[-10px]">
-                  <span className="badge badge-xs">Soon</span>
-                </span>
-              </div>
-            </div>
+
+
           </div>
         </div>
       </div>
@@ -202,4 +149,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default LibrarianSidebar;

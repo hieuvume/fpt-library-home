@@ -1,5 +1,6 @@
 import { Payment } from "@/models/payment";
 import api from "./axios";
+import { promises } from "dns";
 
 const paymentApi = {
     histories: (query: string) => {
@@ -31,7 +32,10 @@ const dashboardPaymentApi = {
     },
     deletePayment: (id: string) => {
         return api.delete(`/dashboard/payments/${id}`);
-    }
+    },
+    monthlyStatistics:():Promise<any[]>=>{
+        return api.get(`/dashboard/payments/monthly-statistics`)
+    },
 }
 
 export { dashboardPaymentApi, paymentApi };
