@@ -33,8 +33,8 @@ export default function Approve({ BorrowRecord }: { BorrowRecord: dashboardBorro
       userId: BorrowRecord.user._id,
     };
     borrowRecordDashboardApi.approveBrrow(data).then(() => {
-      window.location.reload();
-      Report.success("Success", "Approve borrow successfully", "OK");
+     
+      Report.success("Success", "Approve borrow successfully", "OK",()=> window.location.reload());
     });
   };
 

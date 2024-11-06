@@ -24,19 +24,25 @@ const formatCurrency = (value: number | string): string => {
 };
 
 export default function Card({ membershipId }: { membershipId: string }) {
-  const { data, isLoading, mutate } = useSWR(`/membership-dashboard/${membershipId}`, () => 
+  const { data, isLoading, mutate } = useSWR(`/membership-dashboard/${membershipId}`, () =>
     dashboardmembershipApi.getMembershipById(membershipId)
   );
 
   const handleSubmit = async (values: any) => {
     try {
       await dashboardmembershipApi.updateMembershipById(membershipId, values);
-      mutate(); 
+
+      mutate();
       Report.success(
         "Updated successfully",
         "You have successfully updated the membership.",
-        "OK"
+        "OK",
+        () => {
+          window.location.reload();
+        }
+        
       );
+     
     } catch (error) {
       console.error("Failed to update membership:", error);
     }
