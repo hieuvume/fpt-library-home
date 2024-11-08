@@ -22,6 +22,7 @@ export type MembershipCard = {
     card_number: string
     billing_cycle: string
     total_borrowed: number
+    months: number
     start_date: string
     end_date: string
     price: number

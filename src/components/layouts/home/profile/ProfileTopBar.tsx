@@ -1,14 +1,16 @@
+import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-
 const MenuItem = ({ href, title }) => {
-  const router = useRouter()
-  const isActive = router.pathname === href
+  const router = useRouter();
+  const isActive = router.pathname === href;
 
   return (
     <div
-      className={`menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary ${isActive ? 'here' : ''}`}
+      className={`menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary ${
+        isActive ? "here" : ""
+      }`}
     >
       <Link
         className="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
@@ -20,10 +22,11 @@ const MenuItem = ({ href, title }) => {
         </span>
       </Link>
     </div>
-  )
-}
+  );
+};
 
 export default function ProfileTopBar() {
+  const { logout } = useAuth();
   return (
     <>
       {" "}
@@ -39,13 +42,13 @@ export default function ProfileTopBar() {
             </div>
           </div>
           <div className="flex items-center justify-end grow lg:grow-0 lg:pb-4 gap-2.5 mb-3 lg:mb-0">
-            <button className="dropdown-toggle btn btn-sm btn-primary">
-              <i className="ki-filled ki-users"></i>
-              Connect
-            </button>
-            <button className="btn btn-sm btn-icon btn-light">
-              <i className="ki-filled ki-messages"></i>
-            </button>
+            <Link
+              href={"/search"}
+              className="dropdown-toggle btn btn-sm btn-primary"
+            >
+              <i className="ki-filled ki-filter-search"></i>
+              Search
+            </Link>
             <div
               className="dropdown"
               data-dropdown="true"
@@ -57,48 +60,28 @@ export default function ProfileTopBar() {
               </button>
               <div className="dropdown-content menu-default w-full max-w-[220px]">
                 <div className="menu-item" data-dropdown-dismiss="true">
-                  <button
-                    className="menu-link"
-                    data-modal-toggle="#share_profile_modal"
-                  >
-                    <span className="menu-icon">
-                      <i className="ki-filled ki-coffee"></i>
-                    </span>
-                    <span className="menu-title">Share Profile</span>
-                  </button>
-                </div>
-                <div className="menu-item" data-dropdown-dismiss="true">
-                  <a
-                    className="menu-link"
-                    data-modal-toggle="#give_award_modal"
-                    href="#"
-                  >
-                    <span className="menu-icon">
-                      <i className="ki-filled ki-award"></i>
-                    </span>
-                    <span className="menu-title">Give Award</span>
-                  </a>
-                </div>
-                <div className="menu-item" data-dropdown-dismiss="true">
                   <button className="menu-link">
                     <span className="menu-icon">
-                      <i className="ki-filled ki-chart-line"></i>
+                      <i className="ki-filled ki-moon"></i>
                     </span>
-                    <span className="menu-title">Stay Updated</span>
+                    <span className="menu-title">Dark Mode</span>
                     <label className="switch switch-sm">
-                      <input name="check" type="checkbox" defaultValue={1} />
+                      <input
+                        data-theme-state="dark"
+                        data-theme-toggle="true"
+                        name="check"
+                        type="checkbox"
+                        defaultValue={1}
+                      />
                     </label>
                   </button>
                 </div>
-                <div className="menu-item" data-dropdown-dismiss="true">
-                  <button
-                    className="menu-link"
-                    data-modal-toggle="#report_user_modal"
-                  >
+                <div className="menu-item">
+                  <button className="menu-link" onClick={logout}>
                     <span className="menu-icon">
                       <i className="ki-filled ki-information-2"></i>
                     </span>
-                    <span className="menu-title">Report User</span>
+                    <span className="menu-title">Log out</span>
                   </button>
                 </div>
               </div>

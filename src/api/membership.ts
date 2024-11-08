@@ -22,9 +22,8 @@ const membershipApi = {
       payment_method,
     });
   },
-  extendsPlan: (months: number, payment_method: string): Promise<Payment> => {
-    return api.post(`/membership-card/extends`, {
-      months,
+  extendPlan: (payment_method: string): Promise<Payment> => {
+    return api.post(`/membership-card/extend`, {
       payment_method,
     });
   },

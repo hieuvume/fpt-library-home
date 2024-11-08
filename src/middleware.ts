@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const authRoutes = ['/auth/sign-in', '/auth/sign-up', '/auth/forgot-password', '/auth/reset-password'];
 const publicRoutes = ['/', '/about', '/contact',`/book/[id]`];
-export const privateRoutes = ['/user/profile', '/dashboard/payments', '/payments'];
+export const privateRoutes = ['/user/profile', '/dashboard', '/payments', '/borrows'];
 
 export async function middleware(req: NextRequest) {
     const token = req.cookies.get('access_token')?.value;
@@ -20,7 +20,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.next();
     }
 
-    if (privateRoutes.includes(pathname)) {
+    if (privateRoutes.some(route => pathname.startsWith(route))) {
         if (!isSingedIn) {
             return NextResponse.redirect(new URL('/auth/sign-in', req.url));
         }

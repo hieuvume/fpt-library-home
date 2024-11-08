@@ -32,7 +32,7 @@ const MembershipCard = () => {
                 Upgrade / Downgrade
               </Link>
               <span data-modal-toggle="#extends-plan" className="btn btn-sm btn-primary">
-                Extends
+                Extend
               </span>
             </div>
           </div>
