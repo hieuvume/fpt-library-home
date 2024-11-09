@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Users } from "@/models/user"
 import DashboardLayout from "@/components/layouts/DashboardLayout"
 import { dashboardUserApi } from "@/api/user";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 
 
 export default function UserManagePage() {
@@ -81,9 +81,9 @@ export default function UserManagePage() {
             <a className="btn btn-sm btn-light" href="#">
               Import Members
             </a>
-            <Button className="btn btn-sm btn-primary" onPress={onOpen}>
+            <button className="btn btn-sm btn-primary" onClick={onOpen}>
               Add Member
-            </Button>
+            </button>
           </div>
         </div>
       </div>
