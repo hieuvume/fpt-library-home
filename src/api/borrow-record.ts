@@ -15,18 +15,29 @@ const borrowRecordDashboardApi = {
   getCurrentLoans: (query: string) => {
     return api.get(`/borrow-records-dashboard/current-loans?${query}`);
   },
-  statusStatistics: ():Promise<any[]>=>{
+  statusStatistics: (): Promise<any[]> => {
     return api.get(`/borrow-records-dashboard/status-statistics`);
   },
-  getDetailLoan: (id: string):Promise<BorrowRecord> => {
+  getDetailLoan: (id: string): Promise<BorrowRecord> => {
     return api.get(`/borrow-records-dashboard/details/${id}`);
   },
-  getBookLoans: (id :string):Promise<Book[]> => {
+  getBookLoans: (id: string): Promise<Book[]> => {
     return api.get(`/borrow-records-dashboard/book-loans/${id}`);
   },
-  approveBrrow: ( data: any) => {
-    return api.put(`/borrow-records-dashboard/approve`, data);
-  }
+  approveBorrow: (id: string, data: any) => {
+    return api.put(`/borrow-records-dashboard/approve/${id}`, data);
+  },
+  rejectBorrow: (id: string, note: string) => {
+    return api.put(`/borrow-records-dashboard/reject/${id}`, { note });
+  },
+  returnedBook: (id: string, after_status: string) => {
+    return api.put(`/borrow-records-dashboard/returned/${id}`, {
+      after_status,
+    });
+  },
+  lostedBook: (id: string, penalty_total: string) => {
+    return api.put(`/borrow-records-dashboard/losted/${id}`, { penalty_total });
+  },
 };
 
 export { borrowRecordApi, borrowRecordDashboardApi };

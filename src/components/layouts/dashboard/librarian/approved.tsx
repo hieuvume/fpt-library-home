@@ -8,8 +8,7 @@ import useSWR from "swr";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
-  uniqueId: Yup.string().required("Unique ID is required"),
-  status: Yup.string().required("Status is required"),
+  uniqueId: Yup.string(),
   note: Yup.string().max(250, "Note must be 250 characters or less"),
   before_status: Yup.string().required("Before status is required"),
 });
@@ -25,13 +24,11 @@ export default function Approve({ record }: { record: BorrowRecord }) {
 
   const handleSubmit = (values) => {
     const data = {
-      borrowId: record._id,
       bookId: values.uniqueId,
-      borrowStatus: values.status,
-      bookStatus: "borrowed",
       userId: record.user._id,
+      before_status: values.before_status,
     };
-    borrowRecordDashboardApi.approveBrrow(data).then(() => {
+    borrowRecordDashboardApi.approveBorrow(record._id, data).then(() => {
       Report.success("Success", "Approve borrow successfully", "OK", () =>
         window.location.reload()
       );
@@ -43,7 +40,6 @@ export default function Approve({ record }: { record: BorrowRecord }) {
       <Formik
         initialValues={{
           uniqueId: "",
-          status: "borrowing",
           note: "",
           before_status: "",
         }}
@@ -52,55 +48,33 @@ export default function Approve({ record }: { record: BorrowRecord }) {
       >
         {({ isSubmitting }) => (
           <Form className="space-y-4 p-4">
-            <div>
-              <label
-                htmlFor="uniqueId"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Book Unique ID
-              </label>
-              <Field
-                as="select"
-                name="uniqueId"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              >
-                <option value="">Select unique ID</option>
-                {data?.map((book) => (
-                  <option key={book.uniqueId} value={book._id}>
-                    {book.uniqueId}
-                  </option>
-                ))}
-              </Field>
-              <ErrorMessage
-                name="uniqueId"
-                component="div"
-                className="text-red-500 text-sm"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="status"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Status
-              </label>
-              <Field
-                as="select"
-                name="status"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              >
-                <option value="">Select status</option>
-                <option value="Available">Available</option>
-                <option value="Borrowed">Borrowed</option>
-                <option value="Reserved">Reserved</option>
-                <option value="Overdue">Overdue</option>
-              </Field>
-              <ErrorMessage
-                name="status"
-                component="div"
-                className="text-red-500 text-sm"
-              />
-            </div>
+            {record?.book === null && (
+              <div>
+                <label
+                  htmlFor="uniqueId"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Book Unique ID
+                </label>
+                <Field
+                  as="select"
+                  name="uniqueId"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                  <option value="">Select unique ID</option>
+                  {data?.map((book) => (
+                    <option key={book.uniqueId} value={book._id}>
+                      {book.uniqueId}
+                    </option>
+                  ))}
+                </Field>
+                <ErrorMessage
+                  name="uniqueId"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+            )}
             <div>
               <label
                 htmlFor="before_status"

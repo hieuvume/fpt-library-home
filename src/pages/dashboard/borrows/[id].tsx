@@ -1,6 +1,6 @@
 import { borrowRecordDashboardApi } from "@/api/borrow-record";
 import Approve from "@/components/layouts/dashboard/librarian/approved";
-import DetailBookLoansWapper from "@/components/layouts/dashboard/librarian/loan-details";
+import BorrowRecordDetails from "@/components/layouts/dashboard/librarian/borrow-record-details";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -19,7 +19,7 @@ const Loans = () => {
   if (error) return <div>Error loading payment</div>;
   return (
     <div className="container-fixed">
-      <DetailBookLoansWapper record={data} />
+      <BorrowRecordDetails record={data} mutate={mutate} />
       <Approve record={data} />
     </div>
   );
@@ -27,6 +27,8 @@ const Loans = () => {
 Loans.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
+
 Loans.requiresAuth = true;
 Loans.roles = ["LIBRARIAN", "OWNER", "ADMIN"];
+
 export default Loans;
