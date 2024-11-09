@@ -136,15 +136,15 @@ export default function Card({ membershipId }: { membershipId: string }) {
               <ErrorMessage name="max_reserve_books_per_montly" component="div" className="text-red-500" />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-              <label className="font-semibold">Renewal Allowed:</label>
-              <Field name="renewal_allowed" type="checkbox" className="input-checkbox" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 ">
+              <label className="checkbox checkbox-sm">Renewal Allowed:</label>
+              <Field name="renewal_allowed" type="checkbox" className="checkbox checkbox-sm" />
               <ErrorMessage name="renewal_allowed" component="div" className="text-red-500" />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-              <label className="font-semibold">Hold Allowed:</label>
-              <Field name="hold_allowed" type="checkbox" className="input-checkbox" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 ">
+              <label className="checkbox checkbox-sm">Hold Allowed:</label>
+              <Field name="hold_allowed" type="checkbox" className="checkbox checkbox-sm " />
               <ErrorMessage name="hold_allowed" component="div" className="text-red-500" />
             </div>
 

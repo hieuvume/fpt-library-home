@@ -17,6 +17,10 @@ const bookTitleApi = {
   },
 };
 
-const bookTitleDashboardApi = {};
+const bookTitleDashboardApi = {
+  getbookTitles: (query): Promise<BookTitle> => {
+    return axios.get(`book-titles-dashboard/get-all?${query}`);
+  }
+};
 
 export { bookTitleApi, bookTitleDashboardApi };

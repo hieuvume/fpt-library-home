@@ -2,6 +2,7 @@ import { BookTitle } from "./book-title";
 
 export type Book = {
     _id: string;
+    id: string;
     book_title: BookTitle;
     uniqueId: string;
     section: string;

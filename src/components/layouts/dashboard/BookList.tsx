@@ -11,69 +11,67 @@ import TableHeader from '@/components/table/TableHeader';
 import Image from 'next/image';
 import Link from 'next/link';
 import DateCell from '@/components/table/cell/DateCell';
+import { bookTitleDashboardApi } from '@/api/book-title';
+import { BookTitle } from '@/models/book-title';
+import { isArray } from 'chart.js/helpers';
 
-const columns: ReadonlyArray<Column<Book>> = [
+const columns: ReadonlyArray<Column<BookTitle>> = [
   {
-    Header: ({ column: { id } }) => <TableHeader title="Book" id={id} />,
-    accessor: "book_title",
-    Cell: ({ value }) => (
-      <>
-        <div className="flex items-center gap-2.5">
-          <div className="">
-            <Image
-              width={100}
-              height={100}
-              className="max-w-8"
-              alt="book"
-              src={value?.cover_image}
-            />
+    Header: ({ column: { id } }) => <TableHeader title="Book Title" id={id} />,
+    accessor: "title",
+    Cell: ({ row: { original } }) => (
+      <div className="flex items-center gap-2.5">
+        {original.cover_image && (
+          <div className="w-10 h-10">
+            <img src={original.cover_image} alt={original.title} className="w-full h-full object-cover rounded" />
           </div>
-          <div className="flex flex-col gap-0.5">
-            <Link
-              className="leading-none font-medium text-gray-900 hover:text-primary"
-              href={`/books/${value?._id}`}
-            >
-              {value?.title}
-            </Link>
-          </div>
+        )}
+        <div className="flex flex-col gap-0.5">
+          <span>{original.title}</span>
+          <span className='text-xs text-gray-700 font-normal'>{original.brief_content}</span>
         </div>
-      </>
+      </div>
     ),
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Status" id={id} />,
-    accessor: "status",
+    Header: ({ column: { id } }) => <TableHeader title="Description" id={id} />,
+    accessor: "description",
+    Cell: ({ value }) => <span className="text-sm text-gray-700 font-normal">{value}</span>,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Section" id={id} />,
-    accessor: "section",
+    Header: ({ column: { id } }) => <TableHeader title="Categories" id={id} />,
+    accessor: "categories",
+    Cell: ({ value }) => <span className="text-sm text-gray-700 font-normal">   {Array.isArray(value)
+      ? value.map(category => category.title).join(", ")
+      : "No categories available"}</span>,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Shelf" id={id} />,
-    accessor: "shelf",
+    Header: ({ column: { id } }) => <TableHeader title="Author" id={id} />,
+    accessor: "author",
+    Cell: ({ value }) => <span className="text-xs text-gray-700 font-normal">
+    {Array.isArray(value)
+      ? value.join(", ")
+      : value || "No author available"}
+  </span>,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Floor" id={id} />,
-    accessor: "floor",
+    Header: ({ column: { id } }) => <TableHeader title="ISBN" id={id} />,
+    accessor: "ISBN",
+    Cell: ({ value }) => <span className="text-sm text-gray-700 font-normal">{value}</span>,
   },
   {
-    Header: ({ column: { id } }) => <TableHeader title="Position" id={id} />,
-    accessor: "position",
+    Header: ({ column: { id } }) => <TableHeader title="Memberships" id={id} sortable/>,
+    accessor: "memberships",
+    Cell: ({ value }) => <span className="text-sm text-gray-700 font-normal">{value.map(v => v.name).join(", ")}</span>,
   },
-  {
-    Header: ({ column: { id } }) => <TableHeader title="Created" id={id} sortable />,
-    accessor: "created_at",
-    Cell: ({ value }) => <DateCell value={value} />,
-  },
-  {
+    {
     Header: ({ column: { id } }) => <TableHeader title="Action" id={id} />,
     id: "action",
     Cell: ({ value }) => (
       <>
         <button className="btn btn-sm btn-light btn-active-light-primary">Edit</button>
       </>
-    ),
-  }
+    ),}
 ];
 
 export function BookListTable() {
@@ -106,9 +104,10 @@ export default function BookListPage() {
 
   return (
     <TableQueryProvider
-      requestKey={"book-list"}
-      fetcher={dashboardBookApi.getBooks}
+      requestKey={"book-titles-dashboard/get-all"}
+      fetcher={bookTitleDashboardApi.getbookTitles}
       limit={20}
+      defaultSort={{ field: "title", order: "desc" }}
     >
       <BookListTable />
     </TableQueryProvider>)
