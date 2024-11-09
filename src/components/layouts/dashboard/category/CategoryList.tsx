@@ -8,153 +8,72 @@ import { TableQueryProvider } from "@/provider/TableQueryProvider";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { Column } from "react-table";
+import { CardModal } from "@/components/modal/CardModal";
+import CategoryModal from "./CategoryModal";
 
-const columns: ReadonlyArray<Column<Category>> = [
-  {
-    Header: ({ column: { id } }) => <TableHeader title="Title" id={id} />,
-    accessor: "title", // Thay đổi để khớp với dữ liệu trả về từ API
-    Cell: ({ value, row: { original } }) => (
-      <div className="flex items-center gap-2.5">
-        <Link
-          className="leading-none font-medium text-gray-900 hover:text-primary"
-          href={`/books/${original?._id}`}
-        >
-          {value}
-        </Link>
-      </div>
-    ),
-  },
-  {
-    Header: ({ column: { id } }) => <TableHeader title="Description" id={id} />,
-    accessor: "description",
-    Cell: ({ value }) => <span>{value}</span>,
-  },
-  {
-    Header: ({ column: { id } }) => <TableHeader title="Action" id={id} />,
-    id: 'action',
-    Cell: ({ row }) => (
-      <>
-        <button className="btn btn-success">View</button>
-        <button className="btn btn-danger" onClick={() => handleDeleteCategory(row.original._id)}>Delete</button>
-      </>
-    ),
-  },
-  // Các cột khác nếu có, như Due, Status, Created
-];
-
-const handleDeleteCategory = async (categoryId: string) => {
-  // Hiển thị hộp thoại xác nhận
-  const isConfirmed = window.confirm("Bạn có chắc chắn muốn xóa danh mục này không?");
-
-  if (!isConfirmed) {
-    return; // Nếu không đồng ý, thoát khỏi hàm
-  }
-
-  try {
-    // Gọi API để xóa danh mục theo ID
-    await dashboardCategoryApi.deleteCategory(categoryId);
-    alert("Category deleted successfully!");
-    // Tùy chọn: Làm mới dữ liệu để phản ánh sự thay đổi trong bảng
-    // Ví dụ: nếu bạn có hàm fetchCategories để lấy danh sách đã cập nhật:
-    // fetchCategories();
-  } catch (error) {
-    console.error("Failed to delete category:", error);
-    alert("Failed to delete category");
-  }
-};
 
 export function CategoriesList() {
-  const formRef = useRef(null); // Tạo ref cho form
-  const [formData, setFormData] = useState({ title: "", description: "" });
-
-  const handleAddClick = () => {
-    // Cuộn xuống form khi nhấn nút
-    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedCategories, setSelecteCategories] = useState<string | null>(null);
+  const openModal = (categoriId: string) => {
+    setSelecteCategories(categoriId);
+    setModalOpen(true);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelecteCategories(null);
   };
-  const handleCreateCategory = async () => {
-    try {
-      dashboardCategoryApi.createCategory(formData);
-      setFormData({ title: "", description: "" }); // Clear form data
-      alert("Category added successfully!");
-      // Optionally, refresh the data to reflect the new category in the table
-    } catch (error) {
-      console.error("Failed to add category:", error);
-      alert("Failed to add category");
-    }
-  };
+  const columns: ReadonlyArray<Column<Category>> = [
+    {
+      Header: ({ column: { id } }) => <TableHeader title="Title" id={id} />,
+      accessor: "title",
+      Cell: ({ value, row: { original } }) => (
+        <div className="flex items-center gap-2.5">
+          <Link
+            className="leading-none font-medium text-gray-900 hover:text-primary"
+            href={`/books/${original?._id}`}
+          >
+            {value}
+          </Link>
+        </div>
+      ),
+    },
+    {
+      Header: ({ column: { id } }) => <TableHeader title="Description" id={id} />,
+      accessor: "description",
+      Cell: ({ value }) => <span >{value}</span>,
+    },
+    {
+      Header: ({ column: { id } }) => <TableHeader title="Action" id={id} />,
+      accessor: '_id',
+      Cell: ({ value }) => (
+        <button className="btn btn-sm btn-light btn-active-light-primary" onClick={() => openModal(value)}>Edit</button>
+      ),
+    },
 
-
+  ];
 
 
   return (
     <>
-      <div className="container-fixed col-span-1 lg:col-span-2">
-        <div className="flex items-center gap-2.5">
-          <Button className="btn btn-sm btn-primary" onClick={handleAddClick} >
-            Add Category
-          </Button>
-        </div>
-        {/* Table */}
-        <div className="flex flex-col gap-5 lg:gap-7.5">
-          <div className="card card-grid min-w-full">
-            <div className="card-header">
-              <h3 className="card-title">Categories</h3>
-            </div>
-            <div className="card-body">
-              <Table columns={columns}></Table>
-            </div>
-            <TablePagination />
+      <div className="flex flex-col gap-5 lg:gap-7.5">
+        <div className="card card-grid min-w-full">
+          <div className="card-header">
+            <h3 className="card-title">Categories</h3>
           </div>
-        </div>
-        <div
-          ref={formRef}
-          className="flex flex-col items-stretch grow gap-5 lg:gap-7.5"
-        >
-          <div className="card pb-2.5">
-            <div className="card-header" id="basic_settings">
-              <h3 className="card-title"></h3>
-            </div>
-            <div className="card-body grid gap-5">
-              <div className="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label className="form-label max-w-56">Title</label>
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="title must be longer than or equal to 5 characters"
-                  defaultValue=""
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label className="form-label max-w-56">Description</label>
-                <input
-                  className="input"
-                  placeholder="description must have 10-100 characters"
-                  type="text"
-                  defaultValue=""
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex justify-end">
-                <button
-                  className="btn btn-primary"
-                  onClick={handleCreateCategory}
-                >
-                  Create new Category
-                </button>
-              </div>
-            </div>
+          <div className="card-body">
+            <Table columns={columns}></Table>
           </div>
+          <TablePagination />
         </div>
+        {isModalOpen && (
+          <CategoryModal
+            isModalOpen={isModalOpen}
+            closeModal={closeModal}
+            selectedCategories={selectedCategories}
+          />
+        )}
       </div>
     </>
   );
@@ -168,6 +87,7 @@ export default function CategoryWrapper() {
       limit={10}
     >
       <CategoriesList />
+
     </TableQueryProvider>
   );
 }

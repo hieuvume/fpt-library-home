@@ -13,7 +13,6 @@ import Card from "./card";
 
 
 const MembershipCard = () => {
-    // State for managing modal visibility and selected membership ID
     const [isModalOpen, setModalOpen] = useState(false);
     const [selectedMembershipId, setSelectedMembershipId] = useState<string | null>(null);
 

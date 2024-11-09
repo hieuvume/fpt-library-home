@@ -17,6 +17,12 @@ const dashboardCategoryApi = {
 
     deleteCategory: (id: string) => {
         return api.delete(`/dashboard/categories/${id}`)
+    },
+    updataCategory: (id: string, data: {
+        title: string,
+        description: string
+    }) => {
+        return api.put(`/dashboard/categories/${id}`, data)
     }
 
 }

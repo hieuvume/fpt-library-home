@@ -21,36 +21,44 @@ const CardModal: React.FC<Props> = ({
 
   return (
     <>
-      <div className="container-fixed">
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+        role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        style={{ zIndex: 90 }}
+        onClick={onClose}
+      >
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          role="dialog"
-          aria-modal="true"
-          tabIndex={-1}
-           style={{ zIndex: 90 }}
-          onClick={onClose}
+          style={{
+            backgroundColor: "white",
+            borderRadius: "0.5rem",
+            boxShadow: "0px 10px 15px rgba(0, 0, 0, 0.1)",
+            padding: "1rem",
+            maxWidth: "600px",
+            width: "100%",
+            position: "relative",
+            zIndex: 101,
+          }}
+          id={`${modalKey}_content`}
+          onClick={(e) => e.stopPropagation()}
         >
-          <div
-            className={`modal-content bg-white rounded-lg shadow-lg p-4 ${className}`}
-            id={`${modalKey}_content`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="modal-header flex justify-between items-center border-b pb-2 mb-4">
-              <h3 className="modal-title font-semibold text-lg">{title}</h3>
-              <button
-                className="btn btn-xs btn-icon btn-light text-gray-600"
-                onClick={onClose}
-              >
-                <i className="ki-outline ki-cross"></i>
-              </button>
-            </div>
+          <div className="modal-header flex justify-between items-center border-b pb-2 mb-4">
+            <h3 className="modal-title font-semibold text-lg">{title}</h3>
+            <button
+              className="btn btn-xs btn-icon btn-light text-gray-600"
+              onClick={onClose}
+            >
+              <i className="ki-outline ki-cross"></i>
+            </button>
+          </div>
 
-            <div className="modal-body">
-              {children}
-            </div>
+          <div className="modal-body">
+            {children}
           </div>
         </div>
       </div>
+
 
     </>
   );

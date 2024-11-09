@@ -1,4 +1,4 @@
-import { BorrowRecord, dashboardBorrowRecord } from "@/models/borrow-record";
+import { BorrowRecord } from "@/models/borrow-record";
 import api from "./axios";
 import { Book } from "@/models/book";
 
@@ -18,7 +18,7 @@ const borrowRecordDashboardApi = {
   statusStatistics: ():Promise<any[]>=>{
     return api.get(`/borrow-records-dashboard/status-statistics`);
   },
-  getDetailLoan: (id: string):Promise<dashboardBorrowRecord> => {
+  getDetailLoan: (id: string):Promise<BorrowRecord> => {
     return api.get(`/borrow-records-dashboard/details/${id}`);
   },
   getBookLoans: (id :string):Promise<Book[]> => {
