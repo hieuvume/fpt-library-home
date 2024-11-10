@@ -33,7 +33,7 @@ export default function BookDetailsModal({ book }: { book: BookTitle }) {
             </tr>
           </thead>
           <tbody>
-            {book?.books.map((copy, index) => (
+            {book?.books?.filter(b => b.status != 'losted')?.map((copy, index) => (
               <tr
                 key={`${index}`}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"

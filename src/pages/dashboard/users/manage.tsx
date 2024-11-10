@@ -623,12 +623,12 @@ export default function UserManagePage() {
                   </div>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
+                  <button className="btn btn-danger" onClick={onClose}>
                     Close
-                  </Button>
-                  <Button color="primary" onPress={onClose}>
+                  </button>
+                  <button className="btn btn-primary" onClick={onClose}>
                     Action
-                  </Button>
+                  </button>
                 </ModalFooter>
               </>
             )}

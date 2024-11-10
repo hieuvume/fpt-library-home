@@ -1,7 +1,7 @@
 import { borrowRecordDashboardApi } from "@/api/borrow-record";
 import useSWR from "swr";
-import MembershipStatistics from "./MembershipStatistics";
-import MonthlyPaymentChart from "./MonthlyPaymentChart";
+import MonthlyPaymentChart from "./owner/MonthlyPaymentChart";
+import MembershipStatistics from "./owner/MembershipStatistics";
 
 const OwnerDashboard = () => {
   const { data, isLoading, error } = useSWR(

@@ -81,7 +81,7 @@ function Sidebar() {
             </div>
             <div className="menu-item pt-2.25 pb-px">
               <span className="menu-heading uppercase pl-[10px] pr-[10px] text-2sm font-semibold text-gray-500">
-                Management
+               
               </span>
             </div>
 
@@ -95,7 +95,7 @@ function Sidebar() {
                   <i className="ki-filled ki-users text-lg"></i>
                 </span>
                 <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                  Book Titles Management
+                  Book Titles
                 </span>
               </Link>
             </div>
@@ -125,7 +125,7 @@ function Sidebar() {
                   <i className="ki-filled ki-users text-lg"></i>
                 </span>
                 <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                  User Management
+                  User
                 </span>
               </Link>
             </div>
@@ -140,7 +140,7 @@ function Sidebar() {
                   <i className="ki-filled ki-category text-lg"></i>
                 </span>
                 <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                  Category Management
+                  Category
                 </span>
               </Link>
             </div>
@@ -154,46 +154,9 @@ function Sidebar() {
                   <i className="ki-filled ki-category text-lg"></i>
                 </span>
                 <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                  Memberships Management
+                  Memberships
                 </span>
               </Link>
-            </div>
-            <div className="menu-item pt-2.25 pb-px">
-              <span className="menu-heading uppercase pl-[10px] pr-[10px] text-2sm font-semibold text-gray-500">
-                Miscellaneous
-              </span>
-            </div>
-            <div className="menu-item">
-              <div
-                className="menu-label gap-[10px] pl-[10px] pr-[10px] py-[6px] border border-transparent"
-                tabIndex={0}
-              >
-                <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
-                  <i className="ki-filled ki-some-files text-lg"></i>
-                </span>
-                <span className="menu-title text-sm font-semibold text-gray-700">
-                  Modals
-                </span>
-                <span className="menu-badge mr-[-10px]">
-                  <span className="badge badge-xs">Soon</span>
-                </span>
-              </div>
-            </div>
-            <div className="menu-item">
-              <div
-                className="menu-label gap-[10px] pl-[10px] pr-[10px] py-[6px] border border-transparent"
-                tabIndex={0}
-              >
-                <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
-                  <i className="ki-filled ki-note-2 text-lg"></i>
-                </span>
-                <span className="menu-title text-sm font-semibold text-gray-700">
-                  Wizards
-                </span>
-                <span className="menu-badge mr-[-10px]">
-                  <span className="badge badge-xs">Soon</span>
-                </span>
-              </div>
             </div>
           </div>
         </div>
