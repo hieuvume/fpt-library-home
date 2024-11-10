@@ -23,6 +23,9 @@ const dashboardCategoryApi = {
         description: string
     }) => {
         return api.put(`/dashboard/categories/${id}`, data)
+    },
+    getAllCategories: () :Promise<Category[]>=> {
+        return api.get(`/dashboard/categories/getAll`)
     }
 
 }

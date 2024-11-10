@@ -36,7 +36,13 @@ const bookTitleDashboardApi = {
   },
   updateBookTitle: (id: string, data): Promise<any> => {
     return axios.put(`book-titles-dashboard/update-bookTitle/${id}`, data);
-  }
+  },
+  updateMembership: (id: string, data): Promise<any> => {
+    return axios.put(`book-titles-dashboard/update-memberships/${id}`, data);
+  },
+  updateCategory: (id: string, data): Promise<any> => {
+    return axios.put(`book-titles-dashboard/update-categories/${id}`, data);
+  },
 };
 
 export { bookTitleApi, bookTitleDashboardApi };

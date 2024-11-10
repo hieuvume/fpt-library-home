@@ -35,16 +35,16 @@ export default function UpdateBookTitleModal({
   bookId,
 }: Props) {
   const { mutateAuth } = useAuth();
-console.log("bookId", bookId)
-console.log("defaultValue", defaultValue)
+  console.log("bookId", bookId)
+  console.log("defaultValue", defaultValue)
   return (
     <>
-    
+
       <BaseModal modalKey={modalKey} title="Update Profile">
         <Formik
           initialValues={{ [name]: defaultValue }}
           enableReinitialize={true}
-        //  validationSchema={validationSchema}
+          //  validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting, setFieldError }) => {
             setSubmitting(true);
             bookTitleDashboardApi

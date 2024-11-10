@@ -9,7 +9,6 @@ export type Users = {
     id_card: object;
     current_membership_id: string;
     borrowed_books: string[];
-    role: string;
     google_id: string;
     google_access_token: string;
     token_expires_at: Date;
@@ -18,6 +17,9 @@ export type Users = {
     avatar_url: string
     status: Boolean
     address: string;
+    role: {
+        role_name: string
+      }
 }
 
 export type ChangePasswordPayload = {

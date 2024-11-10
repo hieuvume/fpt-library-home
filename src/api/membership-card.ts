@@ -14,6 +14,9 @@ const dashboardmembershipApi = {
     },
     statistics: (): Promise<any> => {
       return api.get(`/membership-card-dashboard/statistics`);
+    },
+    getAll:():Promise<Membership[]>=>{
+      return api.get(`/membership-dashboard/get-all`);
     }
   }
 export { dashboardmembershipApi };

@@ -21,7 +21,7 @@ const CategoryModal = ({ isModalOpen, closeModal, selectedCategories }) => {
                 Report.success('Success', 'Category created successfully', 'OK', () => {
                     mutate('category');
                     closeModal();
-                 
+
                 });
             } catch (error) {
                 Report.failure('Error', 'Failed to create category', 'OK', () => {
@@ -90,20 +90,25 @@ const CategoryModal = ({ isModalOpen, closeModal, selectedCategories }) => {
                                         className="text-xs text-red-500"
                                     />
                                 </div>
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
-                                    disabled={isSubmitting}
-                                >
-                                    Submit
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
-                                    onClick={deleteCategory}
-                                >
-                                    Delete
-                                </button>
+                                <div className='space-x-1'>
+                                    <button
+                                        type="submit"
+                                        className="btn btn-sm btn-info btn-outline "
+                                        disabled={isSubmitting}
+                                    >
+                                        Submit
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="btn btn-sm btn-danger btn-outline"
+                                        onClick={deleteCategory}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+
+                
+
                             </Form>
                         )}
                     </Formik>

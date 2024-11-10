@@ -1,16 +1,15 @@
-import membershipApi from "@/api/membership";
 import useSWR from "swr";
 import { useState } from "react";
 import { Report } from "notiflix";
 import { dashboardmembershipApi } from "@/api/membership-card";
 import { bookTitleDashboardApi } from "@/api/book-title";
 
-
-export default function MemberShip({ bookId, mutate }) {
-  const { data, isLoading, error } = useSWR(
-    "/membership",
-    () => bookTitleDashboardApi.getMemberships()
+export default function MemberShip({ bookId }) { // Pass bookId as a prop
+  const { data, isLoading, error, mutate } = useSWR(
+    "/membership-dashboard/get-all",
+    () => dashboardmembershipApi.getAll()
   );
+
   const [selectedMembership, setSelectedMembership] = useState("");
 
   const handleMembershipChange = async (event) => {
@@ -18,11 +17,13 @@ export default function MemberShip({ bookId, mutate }) {
     setSelectedMembership(membershipId);
 
     try {
-   //   await bookTitleDashboardApi.updateMembership(bookId, { membershipId });
+      // Update the membership of the book by passing the membership ID in the correct format
+      await bookTitleDashboardApi.updateMembership(bookId, [membershipId]); 
       Report.success("Success", "Membership updated successfully", "OK");
-      mutate(); // Refresh data after update
+      window.location.reload();
+
     } catch (error) {
-      console.error(error);
+
       Report.failure("Error", "Failed to update membership", "OK");
     }
   };
@@ -44,7 +45,7 @@ export default function MemberShip({ bookId, mutate }) {
           onChange={handleMembershipChange}
         >
           <option value="">-- Select Membership --</option>
-          {data?.docs?.map((membership) => (
+          {data?.map((membership) => (
             <option key={membership._id} value={membership._id}>
               {membership.name}
             </option>

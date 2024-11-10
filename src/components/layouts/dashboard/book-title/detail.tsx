@@ -7,6 +7,7 @@ import { useState } from "react";
 import UpdateBookTitleModal from "./modal";
 import { BaseModal } from "@/components/modal/BaseModal";
 import MemberShip from "./membership";
+import Category from "./categories";
 
 export default function DetailBookTitle({ bookTitle, mutate }: { bookTitle: BookTitle, mutate: any }) {
   const [loading, setLoading] = useState(false);
@@ -235,10 +236,13 @@ export default function DetailBookTitle({ bookTitle, mutate }: { bookTitle: Book
                     <td className="py-3 text-center">
                       <button
                         className="btn btn-sm btn-icon btn-clear btn-primary"
-                        data-modal-toggle="#update-password"
+                        data-modal-toggle="#update-categories"
                       >
                         <i className="ki-filled ki-notepad-edit"></i>
                       </button>
+                      <BaseModal modalKey="update-categories" title="Update Membership">
+                         <> <Category bookId={bookTitle._id}/></>
+                      </BaseModal>
                     </td>
                   </tr>
                   <tr>
@@ -270,6 +274,9 @@ export default function DetailBookTitle({ bookTitle, mutate }: { bookTitle: Book
                       >
                         <i className="ki-filled ki-notepad-edit"></i>
                       </button>
+                      <BaseModal modalKey="update-membership" title="Update Membership">
+                         <> <MemberShip bookId={bookTitle._id}/></>
+                      </BaseModal>
                     </td>
                   </tr>
                 </tbody>
@@ -279,40 +286,40 @@ export default function DetailBookTitle({ bookTitle, mutate }: { bookTitle: Book
         </div>
       </div>
       {bookTitle && (
-  <>
-    <UpdateBookTitleModal
-      modalKey="full-name"
-      label="Title"
-      name="title"
-      defaultValue={bookTitle.title}
-      bookId={bookTitle._id}
-    />
-    <UpdateBookTitleModal
-      modalKey="update-birthday"
-      label="Author"
-      name="author"
-      type="text"
-      defaultValue={bookTitle.author.join(", ")}
-      bookId={bookTitle._id}
-    />
-    <UpdateBookTitleModal
-      modalKey="update-ISBN"
-      label="ISBN"
-      name="ISBN"
-      type="text"
-      defaultValue={bookTitle.ISBN}
-      bookId={bookTitle._id}
-    />
-    <UpdateBookTitleModal
-      modalKey="update-Description"
-      label="Description"
-      name="description"
-      type="text"
-      defaultValue={bookTitle.description}
-      bookId={bookTitle._id}
-    />
-  </>
-)}
+        <>
+          <UpdateBookTitleModal
+            modalKey="full-name"
+            label="Title"
+            name="title"
+            defaultValue={bookTitle.title}
+            bookId={bookTitle._id}
+          />
+          <UpdateBookTitleModal
+            modalKey="update-birthday"
+            label="Author"
+            name="author"
+            type="text"
+            defaultValue={bookTitle.author.join(", ")}
+            bookId={bookTitle._id}
+          />
+          <UpdateBookTitleModal
+            modalKey="update-ISBN"
+            label="ISBN"
+            name="ISBN"
+            type="text"
+            defaultValue={bookTitle.ISBN}
+            bookId={bookTitle._id}
+          />
+          <UpdateBookTitleModal
+            modalKey="update-Description"
+            label="Description"
+            name="description"
+            type="text"
+            defaultValue={bookTitle.description}
+            bookId={bookTitle._id}
+          />
+        </>
+      )}
     </div>
   );
 }

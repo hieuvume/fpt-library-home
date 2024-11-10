@@ -27,12 +27,13 @@ const userApi = {
 }
 
 const dashboardUserApi = {
-    getUsers: (): Promise<Users[]> => {
-        return api.get(`/dashboard/users`)
+    getUsers: (query): Promise<Users[]> => {
+        return api.get(`dashboard/users/list?${query}`);
     },
     banUsers: (updateUser: Users): Promise<Users> => {
         return api.put(`/dashboard/users/${updateUser.id}`, updateUser)
     },
+
 
 }
 
