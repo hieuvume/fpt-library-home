@@ -236,7 +236,7 @@ export default function BorrowRecordDetails({
                       Status
                     </td>
                     <td className="text-sm text-gray-900 pb-3.5">
-                      <BorrowStatusCell value={record.status} />
+                      <BorrowStatusCell value={record?.status} />
                     </td>
                   </tr>
                   <tr>

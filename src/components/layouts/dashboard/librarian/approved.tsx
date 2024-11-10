@@ -24,7 +24,7 @@ export default function Approve({ record }: { record: BorrowRecord }) {
 
   const handleSubmit = (values) => {
     const data = {
-      bookId: values.uniqueId,
+      bookId: record?.book === null?values.uniqueId:record?.book?._id,
       userId: record.user._id,
       before_status: values.before_status,
     };

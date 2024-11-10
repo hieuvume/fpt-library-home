@@ -88,14 +88,14 @@ function Sidebar() {
             <div className="menu-item hover:bg-gray-100 dark:hover:bg-gray-700">
               <Link
                 className="menu-link gap-[10px] pl-[10px] pr-[10px] py-[8px] border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg"
-                href="/dashboard/book-list"
+                href="/dashboard/book-titles"
                 tabIndex={0}
               >
                 <span className="menu-icon items-start w-[20px] text-gray-500 dark:text-gray-400">
                   <i className="ki-filled ki-users text-lg"></i>
                 </span>
                 <span className="menu-title text-sm font-medium text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
-                  Book List
+                  Book Titles Management
                 </span>
               </Link>
             </div>

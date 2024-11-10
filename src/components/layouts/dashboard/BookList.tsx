@@ -66,10 +66,10 @@ const columns: ReadonlyArray<Column<BookTitle>> = [
   },
     {
     Header: ({ column: { id } }) => <TableHeader title="Action" id={id} />,
-    id: "action",
+    accessor: "_id",
     Cell: ({ value }) => (
       <>
-        <button className="btn btn-sm btn-light btn-active-light-primary">Edit</button>
+        <Link href={`book-titles/${value}`} className="btn btn-sm btn-light btn-active-light-primary">Edit</Link>
       </>
     ),}
 ];
@@ -82,7 +82,11 @@ export function BookListTable() {
           <div className="card card-grid min-w-full">
             <div className="card-header">
               <h3 className="card-title">History Books</h3>
+              <div className="flex items-center gap-2.5">
+              <Link className="btn btn-sm btn-light" href="book-titles/create">Add Book Title</Link>
+              </div>
             </div>
+         
             <div className="card-body">
               <Table columns={columns}></Table>
             </div>

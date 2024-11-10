@@ -127,12 +127,6 @@ const Profile = () => {
                         </span>
                       </td>
                       <td className="py-3 text-center">
-                        {/* <a
-                          className="btn btn-sm btn-icon btn-clear btn-primary"
-                          href="#"
-                        >
-                          <i className="ki-filled ki-notepad-edit"></i>
-                        </a> */}
                       </td>
                     </tr>
                     <tr>
