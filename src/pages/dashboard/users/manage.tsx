@@ -58,7 +58,7 @@ const columns: ReadonlyArray<Column<Users>> = [
     accessor: "role",
     Cell: ({ value }) => (
       <div className="flex items-center gap-2">
-        <span >{value.role_name}</span>
+        <span >{value?.role_name}</span>
       </div>
     )
   },
@@ -99,7 +99,6 @@ const UserManagePage = () => {
 }
 export default function UserList() {
   const [searchQuery, setSearchQuery] = useState("");
-
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   }
